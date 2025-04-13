@@ -17,13 +17,8 @@ class Main {
         int answer2 = 4; // Ответ на 2 вопрос
         int answer3 = 1; // Ответ на 3 вопрос
 
-        System.out.println("Результат проверки вопроса 1:");
-        System.out.println(answer1 < answer2);
-        // Выведите true или false, сравнив ответ на 1 вопрос с правильным
-        // Повторите для вопросов 2 и 3
-        System.out.println("Результат проверки вопроса 2:");
-        System.out.println(answer2 != answer3);
-        System.out.println("Результат проверки вопроса 3:");
-        System.out.println(answer1 > answer3);
+        System.out.println("Result 1: \n" + (answer1 > answer2 ? "true" : "false"));
+        System.out.println("Result 2: \n" + (answer3 > answer1 ? "true" : "false"));
+        System.out.println("Result 3: \n" + (answer1 > answer3 ? "true" : "false"));
     }
 }
