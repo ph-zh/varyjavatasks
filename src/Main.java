@@ -11,7 +11,7 @@
 class Main {
     public static void main(String[] args) {
         int days = 5; // Количество дней
-        int moneyPerDay = 200; // Нужно откладывать в день
+        int moneyPerDay = 300; // Нужно откладывать в день
         int sum = 0; // Переменная, которая хранит общую сумму накоплений
 
         for (int i = 1; i <= days ; i++) {
