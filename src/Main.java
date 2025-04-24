@@ -20,7 +20,7 @@ class Main {
        	// Опишите строку вывода
         // Цикл оканчивается здесь
         for(int i = money - foodPerDay; i >= 0; i = i - foodPerDay) {
-            days = days  + 3;
+            days = days  + 4;
             System.out.println("На " + days + "-й день останется " + i + " рублей.");
         }
         System.out.println("Денег хватит на " + days + " дней.");
