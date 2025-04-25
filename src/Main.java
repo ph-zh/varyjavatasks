@@ -1,14 +1,15 @@
 /*
+С понедельника вы твёрдо решили заняться английским. Чтобы прокачать свой уровень, вы планируете в течение 30 дней смотреть в день по три серии любого сериала на английском.
+Допишите код внешнего и вложенного циклов, исходя из этих вводных:
  */
 class Main {
     public static void main(String[] args) {
-        int counter = 0;
-        for (int i = 0; i < 10; i = i + 1) {
-            if (i > 7) {
-                counter = counter + 2;
+        for (int i = 1; i <= 30; i++) {
+            System.out.println("День " + i);
+            for (int j = 1; j <= 3; j++) {
+                System.out.println(" Серия " + j);
             }
-            counter = counter + 1;
         }
-        System.out.println(counter);
+        System.out.println("Ура! Вы прокачали и Java, и английский!");
     }
 }
