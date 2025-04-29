@@ -37,16 +37,19 @@ class Main {
         System.out.println("Ваш ход:");
 
         // Напишите условие цикла для запуска игры
-
-        userInput = ...; // В этой переменной должен сохраняться ввод пользователя
-
-        if (...) { // Условие проверяется в цикле
-            System.out.println("Меньше");
-        }
         // Второе условие
-        System.out.println("Больше");
-
         // Печатаем, когда число угадано
-        System.out.println("Вы великолепны! Именно это я загадал.");
+
+        while(randomInt != userInput) {
+            userInput = scanner.nextInt(); // В этой переменной должен сохраняться ввод пользователя
+
+            if (randomInt < userInput) { // Условие проверяется в цикле
+                System.out.println("Меньше");
+            } else if (randomInt > userInput) {
+                System.out.println("Больше");
+            } else {
+                System.out.println("Вы великолепны! Именно это я загадал.");
+            }
+        }
     }
 }
