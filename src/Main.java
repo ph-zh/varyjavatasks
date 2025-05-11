@@ -1,33 +1,74 @@
 /*
-В одном из первых уроков про циклы вы запустили ракету SpaceY в космос. Сейчас она бесконечно летает по орбите. Чтобы прервать её полет и вернуть на Землю,
-пилоту нужно ввести секретный код — случайное число от 0 до 100. Проблема в том, что этот код автоматически обновляется в штабе на Земле каждый раз, когда ракета сделала полный круг, а связь потеряна.
-Пилоту ничего не остаётся, кроме как пытаться отгадать код. Допишите программу таким образом, чтобы, когда пилот отгадает код, полёт ракеты прервался, и он смог полететь домой.
-Результат работы программы должен быть таким:
-Ракета SpaceY на орбите!
-Ракета SpaceY на орбите!
-Ракета SpaceY на орбите!
-Ракета SpaceY на орбите!
-...
-Пилот угадал число! Летим домой!
+Вам нужно улучшить работу финансового приложения, чтобы оно стало удобным для пользователя.
+Создайте цифровое меню для выбора валют при конвертации, где 1 — USD, 2 — EUR, 3 — JPY.
+Добавьте в код приложения бесконечный цикл while и предусмотрите выход из него при выборе пользователем команды 0.
 */
-import java.util.Random;
+import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        Random random = new Random(); // Генерирует случайное число
-        int secretCode;
-        int pilotInput;
+        double rateUSD = 78;
+        double rateEUR = 85;
+        double rateJPY = 0.74;
 
-        // Добавьте цикл - ракета летает бесконечно
-        while(true) {
-            secretCode = random.nextInt(100); // Здесь задаётся код - случайное число от 0 до 100
-            System.out.println("Ракета SpaceY на орбите!");
-            pilotInput = random.nextInt(100); // Пилот пытается угадать код
+        Scanner scanner = new Scanner(System.in);
 
-            if (secretCode == pilotInput) { // Если пилот угадал код, то цикл должен завершиться
-                System.out.println("Пилот угадал число! Летим домой!");
-            break;
+        System.out.println("Сколько денег у вас осталось до зарплаты?");
+        double moneyBeforeSalary = scanner.nextDouble();
+
+        System.out.println("Сколько дней до зарплаты?");
+        int daysBeforeSalary = scanner.nextInt();
+
+        ...//настройте бесконечный цикл здесь
+        System.out.println("Что вы хотите сделать? ");
+        System.out.println("1 - Конвертировать валюту");
+        System.out.println("2 - Получить совет");
+        System.out.println("0 - Выход"); // Новый пункт меню, осталось только реализовать логику
+
+        int command = scanner.nextInt();
+
+        if (command == 1) {
+            System.out.println("В какую валюту хотите конвертировать? Доступные варианты: 1 - USD, 2 - EUR или 3 - JPY.");
+            int currency = ...;
+
+            if (...) {
+                System.out.println("Ваши сбережения в долларах: " + moneyBeforeSalary / rateUSD);
+            } else if (...) {
+                System.out.println("Ваши сбережения в евро: " + moneyBeforeSalary / rateEUR);
+            } else if (...) {
+                System.out.println("Ваши сбережения в йенах: " + moneyBeforeSalary / rateJPY);
+            } else {
+                System.out.println("Валюта не поддерживается.");
             }
+
+        } else if (command == 2) {
+            if (moneyBeforeSalary < 3000) {
+                System.out.println("Сегодня лучше поесть дома. Экономьте и вы дотянете до зарплаты!");
+            } else if (moneyBeforeSalary < 10000) {
+                if (daysBeforeSalary < 10) {
+                    System.out.println("Окей, пора в Макдак!");
+                } else {
+                    System.out.println("Сегодня лучше поесть дома. Экономьте и вы дотянете до зарплаты!");
+                }
+            } else if (moneyBeforeSalary < 30000) {
+                if (daysBeforeSalary < 10) {
+                    System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
+                } else {
+                    System.out.println("Окей, пора в Макдак!");
+                }
+            } else {
+                if (daysBeforeSalary < 10) {
+                    System.out.println("Отлично! Заказывайте крабов!");
+                } else {
+                    System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
+                }
+            }
+        } else if (...) {
+            System.out.println("Выход");
+                ...
+        } else {
+            System.out.println("Извините, такой команды пока нет.");
         }
+        ...
     }
 }
