@@ -1,20 +1,39 @@
 /*
-Расходы за неделю записаны в семи отдельных переменных.
-Соберите все их значения в один массив с именем expenses (англ. «расходы»). Не забудьте, что тип данных массива должен соответствовать его содержанию.
+
 */
 
 class Main {
     public static void main(String[] args) {
-        // Расходы за неделю
-        double mondayExpense = 100.50;
-        double tuesdayExpense = 500.00;
-        double wednesdayExpense = 10.00;
-        double thursdayExpense = 0.0;
-        double fridayExpense = 40.60;
-        double saturdayExpense = 500.10;
-        double sundayExpense = 200.00;
+        String[] currencies = {"USD","EUR","JPY","RUB"};
 
-        // Объявите массив expenses и соберите в него значения из переменных
-        double[] expenses = {mondayExpense, tuesdayExpense, wednesdayExpense, thursdayExpense, fridayExpense, saturdayExpense, sundayExpense};
+        // Выводим список поддерживаемых валют
+        System.out.println("Список поддерживаемых валют:");
+        System.out.println(currencies[0]);
+        System.out.println(currencies[1]);
+        System.out.println(currencies[2]);
+        System.out.println(currencies[3]);
+
+        System.out.println("Не везде пригодятся: " + currencies[0]);
+        currencies[0] = "CHF";
+        System.out.println("В Швейцарии в обращении: " + currencies[0]);
+
+        System.out.println("В Дании не примут: " + currencies[1]);
+        currencies[1] = "DKK";
+        System.out.println("Там нужны: " + currencies[1]);
+
+        System.out.println("Зачем нам в Китае: " + currencies[2]);
+        currencies[2] = "CNY";
+        System.out.println("Купим: "+ currencies[2]);
+
+        System.out.println("В Белоруссии родные: " + currencies[3]);
+        currencies[3] = "BYN";
+        System.out.println("Поменяю на местные: " + currencies[3]);
+
+        // Теперь список поддерживаемых валют другой
+        System.out.println("Новый список поддерживаемых валют:");
+        System.out.println(currencies[0]);
+        System.out.println(currencies[1]);
+        System.out.println(currencies[2]);
+        System.out.println(currencies[3]);
     }
 }
