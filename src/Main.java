@@ -4,11 +4,12 @@
 Допишите программу таким образом, чтобы она сначала спрашивала у пользователя, куда он планирует отправиться, в Данию или Китай, и в зависимости от выбора варианта меняла валюту в базовом наборе кошелька.
 Используйте конструкцию с условным выражением.
 */
+
 import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        String[] currencies = {"USD","EUR","JPY","RUB"};
+        String[] currencies = {"USD", "EUR", "JPY", "RUB"};
 
         System.out.println("В вашем тревел-кошельке доступны следующие валюты:");
         System.out.println(currencies[0]);
@@ -19,12 +20,15 @@ class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Если вы планируете поездку в Данию, введите 1, а если в Китай, введите 2");
 
-        int country = ...;  // Считайте из консоли ввод пользователя
+        int country = scanner.nextInt();  // Считайте из консоли ввод пользователя
 
         // Если выбрана Дания, измените значение элемента евро на кроны DKK
-        ...
         // Если Китай, измените значение элемента иена на юани CNY
-        ...
+        if (country == 1) {
+            currencies[1] = "DKK";
+        } else if (country == 2) {
+            currencies[2] = "CNY";
+        }
 
         System.out.println("В вашем тревел-кошельке доступны следующие валюты:");
         System.out.println(currencies[0]);
