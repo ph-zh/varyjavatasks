@@ -7,22 +7,39 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        double[] expenses = {100.50, 500.00, 10.00, 0.0, 40.60, 500.10, 200.00};
+        String[] dishes = {"Ризотто", "Тартар", "Шурпа", "Панна-котта", "Сашими"}; // Массив
+        System.out.println("Вы продегустировали пять блюд.");
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Расходы за неделю хранятся под индексами от 0 (пн) до 6 (вс).");
-        System.out.println("Введите индекс дня, траты за который вы хотите отредактировать:");
+        System.out.println("Введите индекс блюда, которое хотите переместить:");
+        System.out.println("0-Ризотто");
+        System.out.println("1-Тартар");
+        System.out.println("2-Шурпа");
+        System.out.println("3-Панна-котта");
+        System.out.println("4-Сашими");
 
-        // Объявите переменную, которая будет хранить индекс выбранного элемента
-        int index = scanner.nextInt();
+        // Считайте из консоли индекс блюда, которое нужно переместить
+        int firstIndex = ...
 
-        System.out.println("Введите новую сумму трат за этот день:");
-        // Объявите переменную, в которой будет сохранено новое значение трат за выбранный день
-        double newExpense = scanner.nextDouble();
+        System.out.println("Введите позицию, на которую хотите его переместить, от 0 до 4:");
+        // Объявите переменную secondIndex для нового положения (индекса) блюда, считайте его из консоли
+        ...
 
-        // Замените значение элемента с нужным индексом на новое
-        expenses[index] = newExpense;
-        System.out.println("За день с индексом " + index + " размер трат теперь " + newExpense);
+        // Сохраните значение блюда под индексом firstIndex в переменную swap
+        String swap = ...
+
+        // Присвойте блюду с индексом firstIndex значение блюда под индексом secondIndex
+        ... = ...
+
+        // Присвойте блюду с индексом secondIndex значение переменной swap
+        ... = swap;
+
+        System.out.println("Ваш рейтинг блюд:");
+        System.out.println(dishes[0]);
+        System.out.println(dishes[1]);
+        System.out.println(dishes[2]);
+        System.out.println(dishes[3]);
+        System.out.println(dishes[4]);
     }
 }
