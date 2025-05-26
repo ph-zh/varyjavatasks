@@ -1,101 +1,52 @@
 /*
-Финансовое приложение теперь умеет записывать траты и выводить предупреждение о недостатке средств на счету.
-Однако узнать, сколько денег вы в итоге потратили в каждый из дней, не получится. Это неудобно.
-Доработайте функционал приложения таким образом, чтобы можно было легко получить список всех расходов за неделю с разбивкой по дням.
-1/ Добавьте в приложение новую команду «4 - Показать траты за неделю».
-2/ Напишите новое ветвление для обработки четвёртой команды. Получив её, программа должна выводить все траты за неделю в формате День _. Потрачено _ рублей.. Нумерация дней должна быть от 1 до 7.
-3/ Для печати трат используйте цикл for.
+Вам нужно запрограммировать робота, который должен познакомиться с пользователем, поздороваться с ним в зависимости от времени суток и поздравить с успехами в программировании.
+Для этого нужно объявить и реализовать такие методы:
+1/ Метод welcomeUserByName() должен спрашивать у пользователя имя, а потом сообщать, что рад знакомству.
+2/ Метод sayHelloByTime() должен спрашивать у пользователя время и в зависимости от ответа печатать приветствие:
+- начиная с 22 часов вечера и до 6 часов утра не включительно — "Доброй ночи!";
+- начиная с 6 до 12 не включительно — "Доброе утро!";
+- начиная с 12 до 18 не включительно — "Добрый день!";
+- начиная с 18 до 22 не включительно — "Добрый вечер!".
+3/ Третий метод printSuccess() должен печать только одну строку — "У вас уже неплохо получается программировать!".
 */
-
 import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        double[] expenses = new double[7];
+        System.out.println("Робот-помощник v1.0.");
+    }
 
-        double rateUSD = 78.5;
-        double rateEUR = 85;
-        double rateJPY = 0.74;
-
+    public static void welcomeUserByName() { // Объявите метод welcomeUserByName
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Как вас зовут?");
+        String name = scanner.nextLine(); // Сохраните введённое пользователем имя в переменную name
+        System.out.println("Рад познакомиться, " + name + "!");
+    }
 
-        System.out.println("Сколько денег у вас осталось до зарплаты?");
-        double moneyBeforeSalary = scanner.nextDouble();
+    // Объявите метод sayHelloByTime
+    // Спросите у пользователя "Который час?" и сохраните ответ в переменную currentHour
+    // В зависимости от времени предусмотрите печать приветствий
+    public static void sayHelloByTime() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Который час?");
+        int currentHour = scanner.nextInt();
 
-        System.out.println("Сколько дней до зарплаты?");
-        int daysBeforeSalary = scanner.nextInt();
-
-        while (true) {
-            System.out.println("Что вы хотите сделать?");
-            System.out.println("1 - Конвертировать валюту");
-            System.out.println("2 - Получить совет");
-            System.out.println("3 - Ввести трату");
-            // Допишите новый пункт цифрового меню
-            System.out.println("4 - Показать траты за неделю");
-            System.out.println("0 - Выход");
-
-            int command = scanner.nextInt();
-
-            if (command == 1) {
-                System.out.println("Ваши сбережения: " + moneyBeforeSalary + " RUB");
-                System.out.println("В какую валюту хотите конвертировать? Доступные варианты: 1 - USD, 2 - EUR, 3 - JPY.");
-                int currency = scanner.nextInt();
-                if (currency == 1) {
-                    System.out.println("Ваши сбережения в долларах: " + moneyBeforeSalary / rateUSD);
-                } else if (currency == 2) {
-                    System.out.println("Ваши сбережения в евро: " + moneyBeforeSalary / rateEUR);
-                } else if (currency == 3) {
-                    System.out.println("Ваши сбережения в иенах: " + moneyBeforeSalary / rateJPY);
-                } else {
-                    System.out.println("Неизвестная валюта");
-                }
-            } else if (command == 2) {
-                if (moneyBeforeSalary < 3000) {
-                    System.out.println("Сегодня лучше поесть дома. Экономьте, и вы дотянете до зарплаты!");
-                } else if (moneyBeforeSalary < 10000){
-                    if (daysBeforeSalary < 10) {
-                        System.out.println("Окей, пора в Макдак!");
-                    } else {
-                        System.out.println("Сегодня лучше поесть дома. Экономьте, и вы дотянете до зарплаты!");
-                    }
-                } else if (moneyBeforeSalary < 30000) {
-                    if (daysBeforeSalary < 10) {
-                        System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
-                    } else {
-                        System.out.println("Окей, пора в Макдак!");
-                    }
-                } else {
-                    if (daysBeforeSalary < 10) {
-                        System.out.println("Отлично! Заказывайте крабов!");
-                    } else {
-                        System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
-                    }
-                }
-            } else if (command == 3) {
-                System.out.println("За какой день вы хотите ввести трату: 1-ПН, 2-ВТ, 3-СР, 4-ЧТ, 5-ПТ, 6-СБ, 7-ВС?");
-                int day = scanner.nextInt();
-                System.out.println("Введите размер траты:");
-                double expense = scanner.nextDouble();
-                moneyBeforeSalary = moneyBeforeSalary - expense;
-                expenses[day - 1] = expenses[day - 1] + expense;
-                System.out.println("Значение сохранено! Ваш текущий баланс в рублях: " + moneyBeforeSalary);
-                if (moneyBeforeSalary < 1000) {
-                    System.out.println("На вашем счету осталось совсем немного. Стоит начать экономить!");
-                }
-            } else if (command == 4) {
-                // Добавьте ветвление для обработки новой команды
-                // Используйте цикл for, чтобы получить все траты — элементы массива expenses
-                // Напечатайте в цикле строку: "День _. Потрачено _ рублей.".
-                for (int i = 0; i < expenses.length; i++) {
-                    System.out.println("День " + (i + 1) + ". Потрачено "+ expenses[i] +" рублей.");
-                }
-
-            } else if (command == 0) {
-                System.out.println("Выход");
-                break;
-            } else {
-                System.out.println("Извините, такой команды пока нет.");
-            }
+        if(currentHour < 6) {
+            System.out.println("Доброй ночи!");
+        } else if(currentHour < 12) {
+            System.out.println("Доброе утро!");
+        } else if(currentHour < 18) {
+            System.out.println("Добрый день!");
+        } else if (currentHour < 22){
+            System.out.println("Добрый вечер!");
+        } else {
+            System.out.println("Доброй ночи!");
         }
+    }
+
+    // Объявите метод printSuccess
+    // Он должен печатать строку: У вас уже неплохо получается программировать!
+    public static void printSuccess() {
+        System.out.println("У вас уже неплохо получается программировать!");
     }
 }
