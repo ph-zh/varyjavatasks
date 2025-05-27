@@ -1,52 +1,66 @@
 /*
-Вам нужно запрограммировать робота, который должен познакомиться с пользователем, поздороваться с ним в зависимости от времени суток и поздравить с успехами в программировании.
-Для этого нужно объявить и реализовать такие методы:
-1/ Метод welcomeUserByName() должен спрашивать у пользователя имя, а потом сообщать, что рад знакомству.
-2/ Метод sayHelloByTime() должен спрашивать у пользователя время и в зависимости от ответа печатать приветствие:
-- начиная с 22 часов вечера и до 6 часов утра не включительно — "Доброй ночи!";
-- начиная с 6 до 12 не включительно — "Доброе утро!";
-- начиная с 12 до 18 не включительно — "Добрый день!";
-- начиная с 18 до 22 не включительно — "Добрый вечер!".
-3/ Третий метод printSuccess() должен печать только одну строку — "У вас уже неплохо получается программировать!".
+Ваш робот уже умеет знакомиться, здороваться в зависимости от времени суток и хвалить за успехи в программировании. Научите его ещё начинать общение с короткого приветствия и спрашивать у пользователя,
+из какого он города. Сделайте это с помощью методов sayHello() и printCity(). Результат должен получиться таким:
+Привет!
+Который час?
+> ввод текущего часа
+Добрый день! (один из вариантов)
+Как вас зовут?
+> ввод имени
+Из какого вы города?
+> ввод города
+Рад познакомиться, <ваше имя> из <вашего города>!
+У вас уже неплохо получается программировать!
 */
 import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
-        System.out.println("Робот-помощник v1.0.");
+        System.out.println("Робот-помощник v2.0.");
+        // Вызовите ниже методы в правильном порядке
+        sayHello();
+        sayHelloByTime();
+        welcomeUserByName();
+        printSuccess();
     }
 
-    public static void welcomeUserByName() { // Объявите метод welcomeUserByName
+    public static void welcomeUserByName() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Как вас зовут?");
-        String name = scanner.nextLine(); // Сохраните введённое пользователем имя в переменную name
-        System.out.println("Рад познакомиться, " + name + "!");
+        String name = scanner.nextLine();
+        printCity();
+        String city = scanner.nextLine(); // Допишите чтение города
+        System.out.println("Рад познакомиться, " + name + " из " + city + "!");
     }
 
-    // Объявите метод sayHelloByTime
-    // Спросите у пользователя "Который час?" и сохраните ответ в переменную currentHour
-    // В зависимости от времени предусмотрите печать приветствий
+    public static void printSuccess() {
+        System.out.println("У вас уже неплохо получается программировать!");
+    }
+
+    // Допишите метод sayHello(), который печатает: Привет!
+    public static void sayHello() {
+        System.out.println("Привет!");
+    }
+
+    // Допишите метод printCity(), который печатает: Из какого вы города?
+    public static void printCity() {
+        System.out.println("Из какого вы города?");
+    }
+
     public static void sayHelloByTime() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Который час?");
         int currentHour = scanner.nextInt();
-
-        if(currentHour < 6) {
+        if (currentHour < 6) {
             System.out.println("Доброй ночи!");
-        } else if(currentHour < 12) {
+        } else if (currentHour > 22) {
+            System.out.println("Доброй ночи!");
+        } else if (currentHour < 12) {
             System.out.println("Доброе утро!");
-        } else if(currentHour < 18) {
+        } else if (currentHour < 18) {
             System.out.println("Добрый день!");
-        } else if (currentHour < 22){
-            System.out.println("Добрый вечер!");
         } else {
-            System.out.println("Доброй ночи!");
+            System.out.println("Добрый вечер!");
         }
-    }
-
-    // Объявите метод printSuccess
-    // Он должен печатать строку: У вас уже неплохо получается программировать!
-    public static void printSuccess() {
-        System.out.println("У вас уже неплохо получается программировать!");
     }
 }
