@@ -1,66 +1,38 @@
 /*
-Ваш робот уже умеет знакомиться, здороваться в зависимости от времени суток и хвалить за успехи в программировании. Научите его ещё начинать общение с короткого приветствия и спрашивать у пользователя,
-из какого он города. Сделайте это с помощью методов sayHello() и printCity(). Результат должен получиться таким:
-Привет!
-Который час?
-> ввод текущего часа
-Добрый день! (один из вариантов)
-Как вас зовут?
-> ввод имени
-Из какого вы города?
-> ввод города
-Рад познакомиться, <ваше имя> из <вашего города>!
-У вас уже неплохо получается программировать!
+Вам нужно дописать реализацию метода findHighestGrossingFilm(), который выбирает самый кассовый фильм из трёх предложенных вариантов —
+хитов Джеймса Кэмерона «Титаник» и «Аватар» и блокбастера Кристофера Нолана «Тёмный рыцарь». Названия фильмов и их сборы заранее сохранены в соответствующих переменных.
+Метод должен сравнить суммы сборов и вернуть значение — название фильма, заработавшего в прокате больше всего.
 */
-import java.util.Scanner;
-
 class Main {
     public static void main(String[] args) {
-        System.out.println("Робот-помощник v2.0.");
-        // Вызовите ниже методы в правильном порядке
-        sayHello();
-        sayHelloByTime();
-        welcomeUserByName();
-        printSuccess();
+        // Ниже вызовите новый метод
+        String highestGrossingFilm = findHighestGrossingFilm();
+        System.out.println("Самый кассовый фильм: " + highestGrossingFilm);
     }
 
-    public static void welcomeUserByName() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Как вас зовут?");
-        String name = scanner.nextLine();
-        printCity();
-        String city = scanner.nextLine(); // Допишите чтение города
-        System.out.println("Рад познакомиться, " + name + " из " + city + "!");
-    }
+    public static String findHighestGrossingFilm() {
+        String film1 = "Титаник";
+        int income1 = 2194;
 
-    public static void printSuccess() {
-        System.out.println("У вас уже неплохо получается программировать!");
-    }
+        String film2 = "Аватар";
+        int income2 = 2810;
 
-    // Допишите метод sayHello(), который печатает: Привет!
-    public static void sayHello() {
-        System.out.println("Привет!");
-    }
+        String film3 = "Тёмный рыцарь";
+        int income3 = 1084;
 
-    // Допишите метод printCity(), который печатает: Из какого вы города?
-    public static void printCity() {
-        System.out.println("Из какого вы города?");
-    }
-
-    public static void sayHelloByTime() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Который час?");
-        int currentHour = scanner.nextInt();
-        if (currentHour < 6) {
-            System.out.println("Доброй ночи!");
-        } else if (currentHour > 22) {
-            System.out.println("Доброй ночи!");
-        } else if (currentHour < 12) {
-            System.out.println("Доброе утро!");
-        } else if (currentHour < 18) {
-            System.out.println("Добрый день!");
-        } else {
-            System.out.println("Добрый вечер!");
+        // Допишите реализацию метода ниже
+        if (income1 > income2) {
+            if(income1 > income3) {
+                return film1;
+            }
+        } else if(income2 > income1) {
+            if(income2 > income3) {
+                return film2;
+            }
+        } else if(income3 > income1) {
+            if(income3 > income2)
+            return film3;
         }
+        return  film3;
     }
 }
