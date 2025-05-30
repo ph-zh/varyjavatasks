@@ -21,18 +21,19 @@ class Main {
         int income3 = 1084;
 
         // Допишите реализацию метода ниже
-        if (income1 > income2) {
+        if(income1 > income2) {
             if(income1 > income3) {
                 return film1;
             }
-        } else if(income2 > income1) {
+        } else if(income3 > income1) {
+            if(income3 > income2) {
+                return film3;
+            }
+        } else if(income2 > income1){
             if(income2 > income3) {
                 return film2;
             }
-        } else if(income3 > income1) {
-            if(income3 > income2)
-            return film3;
         }
-        return  film3;
+        return film3;
     }
 }
