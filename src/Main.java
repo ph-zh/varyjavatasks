@@ -1,39 +1,34 @@
 /*
-Вам нужно дописать реализацию метода findHighestGrossingFilm(), который выбирает самый кассовый фильм из трёх предложенных вариантов —
-хитов Джеймса Кэмерона «Титаник» и «Аватар» и блокбастера Кристофера Нолана «Тёмный рыцарь». Названия фильмов и их сборы заранее сохранены в соответствующих переменных.
-Метод должен сравнить суммы сборов и вернуть значение — название фильма, заработавшего в прокате больше всего.
+Перед вами код приложения, которое умеет давать пользователю советы о покупке долларов и евро в зависимости от их курса.
+Однако сейчас код не запускается — в нём допущены ошибки. Вам необходимо исправить их. Учтите, что после выполнения команд с выводом советов программа должна ещё раз запрашивать у пользователя ввод команды.
+При выборе команды «Выход» приложение должно завершить работу.
 */
+import java.util.Scanner;
+
 class Main {
     public static void main(String[] args) {
-        // Ниже вызовите новый метод
-        String highestGrossingFilm = findHighestGrossingFilm();
-        System.out.println("Самый кассовый фильм: " + highestGrossingFilm);
+        System.out.println("Привет!");
+        doCommand();
     }
 
-    public static String findHighestGrossingFilm() {
-        String film1 = "Титаник";
-        int income1 = 2194;
+    public static void doCommand() {
+        Scanner scanner = new Scanner(System.in);
 
-        String film2 = "Аватар";
-        int income2 = 2810;
 
-        String film3 = "Тёмный рыцарь";
-        int income3 = 1084;
-
-        // Допишите реализацию метода ниже
-        if(income1 > income2) {
-            if(income1 > income3) {
-                return film1;
-            }
-        } else if(income3 > income1) {
-            if(income3 > income2) {
-                return film3;
-            }
-        } else if(income2 > income1){
-            if(income2 > income3) {
-                return film2;
+        while (true) {
+            System.out.println("Что вы хотите сделать?");
+            System.out.println("1 - Получить совет о покупке евро");
+            System.out.println("2 - Получить совет о покупке долларов");
+            System.out.println("0 - Выход");
+            int command = scanner.nextInt();
+            if (command == 1) {
+                System.out.println("Если евро стоит меньше 90 рублей - покупайте!");
+            } else if (command == 2) {
+                System.out.println("Если доллар стоит меньше 75 рублей - покупайте!");
+            } else if (command == 0) {
+                System.out.println("Выход");
+                return;
             }
         }
-        return film3;
     }
 }
