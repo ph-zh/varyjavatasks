@@ -1,30 +1,58 @@
 /*
-Кот Пиксель очень любит играть с мячиками — всего их у него 15. Днём он повсюду их прячет (число спрятанных мячиков считывается из консоли),
-но вечером всегда возвращает на место. Расставьте переменные balls и hiddenBalls в коде так, чтобы программа смогла правильно посчитать количество мячиков у Пикселя до начала игры, во время неё и в конце дня.
+Вам нужно дописать код приложения, которое анализирует финансовые планы пользователя и помогает скорректировать их.
+Программа считывает из консоли значения зарплаты, планируемых трат на транспорт и еду, а также сумму возможных сбережений. Эти значения сохраняются в соответствующих переменных.
+Метод correctExpenses сравнивает планируемые траты с зарплатой, печатает размер излишка или недостатка средств и выдаёт рекомендации.
+Объявите метод correctExpenses, который принимает значения переменных из главного метода в качестве аргументов.
+Дополните строки печати корректными значениями и исправьте ошибку в теле метода, связанную с видимостью одной из переменных.
 */
 import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Какую зарплату вы получите в этом месяце?");
+        int salary = scanner.nextInt();
+        System.out.println("Сколько планируете потратить на транспорт?");
+        int transportMoney = scanner.nextInt();
+        System.out.println("Сколько запланировано на супермаркеты?");
+        int foodMoney = scanner.nextInt();
+        System.out.println("Какую сумму хотите отложить?");
+        int savings = scanner.nextInt();
 
-        int balls = 15; // Сохраните общее число мячиков Пикселя в переменной balls
-        System.out.println("У Пикселя " + balls + " мячиков");
+        // Вызовите метод correctExpenses с правильными аргументами
+        correctExpenses(salary, transportMoney, foodMoney, savings);
 
-		// Поиграйте с Пикселем, вызвав метод playPixel
-        playPixel(balls);
-
-        // После игры Пиксель должен вернуть все мячики на место!
-        System.out.println("Пиксель вернул все мячики");
-        System.out.println("Их снова " + balls);
+        // Напечатайте запланированные траты
+        System.out.println("Вы планировали потратить: транспорт — " + transportMoney + ", "
+                + "еда — " + foodMoney + ", "
+                + "сбережения — " + savings + ".");
     }
 
-    public static void playPixel(int balls) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Сколько мячиков он спрятал?");
-        // Сохраните количество мячиков, которые спрятал Пиксель, в переменную hiddenBalls
-        int hiddenBalls = scanner.nextInt();
+    // Объявите метод correctExpenses
+    // Тело метода дано ниже
+    public static void correctExpenses(int salary, int transportMoney, int foodMoney, int savings) {
+        int expensesSum = transportMoney + foodMoney + savings; // Считаем расходы
+        if (expensesSum > salary) { // Проверяем, не превышают ли расходы зарплату
+            int lackMoney = expensesSum - salary; // Считаем, сколько не хватает
 
-        balls = balls - hiddenBalls;// Посчитайте, сколько у Пикселя осталось мячиков
-        System.out.println("Осталось " + balls);
+            // Пока не начнёт хватать денег на транспорт — сокращаем траты на 100 рублей
+            while ((salary - foodMoney) < transportMoney) {
+                foodMoney = foodMoney - 100;
+            }
+            // Если не хватает денег на жизнь — не откладываем
+            if (transportMoney + foodMoney + savings > salary) {
+                savings = 0;
+            }
+
+            // Печатаем рекомендации
+            System.out.println("Придётся пересмотреть планы, вам не хватает " + lackMoney);
+            System.out.println("Рекомендуемые траты: "
+                    + "еда — " + foodMoney + ", "
+                    + "сбережения — " + savings + ".");
+        } else {
+            int leftMoney = salary - expensesSum; // Считаем излишек средств
+            System.out.println("В этом месяце дебет с кредитом сошлись!");
+            System.out.println("Свободных средств " + leftMoney);
+        }
     }
 }
