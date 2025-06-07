@@ -6,49 +6,47 @@
 Вызовите методы так, чтобы сначала была напечатана информация про Пикселя, а потом про Байта.
 Порядок вывода такой: сперва приветствие, затем стоимость самого дорогого корма и общие траты на него и только потом пожелание приятного аппетита.
 */
-import java.util.Scanner;
-
 class Main {
     public static void main(String[] args) {
-        System.out.println("Привет, Пиксель!");
-        System.out.println("Привет, Байт!");
 
         double[] feedExpensesCat = {100.50, 236.0, 510.6, 150.20, 80.0, 172.0, 135.4};
         double[] feedExpensesHamster = {70.50, 146.0, 710.6, 250.20, 83.0, 19.0, 55.4};
 
-        double maxFeedExpenseCat = 0;
-        for (int i = 0; i < feedExpensesCat.length; i++) {
-            if (feedExpensesCat[i] > maxFeedExpenseCat) {
-                maxFeedExpenseCat = feedExpensesCat[i];
-            }
-        }
+        sayHello();
+        sayEnjoyMeal();
 
-        System.out.println("Твой самый дорогой корм стоил " + maxFeedExpenseCat);
+        System.out.println("Твой самый дорогой корм стоил " + findMaxExpense(feedExpensesCat));
+        System.out.println("Твой самый дорогой корм стоил " + findMaxExpense(feedExpensesHamster));
 
-        double maxFeedExpenseHamster = 0;
-        for (int i = 0; i < feedExpensesHamster.length; i++) {
-            if (feedExpensesHamster[i] > maxFeedExpenseHamster) {
-                maxFeedExpenseHamster = feedExpensesHamster[i];
-            }
-        }
+        System.out.println("Всего на корм было потрачено " + findExpensesSum(feedExpensesCat));
+        System.out.println("Всего на корм было потрачено " + findExpensesSum(feedExpensesHamster));
+    }
 
-        System.out.println("Твой самый дорогой корм стоил " + maxFeedExpenseHamster);
+    public static void sayHello() {
+        System.out.println("Привет, Пиксель!");
+        System.out.println("Привет, Байт!");
+    }
 
-        double sumFeedCat = 0;
-        for (int i = 0; i < feedExpensesCat.length; i++) {
-            sumFeedCat = sumFeedCat + feedExpensesCat[i];
-        }
-
-        System.out.println("Всего на корм было потрачено " + sumFeedCat);
-
-        double sumFeedHamster = 0;
-        for (int i = 0; i < feedExpensesHamster.length; i++) {
-            sumFeedHamster = sumFeedHamster + feedExpensesHamster[i];
-        }
-
-        System.out.println("Всего на корм было потрачено " + sumFeedHamster);
-
+    public static void sayEnjoyMeal() {
         System.out.println("Приятного аппетита, Пиксель!");
         System.out.println("Приятного аппетита, Байт!");
+    }
+
+    public static double findMaxExpense(double[] feedExpenses) {
+        double maxFeedExpense = 0;
+        for (int i = 0; i < feedExpenses.length; i++) {
+            if (feedExpenses[i] > maxFeedExpense) {
+                maxFeedExpense = feedExpenses[i];
+            }
+        }
+        return  maxFeedExpense;
+    }
+
+    public static double findExpensesSum(double[] feedExpenses) {
+        double sumFeed = 0;
+        for (int i = 0; i < feedExpenses.length; i++) {
+            sumFeed = sumFeed + feedExpenses[i];
+        }
+        return sumFeed;
     }
 }
