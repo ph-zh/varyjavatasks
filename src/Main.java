@@ -12,24 +12,23 @@ class Main {
         double[] feedExpensesCat = {100.50, 236.0, 510.6, 150.20, 80.0, 172.0, 135.4};
         double[] feedExpensesHamster = {70.50, 146.0, 710.6, 250.20, 83.0, 19.0, 55.4};
 
-        sayHello();
-        sayEnjoyMeal();
-
+        sayHello("Пиксель");
         System.out.println("Твой самый дорогой корм стоил " + findMaxExpense(feedExpensesCat));
-        System.out.println("Твой самый дорогой корм стоил " + findMaxExpense(feedExpensesHamster));
-
         System.out.println("Всего на корм было потрачено " + findExpensesSum(feedExpensesCat));
+        sayEnjoyMeal("Пиксель");
+
+        sayHello("Байт");
+        System.out.println("Твой самый дорогой корм стоил " + findMaxExpense(feedExpensesHamster));
         System.out.println("Всего на корм было потрачено " + findExpensesSum(feedExpensesHamster));
+        sayEnjoyMeal("Байт");
     }
 
-    public static void sayHello() {
-        System.out.println("Привет, Пиксель!");
-        System.out.println("Привет, Байт!");
+    public static void sayHello(String username) {
+        System.out.println("Привет, " + username + "!");
     }
 
-    public static void sayEnjoyMeal() {
-        System.out.println("Приятного аппетита, Пиксель!");
-        System.out.println("Приятного аппетита, Байт!");
+    public static void sayEnjoyMeal(String username) {
+        System.out.println("Приятного аппетита, " + username + "!");
     }
 
     public static double findMaxExpense(double[] feedExpenses) {
