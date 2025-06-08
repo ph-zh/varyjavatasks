@@ -1,51 +1,124 @@
 /*
-Прочитайте код. Сейчас программа анализирует расходы на корм одновременно для двух питомцев: кота Пикселя и хомяка Байта — из-за этого в результатах печати можно запутаться.
-Декомпозируйте код — разбейте его отдельные методы: sayHello, sayEnjoyMeal, findMaxExpense и findExpensesSum. Методы с приветствием и пожеланием приятного аппетита должны быть типа void; методы,
-касающиеся анализа трат, должны возвращать значение.
-У всех методов должны быть параметры. Внутри главного метода main(String[] args) должны остаться массивы с тратами, вызов методов и вывод результатов трат.
-Вызовите методы так, чтобы сначала была напечатана информация про Пикселя, а потом про Байта.
-Порядок вывода такой: сперва приветствие, затем стоимость самого дорогого корма и общие траты на него и только потом пожелание приятного аппетита.
+Начните декомпозицию финансового приложения. Объявите, реализуйте и вызовите следующие методы:
+1/ Метод printMenu должен печатать цифровое меню с командами и не будет ничего возвращать.
+   Его вызов необходимо оставить в цикле while, чтобы меню выводилось перед каждой командой.
+2/ Метод convert будет использоваться для конвертации валют. Заготовку параметров для него вы найдёте в прекоде.
+   Он должен принимать в качестве аргументов остаток денег на счету и переменную сложного типа scanner — это позволит не дублировать код для считывания выбора валюты.
+   Также не забудьте перенести из main в метод convert те переменные, которые нужны непосредственно для его работы.
+3/ Метод getAdvice должен давать совет насчёт ужина в зависимости от того, сколько денег осталось до зарплаты.
+   Он должен принимать два параметра moneyBeforeSalary и daysBeforeSalary (в этом порядке) и так же, как и остальные, не должен возвращать никаких значений.
 */
+import java.util.Scanner;
+
 class Main {
     public static void main(String[] args) {
+        double[] expenses = new double[7];
 
-        double[] feedExpensesCat = {100.50, 236.0, 510.6, 150.20, 80.0, 172.0, 135.4};
-        double[] feedExpensesHamster = {70.50, 146.0, 710.6, 250.20, 83.0, 19.0, 55.4};
+        Scanner scanner = new Scanner(System.in);
 
-        sayHello("Пиксель");
-        System.out.println("Твой самый дорогой корм стоил " + findMaxExpense(feedExpensesCat));
-        System.out.println("Всего на корм было потрачено " + findExpensesSum(feedExpensesCat));
-        sayEnjoyMeal("Пиксель");
+        System.out.println("Сколько денег у вас осталось до зарплаты?");
+        double moneyBeforeSalary = scanner.nextDouble();
 
-        sayHello("Байт");
-        System.out.println("Твой самый дорогой корм стоил " + findMaxExpense(feedExpensesHamster));
-        System.out.println("Всего на корм было потрачено " + findExpensesSum(feedExpensesHamster));
-        sayEnjoyMeal("Байт");
-    }
+        System.out.println("Сколько дней до зарплаты?");
+        int daysBeforeSalary = scanner.nextInt();
 
-    public static void sayHello(String username) {
-        System.out.println("Привет, " + username + "!");
-    }
+        while (true) {
+            // Вынесите печать меню в метод printMenu, здесь останется только его вызов
+            printMenu();
+            int command = scanner.nextInt();
 
-    public static void sayEnjoyMeal(String username) {
-        System.out.println("Приятного аппетита, " + username + "!");
-    }
+            if (command == 1) {
+            // Вынесите обработку команды в метод convert, здесь вызовите его
+                convert(scanner, moneyBeforeSalary);
 
-    public static double findMaxExpense(double[] feedExpenses) {
-        double maxFeedExpense = 0;
-        for (int i = 0; i < feedExpenses.length; i++) {
-            if (feedExpenses[i] > maxFeedExpense) {
-                maxFeedExpense = feedExpenses[i];
+            } else if (command == 2) {
+                // Вынесите обработку команды в метод getAdvice, здесь вызовите его
+                getAdvice(moneyBeforeSalary, daysBeforeSalary);
+
+            } else if (command == 3) {
+                System.out.println("За какой день вы хотите ввести трату: 1-ПН, 2-ВТ, 3-СР, 4-ЧТ, 5-ПТ, 6-СБ, 7-ВС?");
+                int day = scanner.nextInt();
+                System.out.println("Введите размер траты:");
+                double expense = scanner.nextDouble();
+                moneyBeforeSalary = moneyBeforeSalary - expense;
+                expenses[day - 1] = expenses[day - 1] + expense;
+                System.out.println("Значение сохранено! Ваш текущий баланс в рублях: " + moneyBeforeSalary);
+                if (moneyBeforeSalary < 1000) {
+                    System.out.println("На вашем счету осталось совсем немного. Стоит начать экономить!");
+                }
+            } else if (command == 4) {
+                for (int i = 0; i < expenses.length; i++) {
+                    System.out.println("День " + (i + 1) + ". Потрачено " + expenses[i] + " рублей");
+                }
+            } else if (command == 5) {
+                double maxExpense = 0;
+                for (int i = 0; i < expenses.length; i++) {
+                    if (expenses[i] > maxExpense) {
+                        maxExpense = expenses[i];
+                    }
+                }
+                System.out.println("Самая большая сумма расходов на этой неделе составила " + maxExpense + " руб.");
+            } else if (command == 0) {
+                System.out.println("Выход");
+                break;
+            } else {
+                System.out.println("Извините, такой команды пока нет.");
             }
         }
-        return  maxFeedExpense;
     }
 
-    public static double findExpensesSum(double[] feedExpenses) {
-        double sumFeed = 0;
-        for (int i = 0; i < feedExpenses.length; i++) {
-            sumFeed = sumFeed + feedExpenses[i];
+    // Объявите и реализуйте метод printMenu, который печатает меню
+    public static void printMenu() {
+        System.out.println("Что вы хотите сделать? ");
+        System.out.println("1 - Конвертировать валюту");
+        System.out.println("2 - Получить совет");
+        System.out.println("3 - Ввести трату");
+        System.out.println("4 - Показать траты за неделю");
+        System.out.println("5 - Показать самую большую сумму расходов за неделю");
+        System.out.println("0 - Выход");
+    }
+    // Объявите и реализуйте метод convert, который конвертирует валюты
+    public static void convert(Scanner scanner, double moneyBeforeSalary) {
+        double rateUSD = 78.5;
+        double rateEUR = 85;
+        double rateJPY = 0.74;
+
+        System.out.println("Ваши сбережения: " + moneyBeforeSalary + " RUB");
+        System.out.println("В какую валюту хотите конвертировать? Доступные варианты: 1 - USD, 2 - EUR, 3 - JPY.");
+        int currency = scanner.nextInt();
+        if (currency == 1) {
+            System.out.println("Ваши сбережения в долларах: " + moneyBeforeSalary / rateUSD);
+        } else if (currency == 2) {
+            System.out.println("Ваши сбережения в евро: " + moneyBeforeSalary / rateEUR);
+        } else if (currency == 3) {
+            System.out.println("Ваши сбережения в иенах: " + moneyBeforeSalary / rateJPY);
+        } else {
+            System.out.println("Неизвестная валюта");
         }
-        return sumFeed;
+    }
+
+    // Объявите и реализуйте метод getAdvice, который даёт совет
+    public static void getAdvice(double moneyBeforeSalary, int daysBeforeSalary) {
+        if (moneyBeforeSalary < 3000) {
+            System.out.println("Сегодня лучше поесть дома. Экономьте, и вы дотянете до зарплаты!");
+        } else if (moneyBeforeSalary < 10000){
+            if (daysBeforeSalary < 10) {
+                System.out.println("Окей, пора в Макдак!");
+            } else {
+                System.out.println("Сегодня лучше поесть дома. Экономьте, и вы дотянете до зарплаты!");
+            }
+        } else if (moneyBeforeSalary < 30000) {
+            if (daysBeforeSalary < 10) {
+                System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
+            } else {
+                System.out.println("Окей, пора в Макдак!");
+            }
+        } else {
+            if (daysBeforeSalary < 10) {
+                System.out.println("Отлично! Заказывайте крабов!");
+            } else {
+                System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
+            }
+        }
     }
 }
