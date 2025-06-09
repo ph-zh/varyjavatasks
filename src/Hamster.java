@@ -1,25 +1,14 @@
 public class Hamster {
 
-    //Поля
-    String name = "Байт"; // Имя
-    int age = 2; // Возраст
-    String color = "Рыжий"; // Цвет
-    int weight = 350;
+    String name;  // Имя
+    int age;      // Возраст
+    int weight;   // Вес в граммах
+    String color; // Цвет
 
-    // Методы
-    void eat(int foodWeight) {
-        weight = weight + foodWeight;
-    }
-
-    // Бегать в колесе
-    void runInWheel() {
-        System.out.println("Бегу-бегу-бегу!");
-        weight = weight - 5;
-    }
-
-    // Прятать семечки
-    void hideSeeds(int seedWeight) {
-        System.out.println("Зимой не заголодаю.");
-        weight = weight + seedWeight;
+    Hamster(String hamsterName, int hamsterAge, int hamsterWeight, String hamsterColor) {
+        name = hamsterName;
+        age = hamsterAge;
+        weight = hamsterWeight;
+        color = hamsterColor;
     }
 }
