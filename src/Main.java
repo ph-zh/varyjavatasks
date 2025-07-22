@@ -1,21 +1,24 @@
 /*
-Метод findMax() сейчас может работать только с фиксированными значениями — 3 и 5.
-Исправьте код метода таким образом, чтобы он мог принимать два любых целых значения.
-Затем по аналогии вызовите метод, чтобы напечатать результат сравнения ещё двух пар чисел: 16 и 5, -1 и -7.
+Объявите и реализуйте метод findMaxExpense — он должен находить в списке расходов за неделю самую большую трату
+и возвращать её значение. В качестве единственного параметра этого метода укажите массив расходов expenses.
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Наибольшее из чисел 3 и 5 = " + findMax(3,5));
-        System.out.println("Наибольшее из чисел 16 и 5 = " + findMax(16,5));
-        System.out.println("Наибольшее из чисел -1 и -7 = " + findMax(-1,-7));
-        // Напишите аналогичный вызов метода findMax для таких пар чисел: 16 и 5, -1 и -7
-
+        double[] expenses = {1772.5, 367.0, 120.6, 2150.2, 874.0, 1.0, 1459.4};
+        double maxExpense = findMaxExpense(expenses); // Вызовите метод и присвойте maxExpense значение его результата
+        System.out.println("Самая большая трата недели " + maxExpense);
     }
 
-    public static int findMax(int a, int b) {
-        if (a > b) {
-            return a;
+	// Объявите метод findMaxExpense
+    // Реализуйте метод. Чтобы найти самую большую трату, воспользуйтесь циклом
+    // Самую большую трату запишите в переменную maxExpense
+    public static double findMaxExpense(double[] expenses) {
+        double maxExpense = 0;
+        for(int i = 0; i < expenses.length; i++) {
+            if (expenses[i] > maxExpense) {
+                maxExpense = expenses[i];
+            }
         }
-        return b;
+        return maxExpense;
     }
 }
