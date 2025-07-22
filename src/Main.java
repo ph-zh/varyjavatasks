@@ -1,24 +1,31 @@
 /*
-Объявите и реализуйте метод findMaxExpense — он должен находить в списке расходов за неделю самую большую трату
-и возвращать её значение. В качестве единственного параметра этого метода укажите массив расходов expenses.
+Кот Пиксель очень любит играть с мячиками — всего их у него 15. Днём он повсюду их прячет (число спрятанных мячиков считывается из консоли),
+но вечером всегда возвращает на место. Расставьте переменные balls и hiddenBalls в коде так,
+чтобы программа смогла правильно посчитать количество мячиков у Пикселя до начала игры, во время неё и в конце дня.
  */
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        double[] expenses = {1772.5, 367.0, 120.6, 2150.2, 874.0, 1.0, 1459.4};
-        double maxExpense = findMaxExpense(expenses); // Вызовите метод и присвойте maxExpense значение его результата
-        System.out.println("Самая большая трата недели " + maxExpense);
+
+        // Сохраните общее число мячиков Пикселя в переменной balls
+        int balls = 15;
+        System.out.println("У Пикселя " + balls + " мячиков");
+
+		// Поиграйте с Пикселем, вызвав метод playPixel
+        playPixel(balls);
+
+        // После игры Пиксель должен вернуть все мячики на место!
+        System.out.println("Пиксель вернул все мячики");
+        System.out.println("Их снова " + balls);
     }
 
-	// Объявите метод findMaxExpense
-    // Реализуйте метод. Чтобы найти самую большую трату, воспользуйтесь циклом
-    // Самую большую трату запишите в переменную maxExpense
-    public static double findMaxExpense(double[] expenses) {
-        double maxExpense = 0;
-        for(int i = 0; i < expenses.length; i++) {
-            if (expenses[i] > maxExpense) {
-                maxExpense = expenses[i];
-            }
-        }
-        return maxExpense;
+    public static void playPixel(int balls) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Сколько мячиков он спрятал?");
+        int hiddenBalls = scanner.nextInt(); // Сохраните количество мячиков, которые спрятал Пиксель, в переменную hiddenBalls
+
+        balls = balls - hiddenBalls; // Посчитайте, сколько у Пикселя осталось мячиков
+        System.out.println("Осталось " + balls );
     }
 }
