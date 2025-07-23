@@ -1,59 +1,56 @@
 /*
-Вам нужно дописать код приложения, которое анализирует финансовые планы пользователя и помогает скорректировать их.
-Программа считывает из консоли значения зарплаты, планируемых трат на транспорт и еду, а также сумму возможных сбережений.
-Эти значения сохраняются в соответствующих переменных. Метод correctExpenses сравнивает планируемые траты с зарплатой, печатает размер излишка или недостатка средств и выдаёт рекомендации.
-Объявите метод correctExpenses, который принимает значения переменных из главного метода в качестве аргументов.
-Дополните строки печати корректными значениями и исправьте ошибку в теле метода, связанную с видимостью одной из переменных.
+Прочитайте код. Сейчас программа анализирует расходы на корм одновременно для двух питомцев:
+кота Пикселя и хомяка Байта — из-за этого в результатах печати можно запутаться.
+Декомпозируйте код — разбейте его отдельные методы: sayHello, sayEnjoyMeal, findMaxExpense и findExpensesSum.
+Методы с приветствием и пожеланием приятного аппетита должны быть типа void;
+методы, касающиеся анализа трат, должны возвращать значение.
+У всех методов должны быть параметры. Внутри главного метода main(String[] args)
+должны остаться массивы с тратами, вызов методов и вывод результатов трат.
+Вызовите методы так, чтобы сначала была напечатана информация про Пикселя, а потом про Байта.
+Порядок вывода такой: сперва приветствие, затем стоимость самого дорогого корма и
+общие траты на него и только потом пожелание приятного аппетита.
  */
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Какую зарплату вы получите в этом месяце?");
-        int salary = scanner.nextInt();
-        System.out.println("Сколько планируете потратить на транспорт?");
-        int transportMoney = scanner.nextInt();
-        System.out.println("Сколько запланировано на супермаркеты?");
-        int foodMoney = scanner.nextInt();
-        System.out.println("Какую сумму хотите отложить?");
-        int savings = scanner.nextInt();
+        System.out.println("Привет, Пиксель!");
+        System.out.println("Привет, Байт!");
 
-        // Вызовите метод correctExpenses с правильными аргументами
-        correctExpenses(salary, transportMoney, foodMoney, savings);
+        double[] feedExpensesCat = {100.50, 236.0, 510.6, 150.20, 80.0, 172.0, 135.4};
+        double[] feedExpensesHamster = {70.50, 146.0, 710.6, 250.20, 83.0, 19.0, 55.4};
 
-        // Напечатайте запланированные траты
-        System.out.println("Вы планировали потратить: транспорт — " + transportMoney + ", "
-                + "еда — " + foodMoney + ", "
-                + "сбережения — " + savings + ".");
-    }
-
-    // Объявите метод correctExpenses
-    // Тело метода дано ниже
-
-    public static void correctExpenses(int salary, int transportMoney, int foodMoney, int savings) {
-        int expensesSum = transportMoney + foodMoney + savings; // Считаем расходы
-        if (expensesSum > salary) { // Проверяем, не превышают ли расходы зарплату
-            int lackMoney = expensesSum - salary; // Считаем, сколько не хватает
-
-            // Пока не начнёт хватать денег на транспорт — сокращаем траты на 100 рублей
-            while ((salary - foodMoney) < transportMoney) {
-                foodMoney = foodMoney - 100;
+        double maxFeedExpenseCat = 0;
+        for (int i = 0; i < feedExpensesCat.length; i++) {
+            if (feedExpensesCat[i] > maxFeedExpenseCat) {
+                maxFeedExpenseCat = feedExpensesCat[i];
             }
-            // Если не хватает денег на жизнь — не откладываем
-            if (transportMoney + foodMoney + savings > salary) {
-                savings = 0;
-            }
-
-            // Печатаем рекомендации
-            System.out.println("Придётся пересмотреть планы, вам не хватает " + lackMoney);
-            System.out.println("Рекомендуемые траты: "
-                    + "еда — " + foodMoney + ", "
-                    + "сбережения — " + savings + ".");
-        } else {
-            int leftMoney = salary - expensesSum; // Считаем излишек средств
-            System.out.println("В этом месяце дебет с кредитом сошлись!");
-            System.out.println("Свободных средств " + leftMoney);
         }
+
+        System.out.println("Твой самый дорогой корм стоил " + maxFeedExpenseCat);
+
+        double maxFeedExpenseHamster = 0;
+        for (int i = 0; i < feedExpensesHamster.length; i++) {
+            if (feedExpensesHamster[i] > maxFeedExpenseHamster) {
+                maxFeedExpenseHamster = feedExpensesHamster[i];
+            }
+        }
+
+        System.out.println("Твой самый дорогой корм стоил " + maxFeedExpenseHamster);
+
+        double sumFeedCat = 0;
+        for (int i = 0; i < feedExpensesCat.length; i++) {
+            sumFeedCat = sumFeedCat + feedExpensesCat[i];
+        }
+
+        System.out.println("Всего на корм было потрачено " + sumFeedCat);
+
+        double sumFeedHamster = 0;
+        for (int i = 0; i < feedExpensesHamster.length; i++) {
+            sumFeedHamster = sumFeedHamster + feedExpensesHamster[i];
+        }
+
+        System.out.println("Всего на корм было потрачено " + sumFeedHamster);
+
+        System.out.println("Приятного аппетита, Пиксель!");
+        System.out.println("Приятного аппетита, Байт!");
     }
 }
