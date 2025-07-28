@@ -10,7 +10,6 @@
 (точно известно, что значение параметра health меньше 100).
  5/ Поле hasHelper типа boolean необходимо сохранить как переменную characterHelpersNumber типа byte.
 Если параметр hasHelper равен true, то в переменную characterHelpersNumber сохранить единицу, если false — ноль.
-
 */
 public class Main {
     public static void main(String[] args) {
@@ -28,14 +27,18 @@ public class Main {
                 inputHasHelper
         );
 
-        int characterGold = ...
-        int characterSilver = ...
-        double characterWood = ...
-        byte characterHealth = ...
+        int characterGold = (int) characterResources.gold;
+        int characterSilver = characterResources.silver * 100;
+        double characterWood = characterResources.wood;
+        byte characterHealth = (byte) characterResources.health;
         byte characterHelpersNumber;
 
         // Установка значения characterHelpersNumber в зависимости от значения hasHelper
-        ...
+        if(characterResources.hasHelper) {
+            characterHelpersNumber = 1;
+        } else {
+            characterHelpersNumber = 0;
+        }
 
         Character character = new Character(
                 characterGold,
