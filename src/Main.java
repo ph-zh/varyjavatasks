@@ -1,71 +1,56 @@
 /*
-Доработайте код программы, которая анализирует погоду за месяц и определяет, был ли он дождливым. Сейчас поля класса WeatherCalendar инициализируются некорректно. Исправьте это. Вы должны учесть, что:
-Значения полей month и numberOfDays должны присваиваться в конструкторе. Для этого объявите его с двумя параметрами — monthName и monthNumberOfDays, а при вызове передайте в качестве аргументов значения «Октябрь» и «31».
-Полям rainyDays и isRainyMonth должны присваиваться значения по умолчанию (сейчас они инициализируются явно).
-Поле year должно быть проинициализировано при объявлении на уровне класса. Сохраните в него значение 2020.
-Кроме того, внутри WeatherCalendar допишите метод addRainyDay() — он увеличивает переменную rainyDays на единицу.
-Также нужно дописать код условных выражений. Если дождливых дней в месяце больше 15, необходимо присвоить переменной isRainyMonth значение true. Чтобы напечатать сообщение-вывод, нужно обратиться к этой переменной.
+Часто при обновлении программ необходимо поддерживать старый код. Доработайте код новой
+версии игры-стратегии, чтобы он поддерживал параметры из старой версии:
+ 1/ Поле gold типа long необходимо сохранить в переменную characterGold типа int
+(точно известно, что значение параметра gold меньше 2 000 000 000).
+ 2/ Поле silver типа byte необходимо сохранить как переменную characterSilver типа int,
+предварительно умножив её на 100.
+ 3/ Поле wood типа short необходимо сохранить как переменную characterWood типа double.
+ 4/ Поле health типа long необходимо сохранить как переменную characterHealth типа byte
+(точно известно, что значение параметра health меньше 100).
+ 5/ Поле hasHelper типа boolean необходимо сохранить как переменную characterHelpersNumber типа byte.
+Если параметр hasHelper равен true, то в переменную characterHelpersNumber сохранить единицу, если false — ноль.
+
 */
 public class Main {
     public static void main(String[] args) {
-        WeatherCalendar calendar = new WeatherCalendar("Октябрь", 31);
-        calendar.month = "Октябрь";
-        calendar.numberOfDays = 31;
+        long inputGold = 200L;
+        byte inputSilver = 39;
+        short inputWood = 2005;
+        long inputHealth = 97L;
+        boolean inputHasHelper = true;
 
-        String[] octoberWeather = new String[]{
-                "Солнечно",
-                "Дождь",
-                "Пасмурно",
-                "Дождь",
-                "Дождь",
-                "Облачно",
-                "Солнечно",
-                "Дождь",
-                "Пасмурно",
-                "Солнечно",
-                "Солнечно",
-                "Облачно",
-                "Солнечно",
-                "Дождь",
-                "Пасмурно",
-                "Солнечно",
-                "Солнечно",
-                "Облачно",
-                "Облачно",
-                "Облачно",
-                "Облачно",
-                "Дождь",
-                "Дождь",
-                "Облачно",
-                "Солнечно",
-                "Дождь",
-                "Пасмурно",
-                "Дождь",
-                "Солнечно",
-                "Солнечно",
-                "Солнечно",
-                "Солнечно",
-                "Облачно"
-        };
+        Resources characterResources = new Resources(
+                inputGold,
+                inputSilver,
+                inputWood,
+                inputHealth,
+                inputHasHelper
+        );
 
-        for (int i = 0; i < calendar.numberOfDays; i++) {
-            if (octoberWeather[i].equals("Дождь")) {
-                calendar.addRainyDay();
-            }
-        }
-        // Проверить, был ли месяц дождливым. Если да - установить значение isRainyMonth
-        if (calendar.rainyDays > 15) {
-            calendar.isRainyMonth = true;
-        }
+        int characterGold = ...
+        int characterSilver = ...
+        double characterWood = ...
+        byte characterHealth = ...
+        byte characterHelpersNumber;
 
-        System.out.println(calendar.month + " " + calendar.year + " года. "
-                + calendar.rainyDays + " дней шёл дождь.");
+        // Установка значения characterHelpersNumber в зависимости от значения hasHelper
+        ...
 
-        // Проверить значение isRainyMonth
-        if (calendar.isRainyMonth) {
-            System.out.println("Это был дождливый месяц.");
-        } else {
-            System.out.println("Этот месяц был довольно сухим.");
-        }
+        Character character = new Character(
+                characterGold,
+                characterSilver,
+                characterWood,
+                characterHealth,
+                characterHelpersNumber
+        );
+
+        System.out.println("Персонаж создан успешно!");
+        System.out.println("Количество золота: " + character.gold);
+        System.out.println("Количество серебра: " + character.silver);
+        System.out.println("Количество дерева: " + character.wood);
+        System.out.println("Здоровье: " + character.health);
+        System.out.println("Количество помощников: " + character.helpersNumber);
+        System.out.println("Навстречу приключениям!");
     }
 }
