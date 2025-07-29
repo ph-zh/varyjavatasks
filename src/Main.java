@@ -4,6 +4,8 @@
 С помощью классов-обёрток и их свойств исправьте код так, чтобы открывались счета только в тех валютах,
 которые выберет пользователь. Счета необходимо создавать с нулевым балансом.
 */
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -37,15 +39,14 @@ public class Main {
 
         System.out.println("Поздравляем, аккаунт для пользователя " + user.name + " создан.");
         System.out.println("Открытые счета:");
-        if (user.moneyRUB == 0.0) {
+        if (user.moneyRUB != null) {
             System.out.println("- RUB");
         }
-        if (user.moneyUSD == 0.0) {
+        if (user.moneyUSD != null) {
             System.out.println("- USD");
         }
-        if (user.moneyEUR == 0.0) {
+        if (user.moneyEUR != null) {
             System.out.println("- EUR");
         }
-
     }
 }
