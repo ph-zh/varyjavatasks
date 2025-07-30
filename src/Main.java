@@ -3,12 +3,22 @@
 */
 public class Main {
     public static void main(String[] args) {
-        String firstNumber = "123.45";
-        String secondNumber = "234.56";
-        System.out.println(addNumbers(firstNumber, secondNumber));
+        byte b1 = 10;
+        byte b2 = 20;
+        printMaxOfBytes(b1, b2);
+
+        short sh1 = -5;
+        short sh2 = 5;
+        printMinOfShorts(sh1, sh2);
     }
 
-    private static Float addNumbers(String firstNumber, String secondNumber) {
-        return (Float.parseFloat(firstNumber) + Float.parseFloat(secondNumber));
+    public static void printMaxOfBytes(byte b1, byte b2) {
+        int max_of_bytes = Integer.max((int)b1, (int)b2);
+        System.out.println(max_of_bytes);
+    }
+
+    public static void printMinOfShorts(short sh1, short sh2) {
+        int min_of_shorts = Integer.min((int)sh1, (int)sh2);
+        System.out.println(min_of_shorts);
     }
 }
