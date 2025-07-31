@@ -1,37 +1,13 @@
 /*
-Кота Пикселя на вечер субботы оставили бабушке. Она приготовила ему на выбор говядину и курицу, а перед сном налила молока и поставила блюдце сливок.
-Пиксель внимательно следит за питанием и в обоих случаях выбрал наименее калорийную еду. Вычислите, сколько всего ккал съел Пиксель за день, и проверьте, уложился ли питомец в свой лимит в 100 ккал.
-Чтобы код сработал, вам также нужно найти и исправить ошибки, касающиеся типов.
+Дополните код так, чтобы теперь существовало два самостоятельных кота. Первый с именем Роджер, второй с именем Барсик.
+Обратите внимание: новый код можно добавлять только в указанной строке. Менять остальные строки не следует.
 */
 public class Main {
     public static void main(String[] args) {
-        String pixelKcalDay = "43"; // столько калорий съел Пиксель до похода к бабушке
-        String beefKcal = "30.2"; // калорийность говядины
-        String chickenKcal = "23.8"; // калорийность курицы
-        String creamKcal = "32.1"; // калорийность сливок
-        String milkKcal = "13.5"; // калорийность молока
-
-        float pixelChoice = getMinKcalsSum(beefKcal, chickenKcal, creamKcal, milkKcal);
-        float totalKcal = Float.parseFloat(pixelKcalDay) + pixelChoice;
-        checkKcal(totalKcal);
-    }
-
-    private static Float getMinKcalsSum(String firstDishKcal, String secondDishKcal, String firstDesert, String secondDesert) {
-        float minDishKcal = Float.min(Float.parseFloat(firstDishKcal), Float.parseFloat(secondDishKcal)); // вычислите минимальную калорийность основного блюда
-        float minDesertKcal = Float.min(Float.parseFloat(firstDesert), Float.parseFloat(secondDesert)); // вычислите минимальную калорийность десерта
-        return minDishKcal + minDesertKcal;
-    }
-
-    private static void checkKcal(Float catKcal) {
-        if (catKcal == null) {
-            System.out.println("Что-то пошло не так");
-        } else {
-            System.out.println("Калорийность рациона Пикселя за день: " + catKcal);
-            if (catKcal > 100) {
-                System.out.println("Пиксель сегодня не уложился в норму.");
-            } else {
-                System.out.println("Лимит не превышен!");
-            }
-        }
+        Cat cat1 = new Cat("Барсик");
+        Cat cat2 = cat1;
+        // вставьте код сюда
+        cat1 = new Cat("Роджер");
+        System.out.println("Кот 1: " + cat1.name + ", кот 2: " + cat2.name);
     }
 }
