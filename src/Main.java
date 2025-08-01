@@ -1,13 +1,26 @@
 /*
-Дополните код так, чтобы теперь существовало два самостоятельных кота. Первый с именем Роджер, второй с именем Барсик.
-Обратите внимание: новый код можно добавлять только в указанной строке. Менять остальные строки не следует.
+По мнению Джеффа Безоса, основателя и главы компании Amazon, идеальная встреча — это встреча, для проведения которой хватит двух пицц.
+Помогите Джеффу вычислить, сколько человек можно позвать на встречу, исходя из количества кусочков пиццы на каждого. Также определите, останется ли ещё пицца после того, как все разойдутся.
+Вам нужно дополнить реализацию метода printMaximumPeopleToMeeting(), который в качестве аргументов принимает, на сколько кусков порезана одна пицца и сколько кусков пиццы съедает один участник встречи.
 */
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Cat cat1 = new Cat("Барсик");
-        Cat cat2 = cat1;
-        // вставьте код сюда
-        cat1 = new Cat("Роджер");
-        System.out.println("Кот 1: " + cat1.name + ", кот 2: " + cat2.name);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("На сколько кусков порезана пицца?");
+        int slicesInPizza = scanner.nextInt();
+        System.out.println("Сколько кусков съедает один участник встречи?");
+        int slicesToPerson = scanner.nextInt();
+        printMaximumPeopleToMeeting(slicesToPerson, slicesInPizza);
+    }
+
+    private static void printMaximumPeopleToMeeting(int slicesToPerson, int slicesInPizza) {
+        int numOfPizzas = 2;
+        int totalSlices = numOfPizzas * slicesInPizza; // Посчитайте общее число кусков пиццы 10
+        int maximumPeopleToMeeting = totalSlices / slicesToPerson; // На сколько человек хватит пиццы
+        int leftSlices = totalSlices % maximumPeopleToMeeting; // Сколько пиццы останется
+        System.out.println("Максимальное число участников идеальной встречи: " + maximumPeopleToMeeting);
+        //System.out.println("Останется кусков пиццы: " + leftSlices);
     }
 }
