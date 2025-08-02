@@ -7,22 +7,22 @@
 */
 public class Main {
     public static void main(String[] args) {
-        ... roubles = 5000; // сумма на счету
-        ... yearRate = 4; // годовая процентная ставка
-        ... numOfMonth = 36; // количество месяцев, на который открыт вклад
-        ... monthRefill = 1000; // ежемесячное пополнение
+        float roubles = 5000; // сумма на счету
+        float yearRate = 4; // годовая процентная ставка
+        byte numOfMonth = 36; // количество месяцев, на который открыт вклад
+        short monthRefill = 1000; // ежемесячное пополнение
 
-        ... monthRate = ... // вычислите месячную процентную ставку
+        float monthRate = yearRate / 100 / 12; // вычислите месячную процентную ставку
 
-        for (...) { // дополните условие цикла
-        ... depositInterest = ... // вычислите доход от процентов
-        ... // добавьте доход от процентов
-        ... // учтите ежемесячное пополнение
+        for (byte i = 1; i <= numOfMonth; i++) { // дополните условие цикла
+            float depositInterest = roubles * monthRate; // вычислите доход от процентов
+            roubles += depositInterest; // добавьте доход от процентов
+            roubles += monthRefill; // учтите ежемесячное пополнение
         }
 
         System.out.println("Через " + numOfMonth + " месяцев накопится " + roubles + " рублей");
 
-        if (...) { // определите, удалось ли достичь цели
+        if (roubles >= 41000) { // определите, удалось ли достичь цели
             System.out.println("Ура! Можно идти в магазин за новым объективом!");
         } else {
             System.out.println("Нужно ещё немного подкопить.");
