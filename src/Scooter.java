@@ -22,11 +22,13 @@ class Scooter {
         if (availableScooters <= 0) { // Проверьте, есть ли доступные самокаты
             System.out.println("Доступных самокатов не осталось.");
         } else {
-            int currentPrice = (scootersInUse++ + 1) / availableScooters * additionalPrice + defaultPrice; /* Посчитайте текущую стоимость проката,
+            int currentPrice = (scootersInUse + 1) / availableScooters * additionalPrice + defaultPrice; /* Посчитайте текущую стоимость проката,
             увеличьте число арендованных самокатов и уменьшите число доступных */
+            scootersInUse++;
+            availableScooters--;
             System.out.println("Выдайте самокат по цене " + currentPrice + " руб/мин");
             System.out.println("Самокатов в аренде: " + scootersInUse);
-            System.out.println("Самокатов доступно: " + --availableScooters);
+            System.out.println("Самокатов доступно: " + availableScooters);
         }
     }
 
