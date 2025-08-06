@@ -1,22 +1,24 @@
 /*
-Отредактируйте код, который ищет максимальное значение в массиве. Измените массив на список, заполните его элементами и получите с помощью цикла for самое большое значение.
+В списке speeds хранится информация о скоростях автомобиля на разных участках дороги. С помощью короткой формы цикла for и метода size() посчитайте среднюю скорость.
 */
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Double> temperatures = new ArrayList<>();
-        temperatures.add(92.3);
-        temperatures.add(12.4);
-        temperatures.add(74.1);
-        temperatures.add(45.0);
+        ArrayList<Integer> speeds = new ArrayList<>(); // Объявите список
+        speeds.add(120);
+        speeds.add(75);
+        speeds.add(42);
+        speeds.add(60);
+        speeds.add(110);
+        speeds.add(20);
 
-        double max = 0;
-        for (int i = 0; i < temperatures.size(); i++) {
-            if (temperatures.get(i) > max) {
-                max = temperatures.get(i);
-            }
+        int sum = 0;
+        for (Integer speed : speeds) {
+            sum += speed;  // Сложите все значения в списке
         }
-        System.out.println("Самая высокая температура: " + max + " °С.");
+
+        int averageSpeed = sum / speeds.size(); // Вычислите среднюю скорость
+        System.out.println("Средняя скорость равна " + averageSpeed + " км/ч");
     }
 }
