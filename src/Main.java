@@ -1,16 +1,16 @@
 /*
-
+Допишите код: импортируйте и объявите список, а затем заполните его элементами. Добавьте имя «Наталья» после имени «Екатерина» (не меняя строки кода местами). Результат напечатайте.
 */
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Double> expenses = new ArrayList<>();
-        expenses.add(120.43);
-        expenses.add(290.34);
-        expenses.add(420.1);
-        expenses.add(3, 100.0);
-
-        System.out.println(expenses);
+        ArrayList<String> femaleNames = new ArrayList<>(); // Создайте список
+        femaleNames.add("Екатерина");
+        femaleNames.add("Мария");
+        femaleNames.add("Анна");
+        femaleNames.add(1, "Наталья"); // Добавьте имя "Наталья"
+        // Распечайте список
+        System.out.println(femaleNames);
     }
 }
