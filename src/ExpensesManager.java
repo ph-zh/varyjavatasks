@@ -1,18 +1,15 @@
-// Импортируйте ArrayList
 import java.util.ArrayList;
 
 public class ExpensesManager {
-    // Замените массив списком
-    ArrayList<Double> expenses;
+    ArrayList<Expense> expenses;
 
     ExpensesManager() {
-        expenses = new ArrayList<>(); // Создайте список в конструкторе
+        expenses = new ArrayList<>();
     }
 
-    // Номер дня больше не нужен
     double saveExpense(double moneyBeforeSalary, double expense) {
         moneyBeforeSalary = moneyBeforeSalary - expense;
-        expenses.add(expense);
+        expenses.add(new Expense(expense));
         System.out.println("Значение сохранено! Ваш текущий баланс в рублях: " + moneyBeforeSalary);
         if (moneyBeforeSalary < 1000) {
             System.out.println("На вашем счету осталось совсем немного. Стоит начать экономить!");
@@ -22,17 +19,27 @@ public class ExpensesManager {
 
     void printAllExpenses() {
         for (int i = 0; i < expenses.size(); i++) {
-            System.out.println("Трата № " + (i + 1) + ". Потрачено " + expenses.get(i) + " рублей");
+            Expense exp = expenses.get(i);
+            System.out.println("Трата № " + (i + 1) + ". Потрачено " + exp.getValue() + " рублей, код транзакции: "+exp.getTransaction());
         }
     }
 
     double findMaxExpense() {
         double maxExpense = 0;
-        for (Double expense: expenses) {
-            if(maxExpense < expense) {
-                maxExpense = expense;
+        for (Double exp : expenses) {
+            if (exp.getValue() > maxExpense) {
+                maxExpense = exp.getValue();
             }
         }
         return maxExpense;
     }
+
+    // Добавьте метод removeAllExpenses()
+    ... // Текст для печати: "Список трат пуст."
+
+            // Добавьте метод removeExpense(int transaction)
+            ... /* Текст для печати: "Список трат пуст."
+        "Трата удалена!"
+        "Такой траты нет." */
+
 }
