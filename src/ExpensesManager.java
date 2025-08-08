@@ -50,9 +50,8 @@ public class ExpensesManager {
             System.out.println("Список трат пуст.");
         } else {
             for (int i = 0; i < expenses.size(); i++) {
-                Expense exp = expenses.get(i);
                 // System.out.println("Трата № " + (i + 1) + ". Потрачено " + exp.getValue() + " рублей, код транзакции: " + exp.getTransaction());
-                if(expenses.contains(exp.getTransaction())) {
+                if(expenses.contains(transaction)) {
                     expenses.remove(transaction);
                     System.out.println("Трата удалена!");
                 } else {
