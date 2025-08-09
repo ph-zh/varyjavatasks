@@ -18,6 +18,14 @@
 и не забудьте его прервать. Найденный индекс сохраните в переменную index.
 Обратите внимание, несмотря на наличие метода remove для элемента, в этом задании
 мы предлагаем удалять первый найденный элемент по индексу.
+System.out.println(exp); // Expense@8bd1b6a
+System.out.println(expenses.contains(exp)); // true
+System.out.println(expenses.get(i)); // Expense@8bd1b6a
+System.out.println(expenses.size()); // 3
+System.out.println(i + 1); // 1
+System.out.println(transaction); // my input from menu 999
+System.out.println(exp.getTransaction()); // transaction # 103052
+System.out.println(exp.getValue()); // my value to index 0 - 111
 */
 import java.util.Scanner;
 
