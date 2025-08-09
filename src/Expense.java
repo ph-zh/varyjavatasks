@@ -26,7 +26,7 @@ public class Expense {
     //с помощью функции Math.random();
     public Expense(double value) {
         this.value = value;
-        this.transaction = (int) (Math.random() * 1000001); //реализуйте создание уникального номера транзакции
+        this.transaction = (int) (Math.random() * 1_000_001); //реализуйте создание уникального номера транзакции
     }
 
 }

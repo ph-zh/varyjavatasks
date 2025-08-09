@@ -45,18 +45,21 @@ public class ExpensesManager {
     /* Текст для печати: "Список трат пуст."
         "Трата удалена!"
         "Такой траты нет." */
-    void removeExpense(int transaction) {
-        if(expenses.isEmpty()) {
+    void removeExpense(int transaction) { // in transaction i put value but not index. So i need to understand how to delete index where value stored
+        if (expenses.isEmpty()) {
             System.out.println("Список трат пуст.");
         } else {
             for (int i = 0; i < expenses.size(); i++) {
-                // System.out.println("Трата № " + (i + 1) + ". Потрачено " + exp.getValue() + " рублей, код транзакции: " + exp.getTransaction());
-                if(expenses.contains(transaction)) {
-                    expenses.remove(transaction);
-                    System.out.println("Трата удалена!");
+                Expense exp = expenses.get(i);
+                if (expenses.contains(exp)) {
+                    System.out.println(expenses.contains(exp));
+                    System.out.println(expenses.size());
+                    System.out.println(i + 1);
+                    System.out.println(transaction);
+                    System.out.println(exp.getTransaction());
+                    System.out.println(exp.getValue());
                 } else {
                     System.out.println("Такой траты нет.");
-                    break;
                 }
             }
         }
