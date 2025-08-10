@@ -51,10 +51,9 @@ public class ExpensesManager {
         } else {
             for (int i = 0; i < expenses.size(); i++) {
                 Expense exp = expenses.get(i);
-                if(transaction == exp.getTransaction()) {
+                if(exp.getTransaction() == transaction) {
                     expenses.remove(exp);
                     System.out.println("Трата удалена!");
-                    break;
                 } else {
                     System.out.println("Такой траты нет.");
                 }
