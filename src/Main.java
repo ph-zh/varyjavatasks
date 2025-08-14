@@ -1,20 +1,23 @@
 /*
-В таблице хранятся названия стран и их столицы. Напечатайте названия столиц Аргентины и Норвегии.
+В таблице собраны имена клиентов зоомагазина и сумма, на которую они делали заказы. Посчитайте, сколько всего денег было потрачено на питомцев.
 */
 import java.util.HashMap;
 
 public class Main {
     public static void main(String[] args) {
-        HashMap<String, String> countriesCapitals = new HashMap<>();
-        countriesCapitals.put("Франция", "Париж");
-        countriesCapitals.put("Аргентина", "Буэнос-Айрес");
-        countriesCapitals.put("Россия", "Москва");
-        countriesCapitals.put("Америка", "Вашингтон");
-        countriesCapitals.put("Япония", "Токио");
-        countriesCapitals.put("Норвегия", "Осло");
+        HashMap<String, Double> orders = new HashMap<>();
+        orders.put("Иван И.", 4345.5);
+        orders.put("Ольга С.", 76564.43);
+        orders.put("Александр Т.", 1234.86);
+        orders.put("Александр Р.", 23432.87);
+        orders.put("Екатерина О.", 1034753.6);
+        orders.put("Ярослав В.", 450.0);
 
-        System.out.println("Столица Аргентины: " + countriesCapitals.get("Аргентина"));
-        System.out.println("Столица Норвегии: " + countriesCapitals.get("Норвегия"));
+        double sum = 0; // Объявите переменную, где будет сохранена общая сумма
+        for (Double order : orders.values()) { // Пройдитесь в цикле по значениям
+            sum = sum + order;
+        }
 
+        System.out.println("Всего было совершено заказов на сумму: " + sum);
     }
 }
