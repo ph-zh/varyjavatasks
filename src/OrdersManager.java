@@ -69,6 +69,11 @@ public class OrdersManager {
             for (double orderPrice : orders) {
                 if (orderPrice > maxOrder) {
                     maxOrder = orderPrice;
+                    for(String name : customersOrders.keySet()) {
+                        if (customersOrders.get(name).contains(maxOrder)) {
+                            customerName = name;
+                        }
+                    }
                 }
             }
         }
