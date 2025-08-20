@@ -18,12 +18,15 @@
 - 1300.56
 - 800.00
 
- 3/ Имя метода findMaxExpense() замените на findMaxExpenseInCategory(). Этот метод должен принимать в качестве аргумента название категории.
-Если категория есть в таблице, то метод должен найти в её списке максимальную трату. Если нет — то сообщить об этом пользователю.
+ 3/ Имя метода findMaxExpense() замените на findMaxExpenseInCategory(). Этот метод должен принимать
+ в качестве аргумента название категории.
+Если категория есть в таблице, то метод должен найти в её списке максимальную трату.
+Если нет — то сообщить об этом пользователю.
 
  4/ Исправьте код в методе removeAllExpenses().
 
-После рефакторинга ExpensesManager поменяйте вызов методов в классе Praktikum. Мы уже внесли там нужные изменения в меню и добавили печать вопросов.
+После рефакторинга ExpensesManager поменяйте вызов методов в классе Praktikum.
+Мы уже внесли там нужные изменения в меню и добавили печать вопросов.
  */
 import java.util.Scanner;
 
@@ -56,7 +59,7 @@ public class Main {
                 double expense = scanner.nextDouble();
                 System.out.println("К какой категории относится трата?");
                 String category = scanner.next();
-                moneyBeforeSalary = ...
+                moneyBeforeSalary = expensesManager.saveExpense(moneyBeforeSalary, expense, category);
             } else if (command == 4) {
                 expensesManager.printAllExpensesByCategories();
             } else if (command == 5) {
