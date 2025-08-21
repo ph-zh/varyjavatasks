@@ -66,7 +66,7 @@ public class Main {
                 System.out.println("В какой категории искать?");
                 String category = scanner.next();
                 System.out.println("Самая большая трата в категории " + category + " составила "
-                        + ... + " руб.");
+                        + expensesManager.findMaxExpenseInCategory(category) + " руб.");
             } else if (command == 6) {
                 expensesManager.removeAllExpenses();
             } else if (command == 0) {
