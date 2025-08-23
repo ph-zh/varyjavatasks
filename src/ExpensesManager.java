@@ -38,7 +38,7 @@ public class ExpensesManager {
             System.out.println(category);
             ArrayList<Double> expenses = expensesByCategories.get(category);
             for (double expense : expenses) {
-                System.out.println("- " + expense);
+                System.out.println(expense);
             }
         }
     }
