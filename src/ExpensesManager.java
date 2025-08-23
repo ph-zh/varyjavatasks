@@ -1,28 +1,21 @@
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ExpensesManager {
-    HashMap<String, ArrayList<Double>> expensesByCategories; // Замените на таблицу с именем expensesByCategories
+    HashMap<String, ArrayList<Double>> expensesByCategories;
 
     ExpensesManager() {
-        expensesByCategories = new HashMap<>(); // Создайте таблицу
+        expensesByCategories = new HashMap<>();
     }
 
-    // Добавьте в метод ещё один параметр — category
-    double saveExpense(double moneyBeforeSalary, double expense, String category) {
+    double saveExpense(double moneyBeforeSalary, String category, double expense) {
         moneyBeforeSalary = moneyBeforeSalary - expense;
         System.out.println("Значение сохранено! Ваш текущий баланс в рублях: " + moneyBeforeSalary);
-        // Замените на работу с таблицей
-        ArrayList<Double> expenses;
-        if (expensesByCategories.containsKey(category)) { // Проверьте наличие категории
-            // Получите список трат в этой категории
-            // Добавьте трату
-            expenses = expensesByCategories.get(category);
+        if (expensesByCategories.containsKey(category)) {
+            ArrayList<Double> expenses = expensesByCategories.get(category);
             expenses.add(expense);
         } else {
-            // Создайте новый список трат и добавьте в него сумму
-            // Сохраните категорию и новый список трат в хеш-таблицу
-            expenses = new ArrayList<>();
+            ArrayList<Double> expenses = new ArrayList<>();
             expenses.add(expense);
             expensesByCategories.put(category, expenses);
         }
@@ -33,24 +26,19 @@ public class ExpensesManager {
     }
 
     void printAllExpensesByCategories() {
-        // Замените логику для работы с таблицами
         for (String category : expensesByCategories.keySet()) {
             System.out.println(category);
             ArrayList<Double> expenses = expensesByCategories.get(category);
-            for (double expense : expenses) {
+            for (Double expense : expenses) {
                 System.out.println(expense);
             }
         }
     }
 
-    // Метод должен принимать название категории и называться findMaxExpenseInCategory
     double findMaxExpenseInCategory(String category) {
         double maxExpense = 0;
-        /* Замените логику для работы с таблицами
-        Если категория есть, то ищем максмальную трату.
-        Иначе печатаем "Такой категории пока нет." */
-        ArrayList<Double> expenses = expensesByCategories.get(category);
         if (expensesByCategories.containsKey(category)) {
+            ArrayList<Double> expenses = expensesByCategories.get(category);
             for (Double expense : expenses) {
                 if (expense > maxExpense) {
                     maxExpense = expense;
@@ -63,7 +51,39 @@ public class ExpensesManager {
     }
 
     void removeAllExpenses() {
-        expensesByCategories.clear(); // Таблица называется иначе
+        expensesByCategories.clear();
         System.out.println("Траты удалены.");
+    }
+
+    // Напишите метод для получения суммы всех трат
+    double getExpensesSum() {
+        double expensesSum = 0;
+        for (String category : expensesByCategories.keySet()) {
+            ArrayList<Double> expenses = expensesByCategories.get(category);
+            for (Double expense : expenses) {
+                expensesSum += expense;
+            }
+        }
+        return expensesSum;
+    }
+
+    // Напишите метод для удаления категории
+    void removeCategory(String category) {
+        expensesByCategories.remove(category);
+    }
+
+    // Напишите метод для получения категории, где размер трат больше всего
+    // Используйте эти переменные для сохранения промежуточных значений
+    String getMaxCategoryName() {
+        double maxCategorySum = 0;
+        String maxCategoryName = "";
+
+        for (String category : expensesByCategories.keySet()) {
+            ArrayList<Double> expenses = expensesByCategories.get(category);
+            for (Double expense : expenses) {
+                maxCategorySum += expense;
+            }
+        }
+        return maxCategoryName;
     }
 }
