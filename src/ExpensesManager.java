@@ -37,7 +37,7 @@ public class ExpensesManager {
         for (String category : expensesByCategories.keySet()) {
             System.out.println(category);
             ArrayList<Double> expenses = expensesByCategories.get(category);
-            for(double expense : expenses) {
+            for (double expense : expenses) {
                 System.out.println("- " + expense);
             }
         }
@@ -49,12 +49,11 @@ public class ExpensesManager {
         /* Замените логику для работы с таблицами
         Если категория есть, то ищем максмальную трату.
         Иначе печатаем "Такой категории пока нет." */
+        ArrayList<Double> expenses = expensesByCategories.get(category);
         if (expensesByCategories.containsKey(category)) {
-            for (ArrayList<Double> expenses : expensesByCategories.values()) {
-                for (Double expense : expenses) {
-                    if (maxExpense < expense) {
-                        maxExpense = expense;
-                    }
+            for (Double expense : expenses) {
+                if (expense > maxExpense) {
+                    maxExpense = expense;
                 }
             }
         } else {
