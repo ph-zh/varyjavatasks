@@ -78,10 +78,16 @@ public class ExpensesManager {
         double maxCategorySum = 0;
         String maxCategoryName = "";
 
-        for (String category : expensesByCategories.keySet()) {
-            ArrayList<Double> expenses = expensesByCategories.get(category);
-            for (Double expense : expenses) {
-                maxCategorySum += expense;
+        for (ArrayList<Double> expenses : expensesByCategories.values()) {
+            for (double expense : expenses) {
+                if(expense > maxCategorySum) {
+                    maxCategorySum = expense;
+                    for (String category : expensesByCategories.keySet()) {
+                        if (expensesByCategories.get(category).contains(maxCategorySum)) {
+                            maxCategoryName = category;
+                        }
+                    }
+                }
             }
         }
         return maxCategoryName;
