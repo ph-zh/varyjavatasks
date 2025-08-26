@@ -1,5 +1,6 @@
 public class BikeTimeCalculator {
     private double speed = 10; // средняя скорость в км/ч
+    private double speedInMS = new SpeedConverter(speed).getSpeedInMs();
     private String courierName;
 
     public BikeTimeCalculator(String name) {
@@ -16,6 +17,4 @@ public class BikeTimeCalculator {
     public String getCourierName() {
         return courierName;
     }
-
-    private double speedInMS = new SpeedConverter(speed).getSpeedInMs();
 }
