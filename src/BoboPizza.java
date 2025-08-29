@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BoboPizza {
+    DeliveryInfo delivery = null;
     private Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -20,16 +21,14 @@ public class BoboPizza {
             add(new HumanTimeCalculator("Дмитрий"));
             add(new HumanTimeCalculator("Алексей"));
         }};
-        new BoboPizza().loop();
+
+        new BoboPizza().loop(bikes, cars,humans);
     }
 
-    private void loop() {
-        CourierSelector selector = new CourierSelector(bikes, cars, humans);
-
-        DeliveryInfo delivery = null;
-
+    private void loop(List<BikeTimeCalculator> bikes, List<CarTimeCalculator> cars, List<HumanTimeCalculator> humans) {
         do {
             System.out.println("Введите расстояние в метрах => ");
+            CourierSelector selector = new CourierSelector(bikes, cars, humans);
             int distance = scanner.nextInt();
             delivery = selector.selectDelivery(distance);
             if (delivery != null) {

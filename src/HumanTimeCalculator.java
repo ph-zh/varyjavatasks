@@ -1,4 +1,7 @@
 public class HumanTimeCalculator {
+    private double speed = 2.5; // средняя скорость в км/ч
+    private double speedInMS = new SpeedConverter(speed).getSpeedInMs();
+    private String courierName;
 
     public HumanTimeCalculator(String name) {
         courierName = name;
@@ -15,7 +18,5 @@ public class HumanTimeCalculator {
         return courierName;
     }
 
-    private double speed = 2.5; // средняя скорость в км/ч
-    private double speedInMS = new SpeedConverter(speed).getSpeedInMs();
-    private String courierName;
+
 }
