@@ -1,6 +1,6 @@
 public class CarTimeCalculator {
-    private double speed = 25; // средняя скорость в км/ч
     private double speedInMS = new SpeedConverter(speed).getSpeedInMs();
+    private double speed = 25; // средняя скорость в км/ч
     private String courierName;
 
     public CarTimeCalculator(String name) {
