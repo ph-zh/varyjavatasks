@@ -84,7 +84,14 @@ public class Main {
     public static void printQuantityByYear(int year, double amount) {
         List<Item> priceList;
         // реализуйте заполнение прайслиста с помощью switch(year)
+        switch (year) {
+            case 1913:
+                priceList.add(PRICE_LIST_1913.add(amount));
+                break;
+            case 1984:
 
+                break;
+        }
         // здесь мы выводим доступные товары из списка
         for (Item item : priceList) {
             printItemYouCanBuy(item, amount);
