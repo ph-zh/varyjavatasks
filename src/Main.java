@@ -14,14 +14,16 @@ import java.util.Scanner;
 public class Main {
 
     // мы подготовили эти прайс-листы
-    static List<Item> PRICE_LIST_1913 = Arrays.asList(new Item("Корова", 60.0),
+    static List<Item> PRICE_LIST_1913 = Arrays.asList(
+            new Item("Корова", 60.0),
             new Item("Курица", 0.60),
             new Item("Рубашка", 1.0),
             new Item("Шапка гусарская", 12.0),
             new Item("Гармонь", 7.50),
             new Item("Рояль", 200.0));
 
-    static List<Item> PRICE_LIST_1984 = Arrays.asList(new Item("Банка сгущёнки", 0.55),
+    static List<Item> PRICE_LIST_1984 = Arrays.asList(
+            new Item("Банка сгущёнки", 0.55),
             new Item("Автомобиль «Запорожец»", 5600.0),
             new Item("Мороженое", 0.20),
             new Item("Шапка-ушанка цигейковая", 14.0),
@@ -50,7 +52,7 @@ public class Main {
         }
 
         // переведите заданную сумму в рубли по старому курсу
-        double amountByYear = ...
+        double amountByYear = amount * koef;
 
         // выведите получившийся курс рубля
         printAmountInYear(year, amountByYear);
@@ -61,7 +63,16 @@ public class Main {
 
     private static double getYearKoef(int year) {
         // реализуйте функцию с помощью switch (year)...
-        ...
+        double koef = 0;
+        switch (year) {
+            case 1913:
+                koef = 884;
+                break;
+            case 1984:
+                koef = 337;
+                break;
+        }
+        return koef;
     }
 
     public static void printAmountInYear(int year, double amount) {
@@ -73,7 +84,7 @@ public class Main {
     public static void printQuantityByYear(int year, double amount) {
         List<Item> priceList;
         // реализуйте заполнение прайслиста с помощью switch(year)
-        ...
+
         // здесь мы выводим доступные товары из списка
         for (Item item : priceList) {
             printItemYouCanBuy(item, amount);
@@ -82,7 +93,7 @@ public class Main {
 
     private static void printItemYouCanBuy(Item item, double amount) {
         // подсчитайте количество товара в штуках, которое вы можете купить за amount рублей
-        int quantity = ...
+        double quantity = amount / item.price;
         if(quantity > 0) {
             System.out.println(item.name + " — " + (int) quantity + " шт.");
         }
