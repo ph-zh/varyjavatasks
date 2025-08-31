@@ -52,7 +52,7 @@ public class Main {
         }
 
         // переведите заданную сумму в рубли по старому курсу
-        double amountByYear = amount * koef;
+        double amountByYear = amount / koef;
 
         // выведите получившийся курс рубля
         printAmountInYear(year, amountByYear);
@@ -63,7 +63,7 @@ public class Main {
 
     private static double getYearKoef(int year) {
         // реализуйте функцию с помощью switch (year)...
-        double koef = 0;
+        double koef = -1;
         switch (year) {
             case 1913:
                 koef = 884;
@@ -86,23 +86,26 @@ public class Main {
         // реализуйте заполнение прайслиста с помощью switch(year)
         switch (year) {
             case 1913:
-                priceList.add(PRICE_LIST_1913.add(amount));
+                priceList = PRICE_LIST_1913;
+                for (Item item : priceList) {
+                    printItemYouCanBuy(item, amount);
+                }
                 break;
             case 1984:
-
+                priceList = PRICE_LIST_1984;
+                for (Item item : priceList) {
+                    printItemYouCanBuy(item, amount);
+                }
                 break;
         }
         // здесь мы выводим доступные товары из списка
-        for (Item item : priceList) {
-            printItemYouCanBuy(item, amount);
-        }
     }
 
     private static void printItemYouCanBuy(Item item, double amount) {
         // подсчитайте количество товара в штуках, которое вы можете купить за amount рублей
-        double quantity = amount / item.price;
+        int quantity = (int) (amount / item.price);
         if(quantity > 0) {
-            System.out.println(item.name + " — " + (int) quantity + " шт.");
+            System.out.println(item.name + " — " + quantity + " шт.");
         }
     }
 
@@ -117,4 +120,5 @@ public class Main {
             this.price = price;
         }
     }
+
 }
