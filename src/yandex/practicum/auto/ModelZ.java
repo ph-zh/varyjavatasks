@@ -1,12 +1,10 @@
 package yandex.practicum.auto;
 
-class ModelZ extends Tezla {
-
+class ModelZ extends TezlaCar {
     public ModelZ() {
-        // переопределите необходимые поля
         speed = 0;
         maxSpeed = 300;
         acceleration = 100;
-
+        brakingSpeed = 120;
     }
 }

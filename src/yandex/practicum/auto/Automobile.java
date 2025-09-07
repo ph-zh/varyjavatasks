@@ -1,27 +1,13 @@
 package yandex.practicum.auto;
 
-// данный класс недоступен для изменений
-class Automobile {
-    protected double speed;
-    protected double maxSpeed;
-    protected double acceleration;
-    protected double brakingSpeed;
-
-
+class Automobile extends Transport{
     public Automobile() {
-        acceleration = 30;
-        brakingSpeed = 120;
+        wheelsNumber = 4;
     }
 
-    public void accelerate() {
-        if (speed < maxSpeed) {
-            speed += acceleration;
-        }
-    }
+    protected String direction;
 
-    public void brake() {
-        if (speed > 0) {
-            speed -= brakingSpeed;
-        }
+    public void turnTo(String worldSide) {
+        direction = worldSide;
     }
 }
