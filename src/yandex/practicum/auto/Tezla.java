@@ -10,16 +10,29 @@ class Tezla extends Automobile {
     }
 
     public void accelerateByAutopilot() {
-        speed += autoPilotAcceleration;
         // исправьте метод для ускорения при автопилоте
         if (speed < autoPilotMaxSpeed) {
-           acceleration++;
+            speed += autoPilotAcceleration;
         } else {
             speed = autoPilotMaxSpeed;
         }
     }
 
     // переопределите метод для ускорения
+    @Override
+    public void accelerate() {
+        if (speed < maxSpeed) {
+            speed += acceleration + 60;
+        }
+        speed = speed - 60;
+    }
 
     // переопределите метод для торможения
+    @Override
+    public void brake() {
+        if (speed > 0) {
+            speed -= brakingSpeed;
+        }
+        speed = speed + 20;
+    }
 }
