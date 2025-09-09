@@ -10,4 +10,9 @@ class Zvezda extends Zarya {
     // доступ к созданию новых конструкторов запрещён
 
     // разрешено переопределение методов
+
+    @Override
+    void turnSolarPanels() {
+        super.turnSolarPanels();
+    }
 }
