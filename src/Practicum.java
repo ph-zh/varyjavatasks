@@ -16,14 +16,33 @@ class Animal {
     public String say() {
         return "Мяу, гав, хрю, кря!";
     }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }
 
 class Fox extends Animal {
     private String color;
 
-    public Fox(Animal animal, String color) {
-        
+    public Fox(String color) {
         this.color = color;
+    }
+
+    public String getColor() {
+        return color;
     }
 
     // научите лису говорить
