@@ -12,7 +12,8 @@ class Zvezda extends Zarya {
     // разрешено переопределение методов
 
     @Override
-    void turnSolarPanels() {
-        super.turnSolarPanels();
+    void activateModule() {
+        turnSolarPanels();
     }
+
 }
