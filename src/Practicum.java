@@ -1,35 +1,40 @@
 /*
-
+Допишите код класса — бюро находок LostAndFoundOffice. В нём должен быть список things для учёта потерянных вещей, метод put() для добавления вещи в список, метод check() — для проверки её наличия.
+В зависимости от результата check() должен возвращать true или false. Методы put() и check() должны быть универсальными — принимать в качестве параметра объекты любых классов.
+Не забудьте предусмотреть ситуацию, если в check() передана пустая ссылка.
  */
 
+class Ball { }      // Класс "мяч"
+class Accordion { } // Класс "аккордеон"
+class Hat { }       // Класс "шляпа"
+class Umbrella { }  // Класс "зонт"
+
 public class Practicum {
+    // Бюро находок
+    static LostAndFoundOffice lostAndFound = new LostAndFoundOffice();
+
     public static void main(String[] args) {
-        Person[] people = { new Person("Пелагея"), new Person("Ферапонт") };
-        int peopleCount = sizeOf(people);
-        System.out.println("В массиве people " + peopleCount + " элемента.");
+        Ball ball = new Ball();
+        Accordion accordion = new Accordion();
+        Umbrella umbrella = new Umbrella();
+        Hat hat = new Hat();
 
-        String[] names = { "Федот", "Глафира", "Аграфена",  "Епифаний"};
-        int namesCount = sizeOf(names);
-        System.out.println("В массиве names " + namesCount + " элемента.");
+        // Сдаём в бюро находок найденные вещи
+        lostAndFound.put(ball);
+        lostAndFound.put(accordion);
+        lostAndFound.put(umbrella);
 
-        Integer[] numbers = { 42, 24, 45, 34, 23, 43, 54, 65, 43 };
-        int numbersCount = sizeOf(numbers);
-        System.out.println("В массиве numbers " + numbersCount + " элемента.");
+        checkObject(accordion, "Aккордеон");
+        checkObject(ball, "Мяч");
+        checkObject(umbrella, "Зонт");
+        checkObject(hat, "Шляпа");
     }
 
-    public static int sizeOf(Object[] array) { // параметр - массив элементов типа Object)
-        int count = 0;
-        for (Object o : array) {
-            count++;
+    private static void checkObject(Object object, String description) {
+        if(lostAndFound.check(object)) {
+            System.out.println('\'' + description + "' нашёлся!");
+        } else {
+            System.out.println('\'' + description + "' в бюро находок никто не приносил :(");
         }
-        return count;
-    }
-}
-
-class Person {
-    private final String name;
-
-    public Person(String name) {
-        this.name = name;
     }
 }
