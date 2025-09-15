@@ -10,7 +10,6 @@ public class Practicum {
         Song johnDoeSong = new Song("Popular Song", "The Rock Band", "John Doe");
 
         Song rapSong = new Song("A song about a hard life", "Popular Rapper", "Popular Rapper");
-
         Song richardRoeSong = new Song("A song about a hard life", "Popular Rapper", "Richard Roe");
 
         // проверяем рефлексивность

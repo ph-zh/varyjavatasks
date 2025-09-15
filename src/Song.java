@@ -12,6 +12,14 @@ public class Song {
     }
 
     // переопределите метод equals(Object)
-    ...
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true; // проверяем адреса объектов
+        if (obj == null) return false; // проверяем ссылку на null
+        if (this.getClass() != obj.getClass()) return false; // сравниваем классы объектов
+        Song otherSong = (Song) obj; // привели второй объект к классу Song
+        return Objects.equals(title, otherSong.title) &&
+               Objects.equals(artist, otherSong.artist) &&
+               Objects.equals(songwriter, otherSong.songwriter);
+    }
 }
