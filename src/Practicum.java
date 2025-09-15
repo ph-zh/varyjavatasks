@@ -1,6 +1,8 @@
 /*
 
  */
+import java.util.Objects; // импортируем класс Objects
+
 class Book {
     public String title;
     public String author;
@@ -11,26 +13,27 @@ class Book {
         this.author = author;
         this.pagesNumber = pagesNumber;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false; // можно оформить и так
+        Book otherBook = (Book) obj;
+        return Objects.equals(title, otherBook.title) &&
+                Objects.equals(author, otherBook.author) &&
+                (pagesNumber == otherBook.pagesNumber);
+    }
 }
 
 public class Practicum {
     public static void main(String[] args) {
-        // сохраняем одно и то же число в две переменные
-        int variable1 = 42;
-        int variable2 = 42;
-
-        boolean result = variable1 == variable2; // сравниваем значения переменных
-        System.out.println(result); // значения равны
-
-        String title = "Java практикум для начинающих";
+        String title = "Java-практикум для начинающих";
         String author = "Иван Сеньёров";
         int pagesNumber = 777;
 
-        // передаём одни и те же данные двум объектам
         Book book1 = new Book(title, author, pagesNumber);
         Book book2 = new Book(title, author, pagesNumber);
 
-        boolean result2 = book1 == book2; // сравниваем значения объектных переменных
-        System.out.println(result2); // получили некорректный результат
+        System.out.println("Сравниваем книги, результат - " + book1.equals(book2));
     }
 }
