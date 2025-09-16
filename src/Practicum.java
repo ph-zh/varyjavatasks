@@ -1,47 +1,53 @@
 /*
-Перед вами часть кода программы, которая по имени актера находит фильмы, где он сыграл.
-Вот только сейчас она не запускается. Исправьте это.
- 1/ Доработайте класс Movie. Реализуйте конструктор с параметрами, где задаётся название и год выхода фильма.
- Переопределите методы equals(Object) и hashCode().
- 2/ Доработайте класс Actor. Реализуйте конструктор с параметрами, где задаётся имя и фамилия актёра.
- Переопределите методы equals(Object) и hashCode().
+
  */
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Objects;
+
+class Person {
+    public String firstName;
+    public String lastName;
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(firstName, person.firstName) &&
+                Objects.equals(lastName, person.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 17;
+        if (firstName != null) {
+            // вычисляем хеш первого поля и добавляем к нему начальное значение
+            hash = hash + firstName.hashCode();
+        }
+        hash = hash * 31; // умножаем промежуточный результат на простое число
+
+        if (lastName != null) {
+            // вычисляем хеш второго поля и добавляем его к общему результату
+            hash = hash + lastName.hashCode();
+        }
+        return hash; // возвращаем итоговый хеш
+    }
+}
 
 public class Practicum {
     public static void main(String[] args) {
-        // Таблицы для хранения рейтингов фильмов и фильмографии актёров
-        HashMap<Actor, ArrayList<Movie>> filmography = new HashMap<>();
-        HashMap<Movie, Double> ratings = new HashMap<>();
+        // Создаём два разных объекта Person
+        Person person1 = new Person("Лю", "Чен");
+        Person person2 = new Person("Чен", "Лю");
 
-        Movie ivanVasilievichMovie = new Movie("Иван Васильевич меняет профессию", 1973);
-        Movie gentlemenOfFortuneMovie = new Movie("Джентльмены удачи", 1971);
-        ratings.put(ivanVasilievichMovie, 8.6);
-        ratings.put(gentlemenOfFortuneMovie, 8.5);
+        // Проверяем, что объекты не равны и у них разные хеш-коды
+        System.out.println("person1.hashCode() = " + person1.hashCode() +
+                "\nperson2.hashCode() = " + person2.hashCode());
 
-        Actor aDemyanenko = new Actor("Александр", "Демьяненко");
-
-        ArrayList<Movie> actorMovies = new ArrayList<>();
-        actorMovies.add(ivanVasilievichMovie);
-        actorMovies.add(gentlemenOfFortuneMovie);
-
-        filmography.put(aDemyanenko, actorMovies);
-
-        if(filmography.containsKey(new Actor("Александр", "Демьяненко"))) {
-            ArrayList<Movie> foundMovies = filmography.get(new Actor("Александр", "Демьяненко"));
-            System.out.println("В фильмографии актёра А. Демьяненко найдены следующие фильмы: ");
-            for (Movie movie : foundMovies) {
-                if(ratings.containsKey(new Movie(movie.title, movie.releaseYear))) {
-                    double rating = ratings.get(movie);
-                    System.out.println("Фильм " + movie.description() + " с рейтингом " + rating);
-                } else {
-                    System.out.println("Что-то пошло не так... Проверьте реализацию equals и hashCode в классе Movie.");
-                }
-            }
-        } else {
-            System.out.println("Что-то пошло не так... Проверьте реализацию equals и hashCode в классе Actor.");
-        }
     }
 }
