@@ -1,53 +1,42 @@
 /*
-
+Перед вами часть программы, которая представляет в текстовом виде информацию об опубликованных
+на сайте материалах и комментариях к ним. Переопределите метод toString() у классов Post и PostComment так,
+чтобы в консоли появилось текстовое представление объекта post. Формат вывода — тот, который описывается в уроке
+(в прекоде есть подсказка). Обратите внимание, что поля обоих классов закрыты модификатором private —
+организуйте к ним доступ с помощью нужных методов.
  */
 
-import java.util.Objects;
-
-class Person {
-    public String firstName;
-    public String lastName;
-
-    public Person(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(firstName, person.firstName) &&
-                Objects.equals(lastName, person.lastName);
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 17;
-        if (firstName != null) {
-            // вычисляем хеш первого поля и добавляем к нему начальное значение
-            hash = hash + firstName.hashCode();
-        }
-        hash = hash * 31; // умножаем промежуточный результат на простое число
-
-        if (lastName != null) {
-            // вычисляем хеш второго поля и добавляем его к общему результату
-            hash = hash + lastName.hashCode();
-        }
-        return hash; // возвращаем итоговый хеш
-    }
-}
+import java.util.ArrayList;
 
 public class Practicum {
     public static void main(String[] args) {
-        // Создаём два разных объекта Person
-        Person person1 = new Person("Лю", "Чен");
-        Person person2 = new Person("Чен", "Лю");
+        Post post = new Post();
+        post.setTitle("Почему второй язык программирования выучить проще, чем первый?");
+        post.setContent("Если вы научились водить автомобиль на механике, " +
+                "вы можете сесть плюс-минус за любой автомобиль и поехать. " +
+                "Вам необязательно ездить именно за тем рулём, " +
+                "за которым вы учились в автошколе. " +
+                "Может быть, первое время вам будет непривычно в новой машине," +
+                " но вы быстро освоитесь.");
+        post.setTags(new String[]{"Образование", "Карьера в IT"});
 
-        // Проверяем, что объекты не равны и у них разные хеш-коды
-        System.out.println("person1.hashCode() = " + person1.hashCode() +
-                "\nperson2.hashCode() = " + person2.hashCode());
+        PostComment comment1 = new PostComment();
+        comment1.setText("Отличная статья!");
+        comment1.setWhoLiked(new String[] { "Lera93", "934Vasya1" });
 
+        PostComment comment2 = new PostComment();
+        comment2.setText("Тема не раскрыта :(");
+        comment2.setWhoLiked(new String[] { "Petya070707", "Masha90" });
+
+        PostComment comment3 = new PostComment();
+        comment3.setText("❤❤❤");
+
+        ArrayList<PostComment> comments = new ArrayList<>();
+        comments.add(comment1);
+        comments.add(comment2);
+        comments.add(comment3);
+        post.setComments(comments);
+
+        System.out.println(post);
     }
 }
