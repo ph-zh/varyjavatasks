@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Objects;
 
-public class Post extends PostComment {
+public class Post {
     private String title; // заголовок
     private String content; // содержание
     private String[] tags; // теги
@@ -44,13 +43,13 @@ public class Post extends PostComment {
     public String toString() {
         String result = "Post{" +
                 "title='" + title + '\'' +
-                ", content.length='" + content.length() + '\'';
-
-                return result + ", tags=" + Arrays.toString(tags) + ",\n" +
-                "comments=[PostComment{text='" + 1 + "!', whoLiked=" + 1 + "}" + ",\n" +
+                ", content.length='" + content.length() + '\''
+                + ", tags=" + Arrays.toString(tags) + ",\n" +
+                "comments=[PostComment{text='" + comments.toString() + "!', whoLiked=" + 1 + "}" + ",\n" +
                 "PostComment{text='" + 1 + "', whoLiked=" + 1 + "}" + ",\n" +
-                "PostComment{text='" + 1 + "', whoLiked=" + null + "}";
+                "PostComment{text='" + 1 + "', whoLiked=" + null;
 
+        return result + "}";
     }
 
 
