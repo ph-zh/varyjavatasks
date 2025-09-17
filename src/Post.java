@@ -1,8 +1,61 @@
-public class Post {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
+
+public class Post extends PostComment {
     private String title; // заголовок
     private String content; // содержание
     private String[] tags; // теги
     private ArrayList<PostComment> comments; //комментарии
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+
+    public ArrayList<PostComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(ArrayList<PostComment> comments) {
+        this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        String result = "Post{" +
+                "title='" + title + '\'' +
+                ", content.length='" + content.length() + '\'';
+
+                return result + ", tags=" + Arrays.toString(tags) + ",\n" +
+                "comments=[PostComment{text='" + 1 + "!', whoLiked=" + 1 + "}" + ",\n" +
+                "PostComment{text='" + 1 + "', whoLiked=" + 1 + "}" + ",\n" +
+                "PostComment{text='" + 1 + "', whoLiked=" + null + "}";
+
+    }
+
+
+
+
 
 /* Вывод должен получиться таким:
 Post{title='xxx', content.length='x', tags=[x,x],
