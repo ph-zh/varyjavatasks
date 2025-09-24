@@ -5,7 +5,7 @@ public class DinnerAdvisor {
             System.out.println("Сегодня лучше поесть дома. Экономьте - и вы дотянете до зарплаты!");
         } else if (moneyBeforeSalary < 10000) {
             if (daysBeforeSalary < 10) {
-                System.out.println("Окей, пора в Макдак!");
+                System.out.println("Окей, пора в ВкусноТочно!");
             } else {
                 System.out.println("Сегодня лучше поесть дома. Экономьте - и вы дотянете до зарплаты!");
             }
@@ -13,7 +13,7 @@ public class DinnerAdvisor {
             if (daysBeforeSalary < 10) {
                 System.out.println("Неплохо! Прикупите долларов и зайдите поужинать в классное место. :)");
             } else {
-                System.out.println("Окей, пора в Макдак!");
+                System.out.println("Окей, пора в ВкусноТочно!");
             }
         } else {
             if (daysBeforeSalary < 10) {
