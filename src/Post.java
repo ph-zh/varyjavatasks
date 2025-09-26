@@ -41,25 +41,15 @@ public class Post {
 
     @Override
     public String toString() {
-        String result = "Post{" +
+        return "Post{" +
                 "title='" + title + '\'' +
-                ", content.length='" + content.length() + '\''
-                + ", tags=" + Arrays.toString(tags) + ",\n" +
-                "comments=[PostComment{text='" + comments.toString() + "!', whoLiked=" + 1 + "}" + ",\n" +
-                "PostComment{text='" + 1 + "', whoLiked=" + 1 + "}" + ",\n" +
-                "PostComment{text='" + 1 + "', whoLiked=" + null;
-
-        return result + "}";
+                ", content.length='" + content.length() + '\'' +
+                ", tags=" + Arrays.toString(tags) + ",\n" +
+                "comments=" + comments + "}";
     }
-
-
-
-
-
+}
 /* Вывод должен получиться таким:
 Post{title='xxx', content.length='x', tags=[x,x],
 comments=[PostComment{text='x!', whoLiked=[x, x]},
 PostComment{text='x', whoLiked=[x,x]},
 PostComment{text='x', whoLiked=null}]} */
-
-}

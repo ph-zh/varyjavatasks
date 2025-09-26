@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class PostComment {
     private String text; // содержание комментария
     private String[] whoLiked; // кто поддержал
@@ -19,4 +21,10 @@ public class PostComment {
         this.whoLiked = whoLiked;
     }
 
+    @Override
+    public String toString() {
+        return "PostComment{" +
+                "text='" + text + '\'' +
+                ", whoLiked=" + Arrays.toString(whoLiked);
+    }
 }
