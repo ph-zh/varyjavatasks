@@ -1,19 +1,18 @@
 import java.util.List;
 
 public class Forest {
+    // объявите недостающие переменные и добавьте конструктор
     private List<MountainHare> hares;
-    static String season;
+    public static String season;
 
-    public Forest(List<MountainHare> hares, String newSeason) {
-        this.hares = hares;
+    public Forest(List<MountainHare> newHares, String newSeason) {
+        hares = newHares;
         season = newSeason;
     }
-    // объявите недостающие переменные и добавьте конструктор
-
 
     // добавьте метод setSeason(String newSeason)
     // в этом методе реализуйте логику смены цвета шубок зайцев-беляков
-    void setSeason(String newSeason) {
+    public static void setSeason(String newSeason) {
         if (newSeason.equals("летний лес с зайцами")) {
             System.out.println("серо-рыжий");
         }
@@ -23,8 +22,7 @@ public class Forest {
     }
 
     // добавьте метод printHares()
-    void printHares() {
+    public void printHares() {
         System.out.println(hares.toString());
     }
-
 }

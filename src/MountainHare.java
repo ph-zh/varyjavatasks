@@ -1,12 +1,12 @@
 public class MountainHare {
 
     // добавьте переменные и конструктор
-    int age;
-    double weight;
-    int jumpLength;
-    static String color;
+    public int age;
+    public double weight;
+    public int jumpLength;
+    public static String color;
 
-    MountainHare(int age, double weight, int jumpLength) {
+    public MountainHare(int age, double weight, int jumpLength) {
         this.age = age;
         this.weight = weight;
         this.jumpLength = jumpLength;

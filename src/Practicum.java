@@ -18,16 +18,16 @@ public class Practicum {
 
         System.out.println("В лесу лето!");
         // создайте объект "летний лес с зайцами"
-        Forest forest = new Forest(hares, "summer");
-        forest.setSeason("летний лес с зайцами");
+        Forest forest = new Forest(hares, "летний лес с зайцами");
+        Forest.setSeason("летний лес с зайцами");
 
         System.out.println("Список зайцев:");
         forest.printHares();
 
         System.out.println("В лесу зима!");
         // поменяйте время года на зиму
-        forest = new Forest(hares, "winter");
-        forest.setSeason("зимний лес с зайцами");
+        forest = new Forest(hares, "зимний лес с зайцами");;
+        Forest.setSeason("зимний лес с зайцами");
 
         System.out.println("Список зайцев:");
         forest.printHares();
