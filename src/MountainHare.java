@@ -4,7 +4,7 @@ public class MountainHare {
     public int age;
     public double weight;
     public int jumpLength;
-    public static String color;
+    public String color;
 
     public MountainHare(int age, double weight, int jumpLength) {
         this.age = age;
