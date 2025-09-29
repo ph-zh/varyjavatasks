@@ -14,17 +14,17 @@ public class Forest {
     // добавьте метод setSeason(String newSeason)
     // в этом методе реализуйте логику смены цвета шубок зайцев-беляков
     void setSeason(String newSeason) {
-        if (newSeason.equals("Summer")) {
-            System.out.println("GoSummerGo");
+        if (newSeason.equals("летний лес с зайцами")) {
+            System.out.println("серо-рыжий");
         }
-        if (newSeason.equals("Winter")) {
-            System.out.println("GoWinterGo");
+        if (newSeason.equals("зимний лес с зайцами")) {
+            System.out.println("белый");
         }
     }
 
     // добавьте метод printHares()
     void printHares() {
-        System.out.println(hares);
+        System.out.println(hares.toString());
     }
 
 }
