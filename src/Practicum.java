@@ -8,6 +8,9 @@
 Вам нужно реализовать поиск задач с наивысшим приоритетом из предложенного списка.
  */
 // импортируйте нужные пакеты
+import java.util.List;
+import java.util.ArrayList;
+
 
 public class Practicum {
 
@@ -21,6 +24,15 @@ public class Practicum {
         tasks.add(new Task(TaskPriority.LOW, "Купить пылесос."));
 
         System.out.println("Задачи с наивысшим приоритетом на сегодня:");
-        ... // цикл for для поиска задач
+        filterByPriority(tasks, TaskPriority.HIGH);
+
+    }
+    // цикл for для поиска задач
+    public static void filterByPriority(List<Task> tasks, TaskPriority taskPriority) {
+        for (Task task : tasks) {
+            if (task.getPriority() == taskPriority) {
+                System.out.println(task.getDescription());
+            }
+        }
     }
 }

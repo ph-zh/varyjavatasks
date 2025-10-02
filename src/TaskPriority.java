@@ -1,1 +1,5 @@
-... // добавьте перечисление TaskPriority
+public enum TaskPriority {
+    HIGH,
+    MEDIUM,
+    LOW
+}
