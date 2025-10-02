@@ -1,36 +1,46 @@
 /*
-Перед вами кусок кода компьютерной игры про Средневековье. В ней есть много разных локаций,
-в том числе — смешанные леса с хвойными и лиственными деревьями.
-Вам нужно создать симулятор такого леса, поселить в нём зайцев-беляков.
-Обратите внимание, что цвет шерсти у всех зайцев  color меняется в зависимости от
-времени года season: зимой — белый, летом — серо-рыжий.
+
  */
+import java.util.ArrayList;
 import java.util.List;
 
 public class Practicum {
 
     public static void main(String[] args) {
-        List<MountainHare> hares = List.of(
-                new MountainHare(4, 4.4, 120),
-                new MountainHare(7, 3.6, 150),
-                new MountainHare(1, 2.3, 100)
-        );
+        List<Film> films = new ArrayList<>();
+        films.add(new Film("Зелёная миля", FilmGenre.DRAMA));
+        films.add(new Film("Побег из Шоушенка", FilmGenre.DRAMA));
+        films.add(new Film("Властелин колец: Братство Кольца", FilmGenre.FANTASY));
+        films.add(new Film("Король Лев", FilmGenre.FAMILY));
 
-        System.out.println("В лесу лето!");
-        // создайте объект "летний лес с зайцами"
-        Forest forest = new Forest(hares, "летний лес с зайцами");
-        Forest.setSeason("летний лес с зайцами");
-
-        System.out.println("Список зайцев:");
-        forest.printHares();
-
-        System.out.println("В лесу зима!");
-        // поменяйте время года на зиму
-        forest = new Forest(hares, "зимний лес с зайцами");
-        Forest.setSeason("зимний лес с зайцами");
-
-        System.out.println("Список зайцев:");
-        forest.printHares();
+        filterByGenre(films, FilmGenre.FANTASY);
     }
 
+    // Метод для фильтрации списка фильмов по жанру:
+    public static void filterByGenre(List<Film> films, FilmGenre genre) {
+        for (Film film : films) {
+            // Сравнение жанра фильма из списка с искомым жанром:
+            if (film.getGenre() == genre) {
+                System.out.println(film.getTitle());
+            }
+        }
+    }
+}
+
+class Film {
+    private String title;
+    private FilmGenre genre;
+
+    public Film(String title, FilmGenre genre) {
+        this.title = title;
+        this.genre = genre;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public FilmGenre getGenre() {
+        return genre;
+    }
 }
