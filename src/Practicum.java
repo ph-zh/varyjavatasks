@@ -1,46 +1,26 @@
 /*
+Перед вами часть программы для хранения списка задач с приоритетом. Приоритет (англ. task priority) может быть:
 
+    высокий (англ. high) — TaskPriority.HIGH,
+    средний (англ. medium) — TaskPriority.MEDIUM,
+    низкий (англ. low) — TaskPriority.LOW.
+
+Вам нужно реализовать поиск задач с наивысшим приоритетом из предложенного списка.
  */
-import java.util.ArrayList;
-import java.util.List;
+// импортируйте нужные пакеты
 
 public class Practicum {
 
     public static void main(String[] args) {
-        List<Film> films = new ArrayList<>();
-        films.add(new Film("Зелёная миля", FilmGenre.DRAMA));
-        films.add(new Film("Побег из Шоушенка", FilmGenre.DRAMA));
-        films.add(new Film("Властелин колец: Братство Кольца", FilmGenre.FANTASY));
-        films.add(new Film("Король Лев", FilmGenre.FAMILY));
+        List<Task> tasks = new ArrayList<>();
+        tasks.add(new Task(TaskPriority.HIGH, "Оплатить интернет."));
+        tasks.add(new Task(TaskPriority.LOW, "Сходить в парикмахерскую."));
+        tasks.add(new Task(TaskPriority.MEDIUM, "Выбрать подарок подруге на ДР."));
+        tasks.add(new Task(TaskPriority.MEDIUM, "Купить билеты в театр."));
+        tasks.add(new Task(TaskPriority.HIGH, "Посетить вебинар по английскому языку."));
+        tasks.add(new Task(TaskPriority.LOW, "Купить пылесос."));
 
-        filterByGenre(films, FilmGenre.FANTASY);
-    }
-
-    // Метод для фильтрации списка фильмов по жанру:
-    public static void filterByGenre(List<Film> films, FilmGenre genre) {
-        for (Film film : films) {
-            // Сравнение жанра фильма из списка с искомым жанром:
-            if (film.getGenre() == genre) {
-                System.out.println(film.getTitle());
-            }
-        }
-    }
-}
-
-class Film {
-    private String title;
-    private FilmGenre genre;
-
-    public Film(String title, FilmGenre genre) {
-        this.title = title;
-        this.genre = genre;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public FilmGenre getGenre() {
-        return genre;
+        System.out.println("Задачи с наивысшим приоритетом на сегодня:");
+        ... // цикл for для поиска задач
     }
 }
