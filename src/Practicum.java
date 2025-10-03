@@ -1,35 +1,45 @@
 /*
-
+Перед вами метод getPopulationPercent. Он принимает на вход название континента и возвращает процент живущих на нём людей от общего числа населения планеты.
+Перепишите код так, чтобы в нём использовался оператор switch.
  */
 
 public class Practicum {
 
     public static void main(String[] args) {
-        System.out.println(getDownloadLink(DeviceType.RED));
+        System.out.println(getPopulationPercent(Continent.ASIA));
     }
 
-    public static String getDownloadLink(DeviceType type) {
-        String link = null;
+    public static String getPopulationPercent(Continent continent) {
+        String result;
 
-        switch (type) {
-            case ANDROID:
-                link = "https://play.google.com/store/apps/раздельный_сбор_мусора";
-                break;
-            case IOS:
-                link = "https://apps.apple.com/ru/app/раздельный_сбор_мусора";
-                break;
-            case WEB:
-                link = "https://сайт_про_раздельный_сбор_мусора.ru";
-                break;
+        if (continent == Continent.ASIA) {
+            result = "59.5%";
+        } else if (continent == Continent.AFRICA) {
+            result = "16.9%";
+        } else if (continent == Continent.NORTH_AMERICA) {
+            result = "7.7%";
+        } else if (continent == Continent.SOUTH_AMERICA) {
+            result = "5.6%";
+        } else if (continent == Continent.ANTARCTICA) {
+            result = "<0.1%";
+        } else if (continent == Continent.EUROPE) {
+            result = "9.7%";
+        } else if (continent == Continent.AUSTRALIA) {
+            result = "0.5%";
+        } else {
+            result = "Такого материка не существует.";
         }
 
-        return link;
+        return result;
     }
 }
 
-enum DeviceType {
-    ANDROID,
-    IOS,
-    WEB,
-    RED
+enum Continent {
+    ASIA,
+    AFRICA,
+    NORTH_AMERICA,
+    SOUTH_AMERICA,
+    ANTARCTICA,
+    EUROPE,
+    AUSTRALIA
 }
