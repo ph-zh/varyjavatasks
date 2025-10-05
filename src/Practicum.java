@@ -6,7 +6,6 @@
 а также рассчитать количество бонусных баллов.
 Ваша задача — создать этот чат-бот.
  */
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.Scanner;
 
 public class Practicum {
     // объявите поле для ссылки на карту (англ. map link)
-    ... = "https://recyclemap.ru/";
+    public static final String mapLink = "https://recyclemap.ru/";
     public static final List<RecyclableMaterial> materials = getMaterials();
     public static final Map<MaterialType, String> containers = getContainers();
 
@@ -35,11 +34,35 @@ public class Practicum {
                        если вес меньше 10 кг, то коэффициент 10, иначе - 15,
                    4. вывести сообщение "Количество бонусных баллов: <баллы>."
         */
-
+        switch (commandValue) {
+            case "MAP":
+                System.out.println(mapLink);
+                break;
+            case "RECYCLABILITY":
+                System.out.println("Введите код переработки:");
+                int code = scanner.nextInt();
+                isRecycled(code);
+                break;
+            case "BONUS":
+                System.out.println("Введите количество вторсырья, кг:");
+                double weight = scanner.nextDouble();
+                double score;
+                if (weight < 10) {
+                    score = weight * 10;
+                    System.out.println("Количество бонусных баллов: " + score);
+                } else {
+                    score = weight * 15;
+                    System.out.println("Количество бонусных баллов: " + score);
+                }
+                break;
+            default:
+                System.out.println("command not exist");
+                break;
+        }
     }
 
     // добавьте модификаторы в заголовок метода
-    ...  void isRecycled(int code) {
+    public static void isRecycled(int code) {
         for (RecyclableMaterial material : materials) {
             if (material.getCode() == code) {
                 System.out.print("Это " + material.getDescription() + ". ");
@@ -55,7 +78,7 @@ public class Practicum {
     }
 
     // добавьте модификаторы в заголовок метода
-    ... Map<MaterialType, String> getContainers() {
+    public static Map<MaterialType, String> getContainers() {
         Map<MaterialType, String> containers = new HashMap<>();
         containers.put(MaterialType.PLASTIC, "Пластик");
         containers.put(MaterialType.METAL, "Металл");
