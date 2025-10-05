@@ -35,29 +35,23 @@ public class Practicum {
                    4. вывести сообщение "Количество бонусных баллов: <баллы>."
         */
         switch (commandValue) {
-            case "MAP":
+            case "map":
                 System.out.println(mapLink);
-                break;
-            case "RECYCLABILITY":
+            case "recyclability":
                 System.out.println("Введите код переработки:");
                 int code = scanner.nextInt();
                 isRecycled(code);
-                break;
-            case "BONUS":
+            case "bonus":
                 System.out.println("Введите количество вторсырья, кг:");
                 double weight = scanner.nextDouble();
-                double score;
+                double points;
                 if (weight < 10) {
-                    score = weight * 10;
-                    System.out.println("Количество бонусных баллов: " + score);
+                    points = weight * 10;
+                    System.out.println("Количество бонусных баллов: " + points);
                 } else {
-                    score = weight * 15;
-                    System.out.println("Количество бонусных баллов: " + score);
+                    points = weight * 15;
+                    System.out.println("Количество бонусных баллов: " + points);
                 }
-                break;
-            default:
-                System.out.println("command not exist");
-                break;
         }
     }
 
@@ -109,8 +103,7 @@ public class Practicum {
         materials.add(new RecyclableMaterial(20, MaterialType.PAPER, true, "гофрированный картон"));
         materials.add(new RecyclableMaterial(21, MaterialType.PAPER, true, "прочий картон"));
         materials.add(new RecyclableMaterial(22, MaterialType.PAPER, true, "бумага"));
-        materials.add(new RecyclableMaterial(
-                23, MaterialType.PAPER, false, "полиграфический картон (открытки, обложки книг и т.д.)"));
+        materials.add(new RecyclableMaterial(23, MaterialType.PAPER, false, "полиграфический картон (открытки, обложки книг и т.д.)"));
         materials.add(new RecyclableMaterial(40, MaterialType.METAL, true, "железо"));
         materials.add(new RecyclableMaterial(41, MaterialType.METAL, true, "алюминий"));
         materials.add(new RecyclableMaterial(70, MaterialType.GLASS, true, "бесцветное стекло"));
@@ -120,12 +113,9 @@ public class Practicum {
         materials.add(new RecyclableMaterial(74, MaterialType.GLASS, true, "бутылочное стекло (светло-коричневое)"));
         materials.add(new RecyclableMaterial(75, MaterialType.GLASS, false, "стекло с малым содержанием свинца"));
         materials.add(new RecyclableMaterial(76, MaterialType.GLASS, false, "хрусталь"));
-        materials.add(new RecyclableMaterial(
-                77, MaterialType.GLASS, false, "стекло, покрытое медью (электроника, часы)"));
-        materials.add(new RecyclableMaterial(
-                78, MaterialType.GLASS, false, "стекло, покрытое серебром (зеркало, посуда для сервировки)"));
-        materials.add(new RecyclableMaterial(
-                79, MaterialType.GLASS, false, "позолоченное стекло (посуда для сервировки)"));
+        materials.add(new RecyclableMaterial(77, MaterialType.GLASS, false, "стекло, покрытое медью (электроника, часы)"));
+        materials.add(new RecyclableMaterial(78, MaterialType.GLASS, false, "стекло, покрытое серебром (зеркало, посуда для сервировки)"));
+        materials.add(new RecyclableMaterial(79, MaterialType.GLASS, false, "позолоченное стекло (посуда для сервировки)"));
 
         return materials;
     }
