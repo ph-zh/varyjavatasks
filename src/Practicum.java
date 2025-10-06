@@ -34,14 +34,16 @@ public class Practicum {
                        если вес меньше 10 кг, то коэффициент 10, иначе - 15,
                    4. вывести сообщение "Количество бонусных баллов: <баллы>."
         */
-        switch (commandValue) {
-            case "map":
+        switch (ChatCommand.valueOf(commandValue)) {
+            case MAP:
                 System.out.println(mapLink);
-            case "recyclability":
+                break;
+            case RECYCLABILITY:
                 System.out.println("Введите код переработки:");
                 int code = scanner.nextInt();
                 isRecycled(code);
-            case "bonus":
+                break;
+            case BONUS:
                 System.out.println("Введите количество вторсырья, кг:");
                 double weight = scanner.nextDouble();
                 double points;
@@ -52,6 +54,7 @@ public class Practicum {
                     points = weight * 15;
                     System.out.println("Количество бонусных баллов: " + points);
                 }
+                break;
         }
     }
 
