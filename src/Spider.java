@@ -1,9 +1,7 @@
 public class Spider extends Pet {
 
-    protected int pawsCount = 8;
-
-    public int getPawsCount() {
-        return pawsCount;
+    protected Spider() {
+        super(8);
     }
 
     @Override

@@ -1,4 +1,14 @@
-abstract public class Pet {
+public abstract class Pet {
+
+    protected int pawsCount;
+
+    protected Pet (int pawsCount) {
+        this.pawsCount = pawsCount;
+    }
+
+    public int getPawsCount() {
+        return pawsCount;
+    }
 
     public void sleep() {
         System.out.println("Сплю");
@@ -8,5 +18,5 @@ abstract public class Pet {
         System.out.println("Играю");
     }
 
-    public abstract void giveVoice();
+    abstract public void giveVoice();
 }
