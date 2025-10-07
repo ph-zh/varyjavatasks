@@ -1,44 +1,40 @@
 /*
+В уроке вы столкнулись с задачей выбора методов будущего абстрактного класса.
+Такие решения лучше принимать до написания программы. Этот этап — проектирование будущего решения,
+отличает дилетантов от профессионалов. Теперь, опираясь на результаты этапа проектирования,
+вы можете реализовать свою иерархию классов для питомцев.
+У любого домашнего питомца Pet есть несколько действий:
 
+    спать sleep() (при вызове этого метода ваша программа должна выводить слово Сплю),
+    играть play() (программа должна вывести Играю)
+    издавать какой-то звук giveVoice()
+
+а также свойство — количество лапок pawsCount.
+Дополнительно к базовым возможностям, кошка может поймать мышку catchMouse()
+(в этом случае выведите Поймала мышку!), хомяк — спрятать еду hideFood() (Вся еда — в щёчках!),
+а собака — принести палку bringStick() (Принёс палочку, как хороший мальчик!).
  */
 
 public class Practicum {
 
     public static void main(String[] args) {
-        Frog frog = new Frog();
-        System.out.println("Привет! Я - зелёная лягушка.");
-        frog.move();
-        frog.eat();
+        Cat cat = new Cat();
+        cat.catchMouse();
+        cat.giveVoice();
 
-        Toad toad = new Toad();
-        System.out.println("Привет! Я - коричневая жаба.");
-        toad.move();
-        toad.eat();
-    }
+        Dog dog = new Dog();
+        dog.bringStick();
+        dog.play();
 
-}
-abstract class Amphibian {
+        Hamster hamster = new Hamster();
+        hamster.hideFood();
+        hamster.sleep();
 
-    public abstract void move();
+        Fish fish = new Fish();
+        fish.sleep();
 
-    public void eat() {
-        System.out.println("Кушаю насекомых");
-    }
-
-}
-class Frog extends Amphibian {
-
-    @Override
-    public void move() {
-        System.out.println("Я передвигаюсь по суше прыжками.");
-    }
-
-}
-class Toad extends Amphibian {
-
-    @Override
-    public void move() {
-        System.out.println("Я важно хожу.");
+        Spider spider = new Spider();
+        System.out.println("У паука " + spider.getPawsCount() + "лапок.");
     }
 
 }
