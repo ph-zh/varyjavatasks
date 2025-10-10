@@ -1,12 +1,6 @@
-public class Square {
-    // Длина стороны квадрата
-    private final double a;
+public class Square extends Rectangle {
 
-    public Square(double a) {
-        this.a = a;
-    }
-
-    public double getArea() {
-        return a * a;
+    public Square(double height, double width) {
+        super(height, width);
     }
 }

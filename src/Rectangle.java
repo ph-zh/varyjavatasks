@@ -1,14 +1,7 @@
-public class Rectangle {
-    // Длины сторон прямоугольника
-    private final double a;
-    private final double b;
+public class Rectangle extends Parallelogram {
 
-    public Rectangle(double a, double b) {
-        this.a = a;
-        this.b = b;
+    public Rectangle(double height, double width) {
+        super(height, width);
     }
 
-    public double getArea() {
-        return a * b;
-    }
 }
