@@ -1,6 +1,12 @@
 /*
-Запустите программу и изучите её код. Обратите внимание на полиморфный класс SoftwareDeveloper и то,
-как ведут себя его объекты в зависимости от указанного типа переменной. Добавьте ввод имени с клавиатуры и попробуйте заменить имя «Катя» на своё.
+Помогите пользователю вашего приложения связаться с другом через виртуальную АТС. Допишите модуль АТС, используя принципы полиморфизма.
+Способ связи будет зависеть от модели телефона, принимающего вызов пользователя.
+Если у пользователя стационарный или мобильный телефон, то позвонить ему можно только по сотовой связи
+(в этом случае необходимо вывести сообщение Набираем номер <targetNumber> и звоним по сотовой связи).
+Любой смартфон — это мобильный телефон, но не любой мобильный телефон — смартфон! У смартфона есть возможность
+принимать звонки и сообщения как по сотовой связи, так и через сторонние приложения — в этом случае перед звонком нужно вывести сообщение Позвоним через приложение <appName> по номеру <targetNumber>.
+Если у пользователя мобильный телефон, ему можно отправить SMS: Отправляем сообщение <messageText> по номеру <targetNumber>.
+А пользователь смартфона может отправлять не только SMS, но и email — в этом случае нужно вывести сообщение Напишем другу сообщение <messageText> по email <email>.
  */
 
 import java.util.Scanner;
@@ -8,74 +14,37 @@ import java.util.Scanner;
 public class Practicum {
 
     public static void main(String[] args) {
+        System.out.println("Вас приветствует виртуальная АТС!");
+
         Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
+        System.out.println("Введите ваш номер телефона:");
+        String number = scanner.next();
+        System.out.println("Введите номер пользователя, которому хотите позвонить:");
+        String friendNumber = scanner.next();
+        System.out.println("Выберите модель телефона собеседника, 1 - стационарный телефон, 2 - мобильный телефон, 3 - смартфон:");
+        int type = scanner.nextInt();
 
-        System.out.println("Что " + name + " делает как работник:");
-        Employee employee = new SoftwareDeveloper(name);
-        employee.work();
-        System.out.println("Получает зарплату за месяц: " + employee.getSalary() + " р.");
-        // Таких методов в интерфейсе Employee нет - произойдет ошибка
-        // employee.eat();
-        // employee.doDebug();
+        if (type < 1 || type > 3) {
+            System.out.println("Введена неверная модель телефона");
+            return;
+        }
 
-        System.out.println("\nЧто " + name + " делает как человек:");
-        Person person = new SoftwareDeveloper(name);
-        person.eat();
-        person.sleep();
-        // Таких методов в классе Person нет - произойдет ошибка
-        // person.work();
-        // person.doDebug();
-
-        System.out.println("\nЧто " + name + " делает как программист:");
-        SoftwareDeveloper softwareDeveloper = new SoftwareDeveloper(name);
-        softwareDeveloper.doDebug();
-        softwareDeveloper.think();
-    }
-}
-interface Employee {
-    void work();
-
-    double getSalary();
-}
-
-class Person {
-    private final String name;
-
-    public Person(String name) {
-        this.name = name;
+        getPhone(type, number).makeCall(friendNumber);
     }
 
-    public void eat() {
-        System.out.println("Обедает в кафе.");
+    public static ...
+
+    getPhone(int type, String number) {
+        if (...){
+            // Если выбран стационарный телефон, создайте объект класса CellularPhone
+            return new CellularPhone(number);
+        } else if (...){
+            // Если выбран мобильный телефон, создайте объект класса MobilePhone
+            return new MobilePhone(number);
+        } else{
+            // Иначе создайте экземпляр класса Smartphone
+            ...
+        }
     }
 
-    public void sleep() {
-        System.out.println("Крепко спит всю ночь.");
-    }
-}
-
-class SoftwareDeveloper extends Person implements Employee {
-
-    public SoftwareDeveloper(String name) {
-        super(name);
-    }
-
-    @Override
-    public void work() {
-        System.out.println("Выполняет свою работу - пишет код весь день.");
-    }
-
-    @Override
-    public double getSalary() {
-        return 100500.0;
-    }
-
-    public void doDebug() {
-        System.out.println("Ищет ошибки в коде.");
-    }
-
-    public void think() {
-        System.out.println("Обдумывает решение задачи.");
-    }
 }
