@@ -1,4 +1,4 @@
-public ... Phone {
+public class Phone {
     private final String number;
 
     public Phone(String number) {
