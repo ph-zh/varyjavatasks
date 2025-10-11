@@ -1,31 +1,40 @@
 /*
-🦉 Дан интерфейс Openable, описывающий предметы, которые можно открыть, и два класса: Can и Window. Доработайте классы таким образом, чтобы они реализовывали интерфейс Openable.
+🦉 Запустите код и изучите текст ошибки, который возникает при попытке создать объект из абстрактного класса. Исправьте ошибку.
  */
 
+class Rodent {
+    public void crunch() {
+        System.out.println("Грызун грызёт что угодно.");
+    }
+
+    public void sleep() {
+        System.out.println("Грызун уснул.");
+    }
+}
+
+class Capybara extends Rodent {
+
+    @Override
+    public void crunch() {
+        System.out.println("Капибара любит грызть кукурузу.");
+    }
+
+    @Override
+    public void sleep() {
+        System.out.println("Капибара крепко спит.");
+    }
+
+    public void dive() {
+        System.out.println("Капибара умеет нырять.");
+    }
+}
+
 public class Practicum {
+
     public static void main(String[] args) {
-        Openable can = new Can();
-        can.open();
-
-        Openable window = new Window();
-        window.open();
+        Rodent capybara = new Capybara();
+        capybara.crunch();
+        capybara.sleep();
     }
-}
 
-interface Openable {
-    void open();
-}
-
-class Can implements Openable {
-    @Override
-    public void open() {
-        System.out.println("Чтобы открыть жестяную банку, нужно потянуть кольцо-ключ.");
-    }
-}
-
-class Window implements Openable {
-    @Override
-    public void open() {
-        System.out.println("Чтобы открыть окно, нужно повернуть ручку.");
-    }
 }
