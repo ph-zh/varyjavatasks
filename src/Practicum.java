@@ -4,9 +4,11 @@
 Если у пользователя стационарный (CellularPhone) или мобильный телефон (MobilePhone), то позвонить ему можно только по сотовой связи
 (в этом случае необходимо вывести сообщение Набираем номер <targetNumber> и звоним по сотовой связи).
 Любой смартфон — это мобильный телефон, но не любой мобильный телефон — смартфон! У смартфона есть возможность
-принимать звонки и сообщения как по сотовой связи, так и через сторонние приложения — в этом случае перед звонком нужно вывести сообщение Позвоним через приложение <appName> по номеру <targetNumber>.
+принимать звонки и сообщения как по сотовой связи, так и через сторонние приложения — в этом случае перед звонком нужно
+вывести сообщение Позвоним через приложение <appName> по номеру <targetNumber>.
 Если у пользователя мобильный телефон, ему можно отправить SMS: Отправляем сообщение <messageText> по номеру <targetNumber>.
-А пользователь смартфона может отправлять не только SMS, но и email — в этом случае нужно вывести сообщение Напишем другу сообщение <messageText> по email <email>.
+А пользователь смартфона может отправлять не только SMS, но и email — в этом случае нужно вывести сообщение
+Напишем другу сообщение <messageText> по email <email>.
  */
 
 import java.util.Scanner;
@@ -21,6 +23,10 @@ public class Practicum {
         String number = scanner.next();
         System.out.println("Введите номер пользователя, которому хотите позвонить:");
         String friendNumber = scanner.next();
+        System.out.println("Type some text");
+        String messageText = scanner.next();
+        System.out.println("Type email address");
+        String email = scanner.next();
         System.out.println("Выберите модель телефона собеседника, 1 - стационарный телефон, 2 - мобильный телефон, 3 - смартфон:");
         int type = scanner.nextInt();
 
@@ -30,6 +36,8 @@ public class Practicum {
         }
 
         getPhone(type, number).makeCall(friendNumber);
+        getPhone(type, number).sendSms(friendNumber, messageText);
+        getPhone(type, number).sendEmail(email, messageText);
     }
 
     public static Phone getPhone(int type, String number) {

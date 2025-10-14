@@ -1,8 +1,8 @@
 // Допишите реализацию класса Smartphone
 public class Smartphone extends MobilePhone{
 
-    public Smartphone(String name) {
-        super(name);
+    public Smartphone(String number) {
+        super(number);
     }
 
     public final void sendEmail(String email, String messageText) {

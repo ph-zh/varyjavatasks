@@ -1,7 +1,7 @@
 public class MobilePhone extends Phone {
 
-    public MobilePhone(String name) {
-        super(name);
+    public MobilePhone(String number) {
+        super(number);
     }
 
     public final void sendSms(String targetNumber, String messageText) {
