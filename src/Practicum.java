@@ -23,10 +23,6 @@ public class Practicum {
         String number = scanner.next();
         System.out.println("Введите номер пользователя, которому хотите позвонить:");
         String friendNumber = scanner.next();
-        System.out.println("Type some text");
-        String messageText = scanner.next();
-        System.out.println("Type email address");
-        String email = scanner.next();
         System.out.println("Выберите модель телефона собеседника, 1 - стационарный телефон, 2 - мобильный телефон, 3 - смартфон:");
         int type = scanner.nextInt();
 
@@ -36,20 +32,19 @@ public class Practicum {
         }
 
         getPhone(type, number).makeCall(friendNumber);
-        getPhone(type, number).sendSms(friendNumber, messageText);
-        getPhone(type, number).sendEmail(email, messageText);
     }
 
-    public static Phone getPhone(int type, String number) {
-        if (type == 1) {
+    public static ... getPhone(int type, String number) {
+        if (...) {
             // Если выбран стационарный телефон, создайте объект класса CellularPhone
             return new CellularPhone(number);
-        } else if (type == 2) {
+        } else if (...) {
             // Если выбран мобильный телефон, создайте объект класса MobilePhone
             return new MobilePhone(number);
         } else {
             // Иначе создайте экземпляр класса Smartphone
-            return new Smartphone(number);
+            ...
         }
     }
+
 }

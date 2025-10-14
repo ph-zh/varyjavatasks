@@ -1,7 +1,4 @@
 // Допишите реализацию класса CellularPhone
-public class CellularPhone extends Phone {
+public class CellularPhone {
 
-    public CellularPhone(String number) {
-        super(number);
-    }
 }
