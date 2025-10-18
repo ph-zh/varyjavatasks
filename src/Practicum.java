@@ -19,7 +19,7 @@ public class Practicum {
         while (true) {
             printMenu();
             // Считайте команду, введенную пользователем
-            ...
+            int command = scanner.nextInt();
 
             if (command == 1) {
                 System.out.println("Введите название фильма:");
@@ -28,7 +28,7 @@ public class Practicum {
                 int runtime = scanner.nextInt();
 
                 // На основе введенных пользователем значений создайте объект класса Movie
-                Movie movie = ...;
+                Movie movie = new Movie(title, runtime);
                 mediaItems.add(movie);
             } else if (command == 2) {
                 System.out.println("Введите название сериала:");
@@ -39,7 +39,8 @@ public class Practicum {
                 int runtime = scanner.nextInt();
 
                 // Создайте сериал и добавьте его в список просмотренных
-                ...
+                Series series = new Series(title, runtime, seriesCount);
+                mediaItems.add(series);
             } else if (command == 0) {
                 printMediaItemsList(mediaItems);
 
@@ -60,7 +61,8 @@ public class Practicum {
     public static void printMediaItemsList(List<MediaItem> mediaItems) {
         System.out.println("Вы посмотрели фильмов и сериалов: " + mediaItems.size());
         // Допишите вывод названий всех просмотренных фильмов и сериалов
-        ...
+        for (MediaItem mediaItem : mediaItems) {
+            System.out.println(mediaItem.getTitle());
+        }
     }
-
 }
