@@ -17,4 +17,9 @@ public class Movie implements MediaItem {
     public String getTitle() {
         return title;
     }
+
+    @Override
+    public int getSeriesCount() {
+        return 0;
+    }
 }

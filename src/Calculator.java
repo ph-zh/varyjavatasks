@@ -11,8 +11,12 @@ public class Calculator {
         // потраченных на просмотр фильмов и сериалов
         double days = 0;
         for (MediaItem mediaItem : mediaItems) {
-            days = days + (double) mediaItem.getRuntime() / 1440;
+            if(mediaItem instanceof Movie) {
+                days = days + (double) mediaItem.getRuntime();
+            } else if (mediaItem instanceof Series) {
+                days = days + (double) mediaItem.getRuntime() * mediaItem.getSeriesCount();
+            }
         }
-        return days;
+        return days / 1440;
     }
 }

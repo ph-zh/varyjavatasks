@@ -20,6 +20,7 @@ public class Series implements MediaItem {
         return title;
     }
 
+    @Override
     public int getSeriesCount() {
         return seriesCount;
     }

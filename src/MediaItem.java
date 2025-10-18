@@ -5,4 +5,6 @@ public interface MediaItem {
 
     public String getTitle();
 
+    public int getSeriesCount();
+
 }
