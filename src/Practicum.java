@@ -1,56 +1,66 @@
 /*
-
+Онлайн-кинотеатр решил показать своим пользователям, сколько времени они потратили на просмотр фильмов и сериалов на платформе.
+У разработчиков есть заготовка программы, которая хранит просмотренные пользователем фильмы Movie и сериалы Series.
+Доработайте её, добавив информацию о том, сколько дней потратил пользователь на просмотр фильмов и сериалов.
+Обратите внимание, что их длительность хранится в минутах, а метод должен возвращать длительность в днях.
  */
 
-interface Document {
-    public String getDocumentNumber();
-}
-
-class RussianPassport implements Document {
-    private final String series;
-    private final String number;
-
-    public RussianPassport(String series, String number) {
-        this.series = series;
-        this.number = number;
-    }
-
-    @Override
-    public String getDocumentNumber() {
-        return series + " " + number;
-    }
-
-    public String getSeries() {
-        return series;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-}
-
-class Snils implements Document {
-    private final String number;
-
-    public Snils(String number) {
-        this.number = number;
-    }
-
-    @Override
-    public String getDocumentNumber() {
-        return number;
-    }
-}
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Practicum {
 
     public static void main(String[] args) {
-        Document document2 = new Snils("12345678901");
+        List<MediaItem> mediaItems = new ArrayList<>();
 
-        RussianPassport passport = (RussianPassport) document2;
-        System.out.println(passport.getSeries());
-        System.out.println(passport.getNumber());
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            printMenu();
+            // Считайте команду, введенную пользователем
+            ...
+
+            if (command == 1) {
+                System.out.println("Введите название фильма:");
+                String title = scanner.next();
+                System.out.println("Введите длительность фильма в минутах:");
+                int runtime = scanner.nextInt();
+
+                // На основе введенных пользователем значений создайте объект класса Movie
+                Movie movie = ...;
+                mediaItems.add(movie);
+            } else if (command == 2) {
+                System.out.println("Введите название сериала:");
+                String title = scanner.next();
+                System.out.println("Введите количество серий:");
+                int seriesCount = scanner.nextInt();
+                System.out.println("Введите среднюю длительность серии в минутах");
+                int runtime = scanner.nextInt();
+
+                // Создайте сериал и добавьте его в список просмотренных
+                ...
+            } else if (command == 0) {
+                printMediaItemsList(mediaItems);
+
+                double totalRuntime = Calculator.calculate(mediaItems);
+                System.out.println("Всего вы потратили на просмотр фильмов и сериалов, в днях: " + totalRuntime);
+                break;
+            }
+        }
+    }
+
+    public static void printMenu() {
+        System.out.println("1 - Добавить фильм");
+        System.out.println("2 - Добавить сериал");
+        System.out.println("0 - Посчитать суммарное время и выйти");
+    }
+
+
+    public static void printMediaItemsList(List<MediaItem> mediaItems) {
+        System.out.println("Вы посмотрели фильмов и сериалов: " + mediaItems.size());
+        // Допишите вывод названий всех просмотренных фильмов и сериалов
+        ...
     }
 
 }
