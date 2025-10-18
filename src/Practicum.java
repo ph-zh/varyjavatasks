@@ -29,14 +29,28 @@ class RussianPassport implements Document {
     }
 }
 
+class Snils implements Document {
+    private final String number;
+
+    public Snils(String number) {
+        this.number = number;
+    }
+
+    @Override
+    public String getDocumentNumber() {
+        return number;
+    }
+}
+
 
 public class Practicum {
 
     public static void main(String[] args) {
-        // Java автоматически привела объект класса RussianPassport к типу интерфейса Document
-        Document document = new RussianPassport("1111", "567899");
-        System.out.println(document.getDocumentNumber());
+        Document document2 = new Snils("12345678901");
 
+        RussianPassport passport = (RussianPassport) document2;
+        System.out.println(passport.getSeries());
+        System.out.println(passport.getNumber());
     }
 
 }
