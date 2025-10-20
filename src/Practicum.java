@@ -1,32 +1,30 @@
 /*
-🦉 При использовании класса Pair программист допустил ошибки в программе.
-Исправьте их: координаты игрока должны быть целыми числами, а имя пользователя и чит-код: строками.
- */
 
+ */
 public class Practicum {
 
     public static void main(String[] args) {
-        Pair pair = new Pair(4, 1);
-        System.out.println("Координаты игрока на карте:");
+        Pair<Integer> pair = new Pair<>(4, 1);
+        System.out.println("Координаты точки с целочисленными координатами:");
         pair.print();
-        Integer x = (Integer) pair.getKey();
-        Integer y = (Integer) pair.getValue();
+        Integer x = pair.getKey();
+        Integer y = pair.getValue();
 
         System.out.println();
 
-        Pair stringPair = new Pair("username", "1");
-        System.out.println("Чит-код пользователя:");
+        Pair<String> stringPair = new Pair<>("Content-Type", "application/json");
+        System.out.println("Заголовок HTTP запроса:");
         stringPair.print();
-        String user = (String) stringPair.getKey();
-        String cheatCode = (String) stringPair.getValue();
+        String header = stringPair.getKey();
+        String headerValue = stringPair.getValue();
     }
 
 }
-class Pair {
-    public final Object key;
-    public final Object value;
+class Pair<T> {
+    public final T key;
+    public final T value;
 
-    public Pair(Object key, Object value) {
+    public Pair(T key, T value) {
         this.key = key;
         this.value = value;
     }
@@ -35,11 +33,11 @@ class Pair {
         System.out.printf("(%s, %s)", key, value);
     }
 
-    public Object getKey() {
+    public T getKey() {
         return key;
     }
 
-    public Object getValue() {
+    public T getValue() {
         return value;
     }
 }
