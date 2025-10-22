@@ -31,6 +31,5 @@ public class Practicum {
 
         MortgageRequest mortgageRequest = new MortgageRequest(name, age, mortgageAmount, employed);
         mortgageRequest.validate();
-
     }
 }

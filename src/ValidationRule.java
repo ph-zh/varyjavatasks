@@ -1,9 +1,9 @@
 // Дополните базовый класс для всех правил валидации
-public abstract class ValidationRule {
-    protected final ... value;
+public abstract class ValidationRule<Object> {
+    protected final Object value;
     private final String errorMessage;
 
-    protected ValidationRule(... value, String errorMessage) {
+    protected ValidationRule(Object value, String errorMessage) {
         this.value = value;
         this.errorMessage = errorMessage;
     }
@@ -13,4 +13,5 @@ public abstract class ValidationRule {
     public String getErrorMessage() {
         return errorMessage;
     }
+
 }
