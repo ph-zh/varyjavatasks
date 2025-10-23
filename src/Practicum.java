@@ -1,64 +1,46 @@
 /*
-
+🦉 Допишите объявление класса Printer, который обеспечивает механизм работы принтера ценников в магазине:
+из разных магазинов в него поступают цены товаров в копейках, а для печати на ценниках принтер преобразует цены в рубли.
  */
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Practicum {
+
     public static void main(String[] args) {
-        Bag<Apple> bag = new Bag<>();
-        bag.addFruit(new Apple());
-        bag.printPurchase();
-    }
-}
-class Apple extends Fruit {
+        // Первый магазин продает дорогие товары и хочет передавать копейки типом Long
+        List<Long> longList = new ArrayList<>();
+        longList.add(Long.MAX_VALUE);
 
-    public Apple() {
-        super("Яблоко", 10.0);
-    }
+        new Printer<>(longList).print();
 
-}
+        // Второй магазин продает товары подешевле и использует для передачи копеек тип Integer
+        List<Integer> intList = new ArrayList<>();
+        intList.add(100000);
 
-class Bag<T extends Fruit> {
-    private final List<T> purchase = new ArrayList<>();
+        new Printer<>(intList).print();
 
-    public void addFruit(T fruit) {
-        purchase.add(fruit);
-    }
+        List<String> stringList = new ArrayList<>();
+        stringList.add("Hello");
 
-    public void printPurchase() {
-        if (!purchase.isEmpty()) {
-            double sum = 0;
-            for (T fruit : purchase) {
-                sum += fruit.getPrice();
-            }
-            System.out.println("Ваша покупка: пакетик с фруктами - " + purchase.get(0).getName());
-            System.out.printf("Стоимость вашей покупки составит %f рублей", sum);
-        }
-    }
-}
-class Banana extends Fruit {
-
-    public Banana() {
-        super("Банан", 15.50);
+        // Этот вариант должен вызывать ошибку компиляции
+        //new Printer<>(stringList).print();
     }
 
 }
-abstract class Fruit {
-    private final String name;
-    private final Double price;
 
-    protected Fruit(String name, Double price) {
-        this.name = name;
-        this.price = price;
-    }
+class Printer... {
+private final List<...> list;
 
-    public String getName() {
-        return name;
-    }
+public Printer(... list) {
+    this.list = list;
+}
 
-    public Double getPrice() {
-        return price;
+public void print() {
+    for (int i = 0; i < list.size(); i++) {
+        double price = list.get(i).doubleValue() / 100;
+        System.out.println("Цена товара: " + price + " руб.");
     }
+}
 }
