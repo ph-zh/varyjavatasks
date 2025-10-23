@@ -1,46 +1,79 @@
 /*
-🦉 Допишите объявление класса Printer, который обеспечивает механизм работы принтера ценников в магазине:
-из разных магазинов в него поступают цены товаров в копейках, а для печати на ценниках принтер преобразует цены в рубли.
+Новый год — это всегда суета, огромное число подарков и поздравлений. Родные, друзья, коллеги, одногруппники.
+Приложение NewYearReminder напомнит о приближении Нового года и поможет с поздравлениями.
+Пользователю нужно только указать имя <contact>, остальное приложение берёт на себя.
+Чтобы поздравить близких друзей, им нужно позвонить и позвать на кофе.
+Чтобы поздравить коллег, нужно отправить электронное письмо с новогодней картинкой через корпоративную почту.
+Одногруппники порадуются стикеру в социальных сетях. А родственники в любом уголке планеты оценят бумажную открытку в почтовом ящике.
+Приложение работает с адресной книгой в телефоне, по тегам оно создаёт четыре списка контактов ContactBook.
+Допишите код приложения так, чтобы пользователи могли поздравить любого человека из своей телефонной книги, просто указав его имя.
  */
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 public class Practicum {
 
+    // Дополните объявление поля friendsContactBook, которое будет хранить в себе список номеров телефонов друзей
+    private static ContactBook... friendsContactBook = ...
+            // Напишите объявления полей colleaguesContactBook, classmatesContactBook и relativesContactBook,
+            // которые будут хранить списки электронных адресов, соцсетей и почтовых адресов соответственно
+            ...
+
+
     public static void main(String[] args) {
-        // Первый магазин продает дорогие товары и хочет передавать копейки типом Long
-        List<Long> longList = new ArrayList<>();
-        longList.add(Long.MAX_VALUE);
+        fillBooks();
 
-        new Printer<>(longList).print();
+        Scanner scanner = new Scanner(System.in);
 
-        // Второй магазин продает товары подешевле и использует для передачи копеек тип Integer
-        List<Integer> intList = new ArrayList<>();
-        intList.add(100000);
+        while (true) {
+            System.out.println("Сегодня Новый Год! 1 - Отправить поздравление, 0 - Напомнить позднее");
+            int mainCommand = scanner.nextInt();
+            if (mainCommand == 1) {
+                System.out.println("Какую книгу контактов открыть?");
+                System.out.println("1 - Друзья, 2 - Коллеги, 3 - Одногруппники, 4 - Родственники");
 
-        new Printer<>(intList).print();
+                int bookIndex = scanner.nextInt();
+                if (bookIndex == 1) {
+                    friendsContactBook.printList();
+                } else if (bookIndex == 2) {
+                    colleaguesContactBook.printList();
+                } else if (bookIndex == 3) {
+                    classmatesContactBook.printList();
+                } else if (bookIndex == 4) {
+                    relativesContactBook.printList();
+                }
 
-        List<String> stringList = new ArrayList<>();
-        stringList.add("Hello");
-
-        // Этот вариант должен вызывать ошибку компиляции
-        // new Printer<>(stringList).print();
-    }
-
-}
-
-class Printer<T extends Number> {
-    private final List<T> list;
-
-    public Printer(List<T> list) {
-        this.list = list;
-    }
-
-    public void print() {
-        for (int i = 0; i < list.size(); i++) {
-            double price = list.get(i).doubleValue() / 100;
-            System.out.println("Цена товара: " + price + " руб.");
+                System.out.println("Кого вы хотите поздравить? Введите имя:");
+                String name = scanner.next();
+                if (bookIndex == 1) {
+                    friendsContactBook.congratulate(name);
+                } else if (bookIndex == 2) {
+                    colleaguesContactBook.congratulate(name);
+                } else if (bookIndex == 3) {
+                    classmatesContactBook.congratulate(name);
+                } else if (bookIndex == 4) {
+                    relativesContactBook.congratulate(name);
+                }
+            } else if (mainCommand == 0) {
+                break;
+            }
         }
     }
+
+    private static void fillBooks() {
+        friendsContactBook.addContact(new Phone("Иван", "+7-909-000-11-22"));
+        friendsContactBook.addContact(new Phone("Маша", "+7-999-555-11-22"));
+        friendsContactBook.addContact(new Phone("Кирилл", "+7-979-698-00-22"));
+
+        colleaguesContactBook.addContact(new Email("Александр", "sasha@sasha.ru"));
+        colleaguesContactBook.addContact(new Email("Павел", "pasha@pasha.ru"));
+        colleaguesContactBook.addContact(new Email("Олег", "oleg@oleg.ru"));
+
+        classmatesContactBook.addContact(new SocialNetworkContact("Оля", "НаСвязи", "olya"));
+        classmatesContactBook.addContact(new SocialNetworkContact("Женя", "Фотопризма", "zhenya"));
+
+        relativesContactBook.addContact(new Address("Бабуля", "Москва", "Тверская, д.8"));
+        relativesContactBook.addContact(new Address("Дедуля", "Воронеж", "Ленина, д.10"));
+    }
+
 }
