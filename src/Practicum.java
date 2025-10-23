@@ -1,35 +1,64 @@
 /*
-Ваша команда разрабатывает приложение, которое помогает пользователю заполнить заявку на ипотеку.
-Пользователь вводит данные для покупки квартиры: фамилию, имя и отчество, возраст, сумму ипотеки и указывает
-свой статус по трудоустройству. Задача вашего приложения — проверить данные, которые заполнил пользователь,
-и показать предварительный ответ банка.
-Вам необходимо написать валидацию данных пользователя, используя типизированные классы.
-Ипотека может быть выдана только людям 18 лет и старше, минимальная
-сумма ипотеки — 1.000.000, а максимальная — 10.000.000, человек обязательно должен быть трудоустроенным.
+
  */
-import java.util.Scanner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Practicum {
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Bag<Apple> bag = new Bag<>();
+        bag.addFruit(new Apple());
+        bag.printPurchase();
+    }
+}
+class Apple extends Fruit {
 
-        System.out.println("Заполните данные для ипотечной заявки и узнайте статус одобрения");
-        System.out.println("Введите ФИО:");
-        String name = scanner.nextLine();
+    public Apple() {
+        super("Яблоко", 10.0);
+    }
 
-        System.out.println("Ваш возраст:");
-        byte age = scanner.nextByte();
+}
 
-        System.out.println("Планируемая сумма ипотеки:");
-        int mortgageAmount = scanner.nextInt();
+class Bag<T extends Fruit> {
+    private final List<T> purchase = new ArrayList<>();
 
-        scanner.nextLine();
-        System.out.println("Трудоустроены ли вы сейчас? (д/н)");
-        String employedString = scanner.nextLine();
-        boolean employed = employedString.equalsIgnoreCase("д");
+    public void addFruit(T fruit) {
+        purchase.add(fruit);
+    }
 
-        MortgageRequest mortgageRequest = new MortgageRequest(name, age, mortgageAmount, employed);
-        mortgageRequest.validate();
+    public void printPurchase() {
+        if (!purchase.isEmpty()) {
+            double sum = 0;
+            for (T fruit : purchase) {
+                sum += fruit.getPrice();
+            }
+            System.out.println("Ваша покупка: пакетик с фруктами - " + purchase.get(0).getName());
+            System.out.printf("Стоимость вашей покупки составит %f рублей", sum);
+        }
+    }
+}
+class Banana extends Fruit {
+
+    public Banana() {
+        super("Банан", 15.50);
+    }
+
+}
+abstract class Fruit {
+    private final String name;
+    private final Double price;
+
+    protected Fruit(String name, Double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Double getPrice() {
+        return price;
     }
 }
