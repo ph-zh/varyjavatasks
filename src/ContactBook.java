@@ -1,11 +1,9 @@
-import java.util.List;
-
 // Ограничьте класс ContactBook так, чтобы он мог хранить в себе только список контактов
-public class ContactBook <T extends List<Contact>> {
+public class ContactBook ... {
         // Объявите поле класса contacts - список контактов книги
-        private T contacts;
+        ...
 
-public void addContact(T contact) {
+public void addContact(... contact) {
     contacts.add(contact);
 }
 
