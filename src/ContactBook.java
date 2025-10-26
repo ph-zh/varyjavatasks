@@ -21,12 +21,16 @@ public class ContactBook<T extends Contact> {
     public void congratulate(String name) {
         boolean contactPresented = false; //проверяем есть ли контакт в базе
         // Найдите контакт в книге по имени, и отправьте ему сообщение с помощью метода sendMessage()
-        if (!contactPresented) {
-            System.out.println("Поздравим с Новым годом ваш контакт из записной книжки: " + name);
-            contact.sendMessage();
-        } else {
-            // Если контакт не найден, выведите соответствующее сообщение
-            System.out.println("Не найден контакт с указанным именем.");
+        for (T contact : contacts) {
+            if(!contact.getName().contains(name)) {
+                // Если контакт не найден, выведите соответствующее сообщение
+                System.out.println("Не найден контакт с указанным именем.");
+                break;
+            } else {
+                System.out.println("Поздравим с Новым годом ваш контакт из записной книжки: " + name);
+                System.out.println("Имя: " + contact.getName());
+                contact.sendMessage();
+            }
         }
     }
 }
