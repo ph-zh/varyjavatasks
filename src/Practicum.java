@@ -8,15 +8,15 @@
 Приложение работает с адресной книгой в телефоне, по тегам оно создаёт четыре списка контактов ContactBook.
 Допишите код приложения так, чтобы пользователи могли поздравить любого человека из своей телефонной книги, просто указав его имя.
  */
+
 import java.util.Scanner;
-import java.util.List;
 
 public class Practicum {
 
     // Дополните объявление поля friendsContactBook, которое будет хранить в себе список номеров телефонов друзей
     private static ContactBook<Phone> friendsContactBook = new ContactBook<>();
-            // Напишите объявления полей colleaguesContactBook, classmatesContactBook и relativesContactBook,
-            // которые будут хранить списки электронных адресов, соцсетей и почтовых адресов соответственно
+    // Напишите объявления полей colleaguesContactBook, classmatesContactBook и relativesContactBook,
+    // которые будут хранить списки электронных адресов, соцсетей и почтовых адресов соответственно
     private static ContactBook<Email> colleaguesContactBook = new ContactBook<>();
     private static ContactBook<SocialNetworkContact> classmatesContactBook = new ContactBook<>();
     private static ContactBook<Address> relativesContactBook = new ContactBook<>();
