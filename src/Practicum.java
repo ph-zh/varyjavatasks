@@ -1,81 +1,86 @@
 /*
-Новый год — это всегда суета, огромное число подарков и поздравлений. Родные, друзья, коллеги, одногруппники.
-Приложение NewYearReminder напомнит о приближении Нового года и поможет с поздравлениями.
-Пользователю нужно только указать имя <contact>, остальное приложение берёт на себя.
-Чтобы поздравить близких друзей, им нужно позвонить и позвать на кофе.
-Чтобы поздравить коллег, нужно отправить электронное письмо с новогодней картинкой через корпоративную почту.
-Одногруппники порадуются стикеру в социальных сетях. А родственники в любом уголке планеты оценят бумажную открытку в почтовом ящике.
-Приложение работает с адресной книгой в телефоне, по тегам оно создаёт четыре списка контактов ContactBook.
-Допишите код приложения так, чтобы пользователи могли поздравить любого человека из своей телефонной книги, просто указав его имя.
+Теперь, когда приложение работает со списками, можно расширить его функционал.
+ 1/ Добавьте в класс Praktikum две новые команды меню:
+    - «6 — Очистить список трат»;
+    - «7 — Найти и удалить трату».
+ 2/ Новые команды должны обращаться к методам класса ExpensesManager — напишите их:
+    - метод removeAllExpenses() должен очищать список трат и печатать фразу «Список трат пуст».
+    - метод removeExpense(int transaction) должен проверять, содержится ли указанное пользователем значение в списке.
+Если в списке нет ни одной траты, то нужно сообщить пользователю, что «Список трат пуст».
+Если трата найдена, то её нужно удалить и сообщить об этом.
+Если указанной суммы расходов в списке нет, то нужно вывести на экран, что «Такой траты нет».
+    - В этом задании мы добавляем функцию поиска. Так как поиск по значению траты не будет точным
+    (ведь могут существовать периодические одинаковые траты, а сравнение чисел Double на одинаковость не может быть гарантировано),
+    мы предлагаем перейти к использованию класса-контейнера для значения трат и для хранения уникального номера этой траты
+    (назовём его номером транзакции).
+    - Чтобы удалить элемент, вам потребуется вычислить его индекс — используйте для этого цикл и не забудьте его прервать.
+Найденный индекс сохраните в переменную index. Обратите внимание, несмотря на наличие
+метода remove для элемента, в этом задании мы предлагаем удалять первый найденный элемент по индексу.
  */
 
 import java.util.Scanner;
 
 public class Practicum {
-
-    // Дополните объявление поля friendsContactBook, которое будет хранить в себе список номеров телефонов друзей
-    private static ContactBook<Phone> friendsContactBook = new ContactBook<>();
-    // Напишите объявления полей colleaguesContactBook, classmatesContactBook и relativesContactBook,
-    // которые будут хранить списки электронных адресов, соцсетей и почтовых адресов соответственно
-    private static ContactBook<Email> colleaguesContactBook = new ContactBook<>();
-    private static ContactBook<SocialNetworkContact> classmatesContactBook = new ContactBook<>();
-    private static ContactBook<Address> relativesContactBook = new ContactBook<>();
-
-
     public static void main(String[] args) {
-        fillBooks();
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Сколько денег у вас осталось до зарплаты?");
+        double moneyBeforeSalary = scanner.nextDouble();
+        System.out.println("Сколько дней до зарплаты?");
+        int daysBeforeSalary = scanner.nextInt();
+
+        Converter converter = new Converter(78.5, 88.7, 0.75);
+        DinnerAdvisor dinnerAdvisor = new DinnerAdvisor();
+        ExpensesManager expensesManager = new ExpensesManager();
 
         while (true) {
-            System.out.println("Сегодня Новый Год! 1 - Отправить поздравление, 0 - Напомнить позднее");
-            int mainCommand = scanner.nextInt();
-            if (mainCommand == 1) {
-                System.out.println("Какую книгу контактов открыть?");
-                System.out.println("1 - Друзья, 2 - Коллеги, 3 - Одногруппники, 4 - Родственники");
+            printMenu();
+            int command = scanner.nextInt();
 
-                int bookIndex = scanner.nextInt();
-                if (bookIndex == 1) {
-                    friendsContactBook.printList();
-                } else if (bookIndex == 2) {
-                    colleaguesContactBook.printList();
-                } else if (bookIndex == 3) {
-                    classmatesContactBook.printList();
-                } else if (bookIndex == 4) {
-                    relativesContactBook.printList();
-                }
-
-                System.out.println("Кого вы хотите поздравить? Введите имя:");
-                String name = scanner.next();
-                if (bookIndex == 1) {
-                    friendsContactBook.congratulate(name);
-                } else if (bookIndex == 2) {
-                    colleaguesContactBook.congratulate(name);
-                } else if (bookIndex == 3) {
-                    classmatesContactBook.congratulate(name);
-                } else if (bookIndex == 4) {
-                    relativesContactBook.congratulate(name);
-                }
-            } else if (mainCommand == 0) {
+            if (command == 1) {
+                System.out.println("Ваши сбережения: " + moneyBeforeSalary + " RUB");
+                System.out.println("В какую валюту хотите конвертировать? Доступные варианты: 1 - USD, 2 - EUR, 3 - JPY.");
+                int currency = scanner.nextInt();
+                converter.convert(moneyBeforeSalary, currency);
+            } else if (command == 2) {
+                dinnerAdvisor.getAdvice(moneyBeforeSalary, daysBeforeSalary);
+            } else if (command == 3) {
+                System.out.println("Введите размер траты:");
+                double expense = scanner.nextDouble();
+                moneyBeforeSalary = expensesManager.saveExpense(moneyBeforeSalary, expense);
+            } else if (command == 4) {
+                expensesManager.printAllExpenses();
+            } else if (command == 5) {
+                System.out.println("Самая большая сумма расходов составила " + expensesManager.findMaxExpense() + " руб.");
+            } else if (command == 6) { // Добавьте реализацию команды 6
+                // Вызовите соответствующий метод
+                expensesManager.removeAllExpenses();
+            } else if (command == 7) { // Добавьте реализацию команды 7
+                System.out.println("Введите транзакцию:");
+                int transaction = scanner.nextInt(); // Считайте значение транзакции
+                // Вызовите соответствующий метод
+                expensesManager.removeExpense(transaction);
+            } else if (command == 0) {
+                System.out.println("Выход");
                 break;
+            } else {
+                System.out.println("Извините, такой команды пока нет.");
             }
         }
     }
 
-    private static void fillBooks() {
-        friendsContactBook.addContact(new Phone("Иван", "+7-909-000-11-22"));
-        friendsContactBook.addContact(new Phone("Маша", "+7-999-555-11-22"));
-        friendsContactBook.addContact(new Phone("Кирилл", "+7-979-698-00-22"));
-
-        colleaguesContactBook.addContact(new Email("Александр", "sasha@sasha.ru"));
-        colleaguesContactBook.addContact(new Email("Павел", "pasha@pasha.ru"));
-        colleaguesContactBook.addContact(new Email("Олег", "oleg@oleg.ru"));
-
-        classmatesContactBook.addContact(new SocialNetworkContact("Оля", "НаСвязи", "olya"));
-        classmatesContactBook.addContact(new SocialNetworkContact("Женя", "Фотопризма", "zhenya"));
-
-        relativesContactBook.addContact(new Address("Бабуля", "Москва", "Тверская, д.8"));
-        relativesContactBook.addContact(new Address("Дедуля", "Воронеж", "Ленина, д.10"));
+    public static void printMenu() {
+        System.out.println("Что вы хотите сделать? ");
+        System.out.println("1 - Конвертировать валюту");
+        System.out.println("2 - Получить совет");
+        System.out.println("3 - Ввести трату");
+        System.out.println("4 - Показать траты");
+        System.out.println("5 - Показать самую большую сумму расходов");
+        // Добавьте новые пункты в меню:
+        // "6 - Очистить список трат"
+        System.out.println("6 - Очистить список трат");
+        // "7 - “Найти и удалить трату"
+        System.out.println("7 - “Найти и удалить трату");
+        System.out.println("0 - Выход");
     }
-
 }
