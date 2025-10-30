@@ -1,35 +1,40 @@
 /*
-Реализуйте игру-угадайку. В начале игры программа загадывает случайное число от 1 до 1000.
-Пользователь вводит некоторое число в поле для ввода, после чего программа должна сказать:
-Если введённое число меньше загаданного — вывести «Ваше число меньше».
-Если введённое число больше загаданного — вывести «Ваше число больше».
-Если введённое число равно загаданному — вывести «Правильный ответ».
-После того, как успешно выполните задание, сыграйте в «угадайку», применяя алгоритм бинарного поиска для победы в игре.
+
 */
 
-import java.util.Random;
-import java.util.Scanner;
+package radix;
+
+import java.util.Arrays;
 
 public class Practicum {
     public static void main(String[] args) {
-        Random random = new Random();
-        int target = random.nextInt(1000) + 1;
-        System.out.println("Я загадал число. Попробуйте угадать!");
+        int[] array = {7, 4, 2, 0, 1, 3, 4, 9, 3, 2, 3, 8, 1, 0, 2, 3, 5, 2, 6, 4};
+        System.out.println(Arrays.toString(array));
 
-        Scanner scanner = new Scanner(System.in);
-        int userGuess = -1;
+        radixSort(array);
+        System.out.println(Arrays.toString(array));
+    }
 
+    public static void radixSort(int[] array) {
+        int n = array.length;
+        int[] counter = new int[10];
 
-        // Считывайте числа от пользователя пока не найдёте число, равное target
-        while (userGuess != target) {
-            userGuess = scanner.nextInt();
-            if (userGuess < target) {
-                System.out.println("Ваше число больше");
-            } else if (userGuess > target) {
-                System.out.println("Ваше число меньше");
-            } else if (userGuess == target) {
-                System.out.println("Правильный ответ");
-                break;
+        for (int i = 0; i < array.length; i++) {
+            counter[array[i]] += 1;
+        }
+
+        //i показывает позицию, на которую нужно поставить очередной элемент
+        int i = 0;
+
+        for (int j = 0; j < counter.length; j++) {
+
+            // если элемент j встречается более 0 раз — добавить его в финальный массив count[j] раз,
+            // иначе — пропустить элемент.
+            if (counter[j] > 0) {
+                for (int k = 1; k <= counter[j]; k++) {
+                    array[i] = j;
+                    i++;
+                }
             }
         }
     }
