@@ -3,7 +3,7 @@
 */
 
 import java.util.ArrayList;
-import java.util.Collection; // импортируем интерфейс Collection
+import java.util.Collection;
 
 public class Practicum {
 
@@ -11,14 +11,23 @@ public class Practicum {
         final Collection<String> colors = new ArrayList<>();
         colors.add("Жёлтый");
         colors.add("Красный");
-        colors.add("Зелёный");
 
-        System.out.println("Список содержит Зелёный: " + colors.contains("Зелёный"));
+        final Collection<String> colorsAdditional = new ArrayList<>();
+        colorsAdditional.add("Зелёный");
+        colorsAdditional.add("Жёлтый");
 
-        colors.remove("Жёлтый");
+        colors.addAll(colorsAdditional);
         System.out.println(colors);
 
-        System.out.println("Оставшееся количество элементов: " + colors.size());
-        System.out.println("Коллекция пустая? " + colors.isEmpty());
+        final Collection<String> greenAndRed = new ArrayList<>();
+        greenAndRed.add("Зелёный");
+        greenAndRed.add("Красный");
+        System.out.println("Список содержит Зелёный и Красный: " + colors.containsAll(greenAndRed));
+
+        final Collection<String> yellowOnly = new ArrayList<>();
+        yellowOnly.add("Жёлтый");
+        colors.removeAll(yellowOnly);
+
+        System.out.println(colors);
     }
 }
