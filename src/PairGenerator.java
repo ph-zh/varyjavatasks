@@ -45,9 +45,8 @@ public class PairGenerator {
 
         /* Осталось только удалить двух найденных незнакомцев из списка strangers,
            а затем вернуть их в качестве результата! */
-        ArrayList<Stranger> remove = new ArrayList<>();
-        remove.add(strangerOne);
-        remove.add(strangerTwo);
+        // Чтобы создать список из двух элементов, удобно воспользоваться методом List.of(strangerOne, strangerTwo).
+        ArrayList<Stranger> remove = new ArrayList<>(List.of(strangerOne, strangerTwo));
         strangers.removeAll(remove);
 
         return remove;
