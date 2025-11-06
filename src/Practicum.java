@@ -9,14 +9,22 @@ import java.util.List;
 public class Practicum {
 
     public static void main(String[] args) {
-        List<Long> listOfLongs = new ArrayList<>();
-        listOfLongs.add(157478403L);
-        listOfLongs.add(2450033L);
-        listOfLongs.add(32039458858604L);
+        List<Long> listOfSmallLongs = new ArrayList<>();
+        listOfSmallLongs.add(1L);
+        listOfSmallLongs.add(2L);
+        listOfSmallLongs.add(3L);
 
-        System.out.println(listOfLongs);
+        List<Long> listOfBigLongs = new ArrayList<>();
+        listOfBigLongs.add(10000000000L);
+        listOfBigLongs.add(20000000000L);
+        listOfBigLongs.add(30000000000L);
 
-        Collections.fill(listOfLongs, 5555555L);
-        System.out.println(listOfLongs);
+        System.out.println(listOfSmallLongs);
+        System.out.println(listOfBigLongs);
+
+        Collections.copy(listOfSmallLongs, listOfBigLongs);
+
+        System.out.println(listOfSmallLongs);
+        System.out.println(listOfBigLongs);
     }
 }
