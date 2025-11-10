@@ -15,13 +15,13 @@ public class PotatoLaboratory {
 
     public static void main(String[] args) {
         List<Potato> potatoes = List.of(
-                new Potato(1, 30, 30, 30),
-                new Potato(2, 35, 31, 35),
-                new Potato(3, 40, 35, 44),
-                new Potato(4, 28, 44, 41),
-                new Potato(5, 33, 23, 30),
-                new Potato(6, 35, 33, 33),
-                new Potato(7, 38, 41, 24)
+                new Potato(1, 30, 30, 30), // 2) 90
+                new Potato(2, 35, 31, 35), // 3) 101
+                new Potato(3, 40, 35, 44), // 7) 119
+                new Potato(4, 28, 44, 41), // 6) 113
+                new Potato(5, 33, 23, 30), // 1) 86
+                new Potato(6, 35, 33, 33), // 4) 101
+                new Potato(7, 38, 41, 24)  // 5) 103
         );
 
         List<Potato> fourUnderExperiment = findPotatoesForExperiment(potatoes);
@@ -33,13 +33,15 @@ public class PotatoLaboratory {
 				/* Вычислите две самые большие и две самые маленькие картофелины,
            а затем выведите их в порядке от самых маленьких до самых больших.*/
         final ArrayList<Potato> mutableList = new ArrayList<>(potatoes);
-        mutableList.get(0);
+
 
         Collections.sort(mutableList);
-        System.out.println(mutableList);
-        System.out.println(mutableList.get(0));
-        System.out.println(mutableList.get(1));
 
-        return null;
+
+        mutableList.remove(3);
+        mutableList.remove(3);
+        mutableList.remove(2);
+
+        return mutableList;
     }
 }
