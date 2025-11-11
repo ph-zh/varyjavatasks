@@ -1,60 +1,67 @@
 /*
-добавить в холодильник свои любимые продукты (их калорийность можно подсмотреть в интернете);
-изменить код таким образом, чтобы в терминале появилось сообщение «Всё в порядке! 😎».
+Попробуйте переопределить для класса User метод  toString(). Обратите внимание, как после этого изменится вывод на консоль — он станет более понятным.
 */
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 public class Practicum {
     public static void main(String[] args) {
-        Map<String, Integer> food = new HashMap<>();
+        Map<User, List<String>> userOrders = new HashMap<User, List<String>>();
 
-        // Добавим продукты:
-        food.put("Яблоки", 52);
-        food.put("Авокадо", 160);
-        food.put("Молоко", 50);
-        food.put("Сыр", 357);
-        food.put("Пицца", 275);
+        userOrders.put(
+                new User(97457, "Джо", "joe@black.com"),
+                List.of("1928873467463")
+        );
+        userOrders.put(
+                new User(29575, "Лиз", "liz@black.com"),
+                List.of(
+                        "9828674982082",
+                        "7249804867520"
+                )
+        );
+        userOrders.put(
+                new User(57860, "Ян", "yan@black.com"),
+                List.of("4758039927678")
+        );
 
-        // Выведем содержимое в консоль:
-        System.out.println("Содержимое холодильника: " + food + ".");
+        System.out.println("Заказы: " + userOrders);
+    }
+}
 
-        // Проверим, что все любимые продукты на месте:
-        boolean hasApples = food.containsKey("Яблоки");
-        System.out.println("А у нас есть яблоки? 🤔 Ответ: " + hasApples + " 🥳.");
+class User {
+    Integer id;
+    String name;
+    String email;
 
-        boolean hasCoconuts = food.containsKey("Кокос");
-        System.out.println("А у нас есть кокосы? 🤔 Ответ: " + hasCoconuts + " 😱. Срочно вызываем кокосовый отряд!");
+    public User(Integer id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
 
-        // А сколько килокалорий в пицце? 🤓 Давайте проверим ...
-        int caloriesInPizza = food.get("Пицца");
-        System.out.println("Пицца содержит " + caloriesInPizza + " килокалорий на 100 г.");
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        // Хм, а сколько продуктов в холодильнике? 🧐 Сейчас посмотрим ...
-        System.out.println("Сейчас в холодильнике " + food.size() + " продуктов.");
+        User user = (User) o;
 
-        // А не съесть ли яблоко? 🍏
-        food.remove("Яблоки");
-        System.out.println("Сейчас в холодильнике " + food.size() + " продукта. Кажется, пора пополнить запасы! 🛒");
+        return id.equals(user.id);
+    }
 
-        // Выведем содержимое холодильника в консоль:
-        for (Map.Entry<String, Integer> entry : food.entrySet()) {
-            System.out.println("'" + entry.getKey() + "' содержит " + entry.getValue() + " килокалорий в 100 г.");
-        }
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 
-        food.clear(); // Удалим все записи из хеш-таблицы.
-
-
-        // Когда в холодильнике пусто ...
-        System.out.println("Сейчас в холодильнике " + food.size() + " продуктов.");
-
-        food.put("Snikers", 488);
-
-        if (food.isEmpty()) {
-            System.out.println("Ничего не осталось! 😯 Срочно заказываем доставку! 🛍");
-        } else {
-            System.out.println("Всё в порядке! 😎");
-        }
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
