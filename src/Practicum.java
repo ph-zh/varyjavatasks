@@ -1,67 +1,34 @@
 /*
-Попробуйте переопределить для класса User метод  toString(). Обратите внимание, как после этого изменится вывод на консоль — он станет более понятным.
+У вас ответственное задание — нужно написать программу для авиакомпании, которая будет распределять пассажиров по местам в самолёте.
+Чтобы не усложнять, будем считать, что места идут последовательно: 1, 2, 3, …, 50, 51, 52 и так далее. Заполните хеш-таблицу таким образом, чтобы каждому пассажиру в ней соответствовало его место в самолёте.
 */
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 public class Practicum {
+    // Пример списка пассажиров (на самом деле их больше)
+    private static List<String> passengerNames = List.of(
+            "Василий Петров",
+            "Анна Ягирская",
+            "Виктория Сотова",
+            "Игорь Серов",
+            "Людмила Ульянова"
+    );
+
     public static void main(String[] args) {
-        Map<User, List<String>> userOrders = new HashMap<User, List<String>>();
-
-        userOrders.put(
-                new User(97457, "Джо", "joe@black.com"),
-                List.of("1928873467463")
-        );
-        userOrders.put(
-                new User(29575, "Лиз", "liz@black.com"),
-                List.of(
-                        "9828674982082",
-                        "7249804867520"
-                )
-        );
-        userOrders.put(
-                new User(57860, "Ян", "yan@black.com"),
-                List.of("4758039927678")
-        );
-
-        System.out.println("Заказы: " + userOrders);
-    }
-}
-
-class User {
-    Integer id;
-    String name;
-    String email;
-
-    public User(Integer id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
+        Map<String, Integer> seats = assignSeats(passengerNames);
+        System.out.println("Места пассажиров: " + seats);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        return id.equals(user.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public static Map<String, Integer> assignSeats(List<String> passengerNames) {
+        // Тут нужно написать код, который будет распределять места в самолёте ✈️
+        Map<String, Integer> passengers = new HashMap<String, Integer>();
+        int seat = 1;
+        for (String passenger : passengerNames) {
+            passengers.put(passenger, seat++);
+        }
+        return passengers;
     }
 }
