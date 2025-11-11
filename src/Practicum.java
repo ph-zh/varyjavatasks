@@ -6,6 +6,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class Practicum {
     // Создадим хеш-таблицу для хранения заказов.
     // В качестве ключа будет имя клиента.
@@ -32,11 +33,9 @@ public class Practicum {
     private void newOrder(String clientName) {
         // Сохраните новый заказ в хеш-таблицу. При обновлении счётчика заказов
         // не забудьте учесть заказы, которые уже были сделаны ранее.
-        if (orders.containsKey(clientName)) {
-            orders.put(clientName, 2);
-        } else {
-            orders.put(clientName, 1);
-        }
+        int order = orders.getOrDefault(clientName, 0);
+        order++;
+        orders.put(clientName, order);
     }
 
     private void printStatistics() {
