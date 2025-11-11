@@ -17,7 +17,12 @@ public class Practicum {
 
         // попытаемся узнать, каким будет население Парижа через год
         String city = "Париж";
-        Integer cityPopulation = citiesPopulation.get(city);
-        System.out.println("Через 1 год население города " + city + " будет: " + (int)(cityPopulation * 1.01));
+
+        if (citiesPopulation.containsKey(city)) {
+            Integer cityPopulation = citiesPopulation.get(city);
+            System.out.println("Через 1 год население города " + city + " будет: " + (int)(cityPopulation * 1.01));
+        } else {
+            System.out.println("Данных по заданному городу нет");
+        }
     }
 }
