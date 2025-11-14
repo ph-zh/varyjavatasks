@@ -2,13 +2,21 @@
 Представьте, что вы работаете над системой, которая автоматизирует работу автосалона. В ней хранится информация о всех марках автомобилей, доступных для заказа.
 Усовершенствуйте код так, чтобы машины в хеш-таблицы хранились в отсортированном виде. Сортировка должна быть по цене — от дешёвых к дорогим.
 */
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Comparator;
+import java.util.TreeMap;
 
 public class Practicum {
     public static void main(String[] args) {
         // ключ – автомобиль, значение – цена
-        Map<Car, Integer> cars = new HashMap<>();
+        Comparator<Car> carComparator = new Comparator<>() {
+            @Override
+            public int compare(Car car1, Car car2) {
+                return car1.priceInRubles.compareTo(car2.priceInRubles);
+            }
+        };
+
+        Map<Car, Integer> cars = new TreeMap<>(carComparator);
 
         // хеш-таблица заполняется данными
         cars.put(new Car("Audi A6", 3_760_000), 2);
