@@ -13,7 +13,7 @@ public class Practicum {
         Comparator<User> userComparator = new Comparator<>() {
             @Override
             public int compare(User user1, User user2) {
-                return user1.userId - user2.userId;
+                return user1.name.compareTo(user2.name);
             }
         };
 
