@@ -6,19 +6,51 @@
 */
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Practicum {
     public static void main(String[] args) {
         List<String> actorsList = new ArrayList<>();
         fillActors(actorsList);
 
-        ...// заполните хэш-таблицу
+        Map<List <String>, Integer> movies = new HashMap<>(); // заполните хэш-таблицу
+        movies.put(actorsList, 1962);
 
-        for (...) {
-            String actor = ...
-            int filmsCount = ...
-            System.out.println(actor + " снялся в " + filmsCount + " фильмах");
-        }
+//        movies.put("Доктор Ноу", 1962);
+//        movies.put("Из России с любовью", 1963);
+//        movies.put("Голдфингер", 1964);
+//        movies.put("Шаровая молния", 1965);
+//        movies.put("Живёшь только дважды", 1967);
+//        movies.put("На секретной службе Её Величества", 1969);
+//        movies.put("Бриллианты навсегда", 1971);
+//        movies.put("Живи и дай умереть", 1973);
+//        movies.put("Человек с золотым пистолетом", 1974);
+//        movies.put("Шпион, который меня любил", 1977);
+//        movies.put("Лунный гонщик", 1979);
+//        movies.put("Только для твоих глаз", 1981);
+//        movies.put("Осьминожка", 1983);
+//        movies.put("Вид на убийство", 1985);
+//        movies.put("Искры из глаз", 1987);
+//        movies.put("Лицензия на убийство", 1989);
+//        movies.put("Золотой глаз", 1995);
+//        movies.put("Завтра не умрёт никогда", 1997);
+//        movies.put("И целого мира мало", 1999);
+//        movies.put("Умри, но не сейчас", 2002);
+//        movies.put("Казино «Рояль»", 2006);
+//        movies.put("Квант милосердия", 2008);
+//        movies.put("007: Координаты «Скайфолл»", 2012);
+//        movies.put("007: Спектр", 2015);
+//        movies.put("Не время умирать", 2021);
+
+        System.out.println(movies);
+
+
+//        for (String list : actorsList) {
+//            String actor;
+//            int filmsCount;
+//            System.out.println(actor + " снялся в " + filmsCount + " фильмах");
+//        }
     }
 
     private static void fillActors(List<String> actors) {
