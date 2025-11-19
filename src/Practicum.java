@@ -1,59 +1,51 @@
 /*
-В списке actors содержатся имена актёров, которые сыграли главную роль в фильме про Джеймса Бонда.
-Часто один и тот же актёр играл главную роль сразу в нескольких фильмах подряд. Всего в «бондиане» 25 фильмов,
-и имена актёров в списке actors соответствуют порядку их выхода.
-Преобразуйте этот список в хеш-таблицу таким образом, чтобы в качестве ключа было имя актёра, а в значении
-хранилось количество фильмов, в которых этот актёр принял участие.
-Порядок актёров в хеш-таблице должен соответствовать порядку выхода первого фильма с участием этого актёра.
+Перед вами код для поиска пользователя по ID. Но пользователей очень много — один миллион.
+Поэтому сейчас поиск работает медленно, ведь, чтобы найти нужный ID, приходится выполнять итерацию по всем пользователям!
+Перепишите код таким образом, чтобы поиск пользователей работал быстрее. Для этого примените свои знания о хеш-таблицах.
+Также обратите внимание на код, который измеряет, сколько времени занял поиск пользователя,
+и сравните разницу до и после оптимизации. Также после оптимизации посчитайте, во сколько раз вам удалось ускорить поиск.
 */
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-public class Practicum {
+class Practicum {
+    private static List<User> users = new ArrayList<>();
+
     public static void main(String[] args) {
-        List<String> actorsList = new ArrayList<>();
-        fillActors(actorsList);
-
-        // заполните хэш-таблицу
-        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
-        for (String actor : actorsList) {
-            map.put(actor, map.getOrDefault(actor, 0) + 1);
+        // создадим 1 миллион пользователей
+        for (long i = 1; i <= 1_000_000L; i++) {
+            users.add(new User(i, "Имя " + i));
         }
 
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            String actor = entry.getKey();
-            int filmsCount = entry.getValue();
-            System.out.println(actor + " снялся в " + filmsCount + " фильмах");
-        }
+        final long startTime = System.nanoTime();
+        User user = findUser(378_366L);
+        final long endTime = System.nanoTime();
+
+        System.out.println("Найден пользователь: " + user);
+        System.out.println("Поиск занял " + (endTime - startTime) + " наносекунд.");
     }
 
-    private static void fillActors(List<String> actors) {
-        actors.add("Шон Коннери");     // 1962 Доктор Ноу
-        actors.add("Шон Коннери");     // 1963 Из России с любовью
-        actors.add("Шон Коннери");     // 1964 Голдфингер
-        actors.add("Шон Коннери");     // 1965 Шаровая молния
-        actors.add("Шон Коннери");     // 1967 Живёшь только дважды
-        actors.add("Джордж Лэзенби");  // 1969 На секретной службе Её Величества
-        actors.add("Шон Коннери");     // 1971 Бриллианты навсегда
-        actors.add("Роджер Мур");      // 1973 Живи и дай умереть
-        actors.add("Роджер Мур");      // 1974 Человек с золотым пистолетом
-        actors.add("Роджер Мур");      // 1977 Шпион, который меня любил
-        actors.add("Роджер Мур");      // 1979 Лунный гонщик
-        actors.add("Роджер Мур");      // 1981 Только для твоих глаз
-        actors.add("Роджер Мур");      // 1983 Осьминожка
-        actors.add("Роджер Мур");      // 1985 Вид на убийство
-        actors.add("Тимоти Далтон");   // 1987 Искры из глаз
-        actors.add("Тимоти Далтон");   // 1989 Лицензия на убийство
-        actors.add("Пирс Броснан");    // 1995 Золотой глаз
-        actors.add("Пирс Броснан");    // 1997 Завтра не умрёт никогда
-        actors.add("Пирс Броснан");    // 1999 И целого мира мало
-        actors.add("Пирс Броснан");    // 2002 Умри, но не сейчас
-        actors.add("Дэниел Крейг");    // 2006 Казино «Рояль»
-        actors.add("Дэниел Крейг");    // 2008 Квант милосердия
-        actors.add("Дэниел Крейг");    // 2012 007: Координаты «Скайфолл»
-        actors.add("Дэниел Крейг");    // 2015 007: Спектр
-        actors.add("Дэниел Крейг");    // 2021 Не время умирать
+    private static User findUser(Long userId) {
+        for (User user : users) {
+            if (user.id.equals(userId)) {
+                return user;
+            }
+        }
+
+        return null;
+    }
+
+    static class User {
+        Long id;
+        String name;
+
+        public User(Long id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public String toString() {
+            return "User{id=" + id + ", name='" + name + "'}";
+        }
     }
 }
