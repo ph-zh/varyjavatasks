@@ -5,7 +5,6 @@
 Преобразуйте этот список в хеш-таблицу таким образом, чтобы в качестве ключа было имя актёра, а в значении
 хранилось количество фильмов, в которых этот актёр принял участие.
 Порядок актёров в хеш-таблице должен соответствовать порядку выхода первого фильма с участием этого актёра.
-test
 */
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -13,21 +12,15 @@ import java.util.List;
 import java.util.Map;
 
 public class Practicum {
-
-
     public static void main(String[] args) {
         List<String> actorsList = new ArrayList<>();
         fillActors(actorsList);
 
         // заполните хэш-таблицу
         LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
-        map.put(actorsList.get(0), 6);
-        map.put(actorsList.get(5), 1);
-        map.put(actorsList.get(7), 7);
-        map.put(actorsList.get(14), 2);
-        map.put(actorsList.get(16), 4);
-        map.put(actorsList.get(20), 5);
-
+        for (String actor : actorsList) {
+            map.put(actor, map.getOrDefault(actor, 0) + 1);
+        }
 
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             String actor = entry.getKey();
