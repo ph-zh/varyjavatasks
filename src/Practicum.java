@@ -8,11 +8,7 @@
 Не забудьте импортировать пакет Hashmap.
 Организуйте хранение данных в хеш-таблице так, чтобы в качестве ключа был ID пользователя, а в качестве значения — объект пользователя целиком.
 Метод findUser(Long userId) теперь можно реализовать гораздо проще — напрямую искать ключ (userId) в хеш-таблице.
-before - 10 115 766
-after -  14 465 652
-1.43 times
 */
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,12 +30,13 @@ class Practicum {
     }
 
     private static User findUser(Long userId) {
-        for (Map.Entry<Long, User> entry : users.entrySet()) {
-            if (entry.getKey().equals(userId)) {
-                return entry.getValue();
-            }
-        }
-        return null;
+        // no need to make search for all
+        //        for (Map.Entry<Long, User> entry : users.entrySet()) {
+        //            if (entry.getKey().equals(userId)) {
+        //                return entry.getValue();
+        //            }
+        //        }
+        return users.getOrDefault(userId, null);
     }
 
     static class User {
