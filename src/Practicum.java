@@ -1,55 +1,27 @@
 /*
-Перед вами код для поиска пользователя по ID. Но пользователей очень много — один миллион.
-Поэтому сейчас поиск работает медленно, ведь, чтобы найти нужный ID, приходится выполнять итерацию по всем пользователям!
-Перепишите код таким образом, чтобы поиск пользователей работал быстрее. Для этого примените свои знания о хеш-таблицах.
-Также обратите внимание на код, который измеряет, сколько времени занял поиск пользователя,
-и сравните разницу до и после оптимизации. Также после оптимизации посчитайте, во сколько раз вам удалось ускорить поиск.
-Измените тип поля users с List на HashMap.
-Не забудьте импортировать пакет Hashmap.
-Организуйте хранение данных в хеш-таблице так, чтобы в качестве ключа был ID пользователя, а в качестве значения — объект пользователя целиком.
-Метод findUser(Long userId) теперь можно реализовать гораздо проще — напрямую искать ключ (userId) в хеш-таблице.
-*/
-import java.util.HashMap;
-import java.util.Map;
 
-class Practicum {
-    private static Map<Long, User> users = new HashMap<>();
+*/
+import java.util.HashSet;
+import java.util.Set;
+
+public class Practicum {
+    // здесь хранятся номера всех выпущенных карт
+    private static Set<String> issuedCards = new HashSet<>();
 
     public static void main(String[] args) {
-        // создадим 1 миллион пользователей
-        for (long i = 1; i <= 1_000_000L; i++) {
-            users.put(i, new User(i, "Имя " + i));
-        }
+        issuedCards.add("3688 2836 2367 0847");
+        issuedCards.add("9522 4377 2788 9805");
+        issuedCards.add("1278 6724 0988 4714");
+        issuedCards.add("9142 7356 9815 9066");
+        issuedCards.add("1168 9734 4967 2984");
 
-        final long startTime = System.nanoTime();
-        User user = findUser(378_366L);
-        final long endTime = System.nanoTime();
+        String newCard = generateNewCard();
 
-        System.out.println("Найден пользователь: " + user);
-        System.out.println("Поиск занял " + (endTime - startTime) + " наносекунд.");
+        // проверим, свободен ли этот номер карты
+        System.out.println("Номер карты " + newCard + " свободен? " + !issuedCards.contains(newCard));
     }
 
-    private static User findUser(Long userId) {
-        // no need to make search for all
-        //        for (Map.Entry<Long, User> entry : users.entrySet()) {
-        //            if (entry.getKey().equals(userId)) {
-        //                return entry.getValue();
-        //            }
-        //        }
-        return users.getOrDefault(userId, null);
-    }
-
-    static class User {
-        Long id;
-        String name;
-
-        public User(Long id, String name) {
-            this.id = id;
-            this.name = name;
-        }
-
-        public String toString() {
-            return "User{id=" + id + ", name='" + name + "'}";
-        }
+    public static String generateNewCard() {
+        return "9734 3477 3844 3702";
     }
 }
