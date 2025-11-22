@@ -4,20 +4,25 @@
 Перепишите код таким образом, чтобы поиск пользователей работал быстрее. Для этого примените свои знания о хеш-таблицах.
 Также обратите внимание на код, который измеряет, сколько времени занял поиск пользователя,
 и сравните разницу до и после оптимизации. Также после оптимизации посчитайте, во сколько раз вам удалось ускорить поиск.
-Организуйте хранение данных в хеш-таблице так, чтобы в качестве
-ключа был ID пользователя,а в качестве значения — объект пользователя целиком.
+Измените тип поля users с List на HashMap.
+Не забудьте импортировать пакет Hashmap.
+Организуйте хранение данных в хеш-таблице так, чтобы в качестве ключа был ID пользователя, а в качестве значения — объект пользователя целиком.
+Метод findUser(Long userId) теперь можно реализовать гораздо проще — напрямую искать ключ (userId) в хеш-таблице.
+before - 10 115 766
+after -  14 465 652
+1.43 times
 */
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 class Practicum {
-    private static List<User> users = new ArrayList<>();
+    private static Map<Long, User> users = new HashMap<>();
 
     public static void main(String[] args) {
         // создадим 1 миллион пользователей
         for (long i = 1; i <= 1_000_000L; i++) {
-            users.add(new User(i, "Имя " + i));
+            users.put(i, new User(i, "Имя " + i));
         }
 
         final long startTime = System.nanoTime();
@@ -29,12 +34,11 @@ class Practicum {
     }
 
     private static User findUser(Long userId) {
-        for (User user : users) {
-            if (user.id.equals(userId)) {
-                return user;
+        for (Map.Entry<Long, User> entry : users.entrySet()) {
+            if (entry.getKey().equals(userId)) {
+                return entry.getValue();
             }
         }
-
         return null;
     }
 
