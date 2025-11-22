@@ -1,27 +1,42 @@
 /*
-
+Работа у программистов весьма разнообразна, и сегодня ваш новый проект — приложение для ведения списка покупок!
+Часть кода уже написана, вам нужно дописать недостающие части.
+В переменной allPurchases хранятся все покупки, которые семья сделала за последний месяц. Некоторые товары были
+приобретены несколько раз. Вам нужно выявить уникальные товары, которые покупала семья.
+Для этого реализуйте метод findUniquePurchases(List<String> allPurchases) и допишите недостающие части кода.
+Также посчитайте, сколько уникальных товаров приобретено за последний месяц, и выведите эту информацию на консоль.
+Вызовите функцию findUniquePurchases и поместите её результат в uniquePurchases.
 */
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Practicum {
+class Practicum {
+    private static List<String> allPurchases = List.of(
+            "яблоки",
+            "молоко",
+            "колбаса",
+            "огурцы",
+            "сок",
+            "хлеб",
+            "виноград",
+            "молоко",
+            "йогурт",
+            "хлеб",
+            "пельмени"
+    );
+
     public static void main(String[] args) {
-        List<String> allNames = new ArrayList<>();
-        allNames.add("Марья");
-        allNames.add("Пётр");
-        allNames.add("Светлана");
-        allNames.add("Кристина");
-        allNames.add("Иван");
-        allNames.add("Макс");
-        allNames.add("Светлана");
-        allNames.add("Иван");
+        // переменная uniquePurchases должна содержать множество уникальных товаров
+        Set<String> uniquePurchases = findUniquePurchases(allPurchases);
 
-        Set<String> uniqueNames = new HashSet<>();
-        uniqueNames.addAll(allNames);
+        // допишите вывод количества уникальных товаров
+        System.out.println( "За месяц было куплено " + uniquePurchases.size() + " уникальных товаров.");
+    }
 
-        System.out.println("Количество имён в списке allNames: " + allNames.size());
-        System.out.println("Количество имён в множестве uniqueNames: " + uniqueNames.size());
+    // реализуйте этот метод
+    public static Set<String> findUniquePurchases(List<String> allPurchases) {
+        Set<String> allPurchasesSet = new HashSet<>(allPurchases);
+        return allPurchasesSet;
     }
 }
