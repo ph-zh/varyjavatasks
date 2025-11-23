@@ -2,12 +2,23 @@
 🦉 Перед вами программа, которая хранит доступные авиабилеты и цены на них. Измените код таким образом, чтобы билеты
 хранились в упорядоченном виде — от самых дешёвых к более дорогим. Для этого используйте Comparator.
 */
-import java.util.HashSet;
+import java.util.Comparator;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Practicum {
+
+
+
     public static void main(String[] args) {
-        Set<Ticket> tickets = new HashSet<>();
+        Comparator<Ticket> comparator = new Comparator<Ticket>() {
+            @Override
+            public int compare(Ticket o1, Ticket o2) {
+                return o1.priceInUsd - o2.priceInUsd;
+            }
+        };
+
+        Set<Ticket> tickets = new TreeSet<>(comparator);
         fillTickets(tickets);
 
         System.out.println("Доступные билеты: ");
