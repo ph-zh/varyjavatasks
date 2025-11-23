@@ -1,78 +1,62 @@
 /*
-🦉 Перед вами программа, которая хранит доступные авиабилеты и цены на них. Измените код таким образом, чтобы билеты
-хранились в упорядоченном виде — от самых дешёвых к более дорогим. Для этого используйте Comparator.
+Представьте, что вы работаете в крупной компании над программой для учёта всей входящей корреспонденции.
+В эту систему попадает информация о каждом письме, которое поступает в компанию. Письма хранятся в порядке занесения информации о них в систему.
+Вам нужно добавить новую функцию printOrderedByDateReceived — возможность отсортировать письма по дате их получения (от ранних к поздним).
+Используйте тот же формат вывода на консоль, что уже используется в программе.
 */
-import java.util.Comparator;
+import java.time.LocalDate;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Practicum {
-
-
+    private static Set<Letter> letters = new LinkedHashSet<>();
+    private static Set<Letter> lettersSet = new TreeSet<>();
 
     public static void main(String[] args) {
-        Comparator<Ticket> comparator = new Comparator<Ticket>() {
-            @Override
-            public int compare(Ticket o1, Ticket o2) {
-                return o1.priceInUsd - o2.priceInUsd;
-            }
-        };
+        // информация о письмах (в порядке занесения в систему)
+        letters.add(new Letter("Джон Смит", LocalDate.of(2021, 7, 7), "текст письма №1 ..."));
+        letters.add(new Letter("Аманда Линс", LocalDate.of(2021, 6, 17), "текст письма №2 ..."));
+        letters.add(new Letter("Джо Кью", LocalDate.of(2021, 7, 5), "текст письма №3 ..."));
+        letters.add(new Letter("Мишель Фернандес", LocalDate.of(2021, 8, 23), "текст письма №4 ..."));
 
-        Set<Ticket> tickets = new TreeSet<>(comparator);
-        fillTickets(tickets);
+        lettersSet.addAll(letters);
 
-        System.out.println("Доступные билеты: ");
-        for (Ticket ticket : tickets) {
-            System.out.println("  * " + ticket);
+        printOrderedById(letters);
+        printOrderedByDateReceived(lettersSet);
+    }
+
+    private static void printOrderedById(Set<Letter> letters) {
+        System.out.println("Все письма с сортировкой по ID: ");
+
+        for (Letter letter : letters) {
+            System.out.println("    * Письмо от " + letter.authorName + " поступило " + letter.dateReceived);
         }
     }
 
-    private static void fillTickets(Set<Ticket> tickets) {
-        tickets.add(new Ticket("Лондон", "Париж", 376));
-        tickets.add(new Ticket("Милан", "Москва", 298));
-        tickets.add(new Ticket("Берлин", "Бостон", 1273));
-        tickets.add(new Ticket("Пекин", "Рим", 846));
-        tickets.add(new Ticket("Санкт-Петербург", "Афины", 284));
-        tickets.add(new Ticket("Сидней", "Токио", 1738));
-        tickets.add(new Ticket("Мюнхен", "Дубай", 974));
+    private static void printOrderedByDateReceived(Set<Letter> letters) {
+        System.out.println("Все письма с сортировкой по дате получения: ");
+
+        // реализуйте этот метод
+        for (Letter letter : letters) {
+            System.out.println("    * Письмо от " + letter.authorName + " поступило " + letter.dateReceived);
+        }
     }
 
-    public static class Ticket {
-        public String from;
-        public String to;
-        public int priceInUsd;
+    static class Letter implements Comparable<Letter> {
+        public String authorName;      // имя отправителя
+        public LocalDate dateReceived; // дата получения письма
+        public String text;            // текст письма
 
-        public Ticket(String from, String to, int priceInUsd) {
-            this.from = from;
-            this.to = to;
-            this.priceInUsd = priceInUsd;
+        public Letter(String senderName, LocalDate dateReceived, String text) {
+            this.authorName = senderName;
+            this.dateReceived = dateReceived;
+            this.text = text;
         }
 
         @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            Ticket ticket = (Ticket) o;
-
-            if (priceInUsd != ticket.priceInUsd) return false;
-            if (!from.equals(ticket.from)) return false;
-            if (!to.equals(ticket.to)) return false;
-
-            return true;
-        }
-
-        @Override
-        public int hashCode() {
-            int result = from.hashCode();
-            result = 31 * result + to.hashCode();
-            result = 31 * result + priceInUsd;
-            return result;
-        }
-
-        @Override
-        public String toString() {
-            return "Ticket{from=" + from + ", to=" + to + ", priceInUsd=" + priceInUsd + '}';
+        public int compareTo(Letter letter) {
+            return this.dateReceived.compareTo(letter.dateReceived);
         }
     }
 }
