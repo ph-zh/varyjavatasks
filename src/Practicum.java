@@ -1,32 +1,37 @@
 /*
-🦉 Этот код выводит на консоль информацию о том, сколько всего имён хранится в списке names.
-Доработайте код так, чтобы он показывал еще и количество уникальных имён.
+🦉 Перед вами код плеера, который показывает список прослушанных за день песен.
+Некоторые из них проигрывались несколько раз.
+Измените код таким образом, чтобы в консоль не выводились дубликаты одной и той же песни, если её слушали больше одного раза.
+Также нужно сохранить изначальный порядок прослушивания.
 
 */
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashSet;
 
 public class Practicum {
     public static void main(String[] args) {
-        List<String> names = new ArrayList<>();
-        fillNames(names);
-        System.out.println("Общее количество имён: " + names.size());
+        List<String> songs = new ArrayList<>();
+        fillSongs(songs);
 
-        HashSet<String> uniqueNumber = new HashSet<>(names);
-        System.out.println("Количество уникальных имён: " + uniqueNumber.size());
+        System.out.println("Количество песен: " + songs.size());
+
+        System.out.println("Песни:");
+        for (String song : songs) {
+            System.out.println("  * " + song);
+        }
+
     }
 
-    private static void fillNames(List<String> names) {
-        names.add("Максим");
-        names.add("Светлана");
-        names.add("Иван");
-        names.add("Ольга");
-        names.add("Максим");
-        names.add("Пётр");
-        names.add("Олег");
-        names.add("Иван");
-        names.add("Ольга");
-        names.add("Ирина");
+    private static void fillSongs(List<String> songs) {
+        songs.add("Sting – Shape Of My Heart");
+        songs.add("Gorillaz – Clint Eastwood");
+        songs.add("Lady Gaga – Bad Romance");
+        songs.add("Taylor Swift – Wildest Dreams");
+        songs.add("Ariana Grande – 7 rings");
+        songs.add("Depeche Mode – Personal Jesus");
+        songs.add("Gorillaz – Clint Eastwood");
+        songs.add("Lady Gaga – Bad Romance");
+        songs.add("Bruno Mars – Talking To The Moon");
+        songs.add("Taylor Swift – Wildest Dreams");
     }
 }
