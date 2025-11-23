@@ -3,14 +3,13 @@
 Некоторые из них проигрывались несколько раз.
 Измените код таким образом, чтобы в консоль не выводились дубликаты одной и той же песни, если её слушали больше одного раза.
 Также нужно сохранить изначальный порядок прослушивания.
-
 */
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Practicum {
     public static void main(String[] args) {
-        List<String> songs = new ArrayList<>();
+        Set<String> songs = new LinkedHashSet<>();
         fillSongs(songs);
 
         System.out.println("Количество песен: " + songs.size());
@@ -22,7 +21,7 @@ public class Practicum {
 
     }
 
-    private static void fillSongs(List<String> songs) {
+    private static void fillSongs(Set <String> songs) {
         songs.add("Sting – Shape Of My Heart");
         songs.add("Gorillaz – Clint Eastwood");
         songs.add("Lady Gaga – Bad Romance");
