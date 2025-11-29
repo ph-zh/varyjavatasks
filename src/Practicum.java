@@ -1,9 +1,11 @@
 /*
-
+🦉 Подставьте на место многоточия ... правильные методы, чтобы программа трижды вывела true.
 */
 public class Practicum {
     public static void main(String[] args) {
-        String start = "Hello, world!";
-        System.out.println(start.indexOf("world"));
+
+        System.out.println("Так много методов!". indexOf ("м", 3) == 4);
+        System.out.println("Как их все запомнить?!". charAt(20)  == '?');
+        System.out.println("Шиншилла". lastIndexOf("и", 4)  == 4);
     }
 }
