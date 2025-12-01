@@ -6,11 +6,8 @@
 public class CardNumberMasker {
     public String maskCardNumber(String cardNumber) {
      	 // реализуйте вашу версию метода здесь
-        String first4 = cardNumber.substring(0,4);
-        String last4 = cardNumber.substring(12,16);
-        String middle = "**** ****";
 
-        return first4 + " " + middle + " " + last4;
+        return cardNumber.substring(0,4) + " " + "**** ****" + " " + cardNumber.substring(cardNumber.length() - 4);
 
     }
 
