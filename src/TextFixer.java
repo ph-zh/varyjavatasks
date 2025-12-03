@@ -17,9 +17,7 @@ public class TextFixer {
 
     public String fixText(String text) {
         // Реализуйте этот метод
-        text = text.trim();
-        text = capitalize(text);
-        text = text.replace("цевилизаций", "цивилизаций").replaceAll("„", "«").replaceAll("“", "»");
+        text = capitalize(text.replace("цевилизаций", "цивилизаций").replace("„", "«").replace("“", "»").trim());
         return text;
     }
 
