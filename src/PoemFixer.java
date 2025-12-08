@@ -37,10 +37,10 @@ public class PoemFixer {
         // допишите код
         StringBuilder builder = new StringBuilder();
         for (String text : poem) {
-            builder.append(text.trim()).append("\n");
+            if (!text.isBlank()) {
+                builder.append(text.trim()).append("\n");
+            }
         }
-        builder.delete(27,29);
-        builder.delete(80,81);
         return builder.toString();
     }
 
