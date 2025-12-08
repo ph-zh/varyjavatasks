@@ -34,13 +34,15 @@ public class PoemFixer {
     }
 
     public String fixPoem(String[] poem) {
-        ... // допишите код
+        // допишите код
+
+        return poem[0] + poem[1] + poem[2] + "\n" + poem[3] + "\n" + poem[4].trim() + "\n" + poem[5] + poem[6];
     }
 
     public static void main(String[] args) {
         PoemFixer poemFixer = new PoemFixer();
         String[] poem = poemFixer.readPoem();
-        String poemAsString = poemFixer.fixPoem(poem);
+        String poemAsString = poemFixer.fixPoem(poem).trim();
         System.out.println(poemAsString);
     }
 }
