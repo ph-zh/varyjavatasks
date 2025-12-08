@@ -35,14 +35,19 @@ public class PoemFixer {
 
     public String fixPoem(String[] poem) {
         // допишите код
-
-        return poem[0] + poem[1] + poem[2] + "\n" + poem[3] + "\n" + poem[4].trim() + "\n" + poem[5] + poem[6];
+        StringBuilder builder = new StringBuilder();
+        for (String text : poem) {
+            builder.append(text.trim()).append("\n");
+        }
+        builder.delete(27,29);
+        builder.delete(80,81);
+        return builder.toString();
     }
 
     public static void main(String[] args) {
         PoemFixer poemFixer = new PoemFixer();
         String[] poem = poemFixer.readPoem();
-        String poemAsString = poemFixer.fixPoem(poem).trim();
+        String poemAsString = poemFixer.fixPoem(poem);
         System.out.println(poemAsString);
     }
 }
