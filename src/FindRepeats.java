@@ -18,7 +18,7 @@ public class FindRepeats {
 
         while (builder.indexOf(substring) != -1) {
             count++;
-            builder.delete(0, text.indexOf(substring) + substring.length());
+            builder.delete(0, builder.indexOf(substring) + substring.length());
         }
         return count;
     }
