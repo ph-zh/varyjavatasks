@@ -8,5 +8,10 @@
 public class Palindrome {
 
     public boolean isPalindromeWord(String str) {
+
+        StringBuilder builder = new StringBuilder(str);
+        builder.reverse();
+
+        return str.contains(builder.toString());
     }
 }
