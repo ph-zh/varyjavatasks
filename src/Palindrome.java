@@ -1,17 +1,32 @@
 /*
-Палиндром — это число, сочетание букв или текст, которые читаются одинаково как слева направо, так и справа налево.
-Например, слово «комок» или фраза «А роза упала на лапу Азора». Хотите узнать, зачем вам это знать? Вопрос про палиндром
-— один из самых частых на собеседованиях. А ещё на палиндром любят давать задачки. Мы тоже подготовили сразу две. Вот первая.
-Напишите метод boolean isPalindromeWord(String str). Он должен возвращать true, если аргумент — палиндром, иначе false.
-Исходите из того, что строка-аргумент это одно слово, которое не содержит пробелов. К примеру, «казак».
+Ваш метод public boolean isPalindromeLine(String str) из прошлого задания работает, но не совсем оптимально.
+Усовершенствуйте его так, чтобы он мог обрабатывать не только отдельные слова, но и целые строки с пробелами.
+Такие, как, к примеру, «Молебен о коне белом».
+Для начала нужно привести строку к единому регистру и убрать из неё все пробелы. Тогда задача сведётся к предыдущей.
+Удалить пробелы можно циклом по всем элементам StringBuilder. Устанавливаем индекс в значение 0, далее идём циклом,
+ищем пробел. Если нашли — удаляем его.
+После удаления всех пробелов, можно создать ещё один StringBuilder и передать ему как аргумент предыдущий StringBuilder,
+перевернуть его через reverse(), и затем сравнить полученные строки.
 */
 public class Palindrome {
+    public static void main(String[] arg) {
+        Palindrome palindrome = new Palindrome();
+        System.out.println(palindrome.isPalindromeLine("Молебен о коне белом"));
 
-    public boolean isPalindromeWord(String str) {
+    }
 
-        StringBuilder builder = new StringBuilder(str);
-        builder.reverse();
+    public boolean isPalindromeLine(String str) {
+        StringBuilder builder = new StringBuilder(str.toLowerCase());
 
-        return str.contains(builder.toString());
+        for(int i = 0; i < builder.length(); i++) {
+            if(builder.toString().contains(" ") || builder.toString().contains("")) {
+                builder.toString().replace(" ", "1");
+            }
+
+        }
+        System.out.println(builder.toString());
+        System.out.println(builder);
+        System.out.println(str);
+        return true;
     }
 }
