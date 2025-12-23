@@ -12,21 +12,11 @@ public class Palindrome {
     public static void main(String[] arg) {
         Palindrome palindrome = new Palindrome();
         System.out.println(palindrome.isPalindromeLine("Молебен о коне белом"));
-
     }
 
     public boolean isPalindromeLine(String str) {
-        StringBuilder builder = new StringBuilder(str.toLowerCase());
+        StringBuilder builder = new StringBuilder(str.toLowerCase().replace(" ", ""));
 
-        for(int i = 0; i < builder.length(); i++) {
-            if(builder.toString().contains(" ") || builder.toString().contains("")) {
-                builder.toString().replace(" ", "1");
-            }
-
-        }
-        System.out.println(builder.toString());
-        System.out.println(builder);
-        System.out.println(str);
-        return true;
+        return builder.reverse().toString().equals(str.toLowerCase().replace(" ", ""));
     }
 }
