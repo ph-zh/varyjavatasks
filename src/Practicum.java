@@ -1,22 +1,12 @@
 /*
-🦉 Напишите конструктор приветствия при помощи StringBuilder!
-Сначала создайте экземпляр StringBuilder, а затем добавьте в него три подстроки.
+
 */
 public class Practicum {
     public static void main(String[] args) {
+        StringBuilder builder = new StringBuilder("Hillo, world!");
+        builder.replace(1,2, "e");
+        builder.replace(7,13, "java!");
 
-        String start = "Привет! Меня зовут ";
-
-        StringBuilder hello = new StringBuilder(start); // создайте StringBuilder с началом start
-
-        // добавьте подстроку "<ваше имя>"
-        // добавьте подстроку ". Я из города "
-        // добавьте подстроку "<ваш город>."
-        hello.append("<ваше имя>");
-        hello.append(". Я из города ");
-        hello.append("<ваш город>.");
-
-        String asString = hello.toString();
-        System.out.println(asString);
+        System.out.println(builder.toString());// выведет строку "Hello, java!"
     }
 }
