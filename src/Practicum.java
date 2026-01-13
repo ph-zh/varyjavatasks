@@ -3,9 +3,14 @@
 */
 public class Practicum {
     public static void main(String[] args) {
-        StringBuilder builder = new StringBuilder("Hhellllllo!");
-        builder.deleteCharAt(1); // удалит элемент 'h'
-        builder.delete(2, 6);    // удалит все лишние символы 'l'
-        System.out.println(builder.toString()); // выведет строку "Hello!"
+        StringBuilder initial = new StringBuilder("Большая красная кнопка");
+
+        initial.replace(8, 15, "белая");
+        initial.delete(14, 30);
+        initial.append("груша");
+        initial.setLength(7);
+        initial.reverse();
+
+        System.out.println(initial.toString().toLowerCase());
     }
 }
