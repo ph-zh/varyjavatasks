@@ -3,10 +3,9 @@
 */
 public class Practicum {
     public static void main(String[] args) {
-        StringBuilder builder = new StringBuilder("Hillo, world!");
-        builder.replace(1,2, "e");
-        builder.replace(7,13, "java!");
-
-        System.out.println(builder.toString());// выведет строку "Hello, java!"
+        StringBuilder builder = new StringBuilder("Hhellllllo!");
+        builder.deleteCharAt(1); // удалит элемент 'h'
+        builder.delete(2, 6);    // удалит все лишние символы 'l'
+        System.out.println(builder.toString()); // выведет строку "Hello!"
     }
 }
