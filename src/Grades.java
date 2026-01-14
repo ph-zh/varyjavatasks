@@ -43,8 +43,9 @@ public class Grades {
 			// реализуйте метод здесь
         String[] split = grades.split(";");
 
-        for (String grade : split) {
-            System.out.println(capitalize(grade) + " - " + gradeToString(grade));
+        for(String grade : split) {
+            StringBuilder builder = new StringBuilder(capitalize(grade.replace(",", " ").toLowerCase()));
+            System.out.println(capitalize(builder.toString()) + " - " + gradeToString(builder.toString()));
         }
     }
 
