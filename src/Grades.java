@@ -12,7 +12,6 @@
 - Вероника Чехова физика — Безупречно
 - Анна Строкова математика — Потрясающе
 - Иван Петров геометрия — Безупречно
-вероника,чехова,ФИЗИКА,5;анна,строкова,МАТЕМАТИКА,4;иван,петров,ГЕОМЕТРИЯ,5
 */
 public class Grades {
 
@@ -42,7 +41,11 @@ public class Grades {
     // grades - строка вида "имя,фамилия,предмет,оценка;имя,фамилия,предмет,оценка;"
     public void gradeBeautifier(String grades) {
 			// реализуйте метод здесь
+        String[] split = grades.split(";");
 
+        for (String grade : split) {
+            System.out.println(capitalize(grade) + " - " + gradeToString(grade));
+        }
     }
 
     public static void main(String[] args) {
@@ -52,8 +55,9 @@ public class Grades {
                 "иван,петров,ГЕОМЕТРИЯ,5",
         };
 
-        String stringStudent = String.join("; ", students);
+        Grades grade = new Grades();
+        String stringStudent = String.join(";", students);
+        grade.gradeBeautifier(stringStudent);
 
-        System.out.println(stringStudent);
     }
 }
