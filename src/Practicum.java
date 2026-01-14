@@ -1,15 +1,16 @@
 /*
-🦉 Настало время разделить строку самостоятельно! Преобразуйте строку dollarAssets
-в массив так, чтобы программа выдавала true при проверке его элементов.
+
 */
 public class Practicum {
     public static void main(String[] args) {
-        String dollarAssets = "Акции$Облигации$Фонды$";
+        String[] arrayOfPets = new String[]{
+                "Кот Батончик",
+                "Хомяк Рафаэлка",
+                "Попугай Картошка"
+        };
 
-        String[] split = dollarAssets.split("\\$"); // разбейте строку dollarAssets
+        String pets = String.join(", ", arrayOfPets);
 
-        System.out.println(split[0].equals("Акции"));
-        System.out.println(split[1].equals("Облигации"));
-        System.out.println(split[2].equals("Фонды"));
+        System.out.println("Мои питомцы: " + pets);
     }
 }
