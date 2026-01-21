@@ -43,6 +43,15 @@ public class Grades {
 			// реализуйте метод здесь
         System.out.println(grades);
 
+        String[] split = grades.split(";");
+
+        for (String grade : split) {
+            String[] anotherSplit = grade.split(",");
+            for (String anotherGrade : anotherSplit) {
+                StringBuilder builder = new StringBuilder(anotherGrade.replace("4", gradeToString(anotherGrade)).replace("5", gradeToString(anotherGrade)));
+                System.out.println(capitalize(builder.toString()));
+            }
+        }
     }
 
     public static void main(String[] args) {
