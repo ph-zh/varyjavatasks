@@ -41,12 +41,8 @@ public class Grades {
     // grades - строка вида "имя,фамилия,предмет,оценка;имя,фамилия,предмет,оценка;"
     public void gradeBeautifier(String grades) {
 			// реализуйте метод здесь
-        String[] split = grades.split(";");
+        System.out.println(grades);
 
-        for(String grade : split) {
-            StringBuilder builder = new StringBuilder(capitalize(grade.replace(",", " ").toLowerCase()));
-            System.out.println(capitalize(builder.toString()) + " - " + gradeToString(builder.toString()));
-        }
     }
 
     public static void main(String[] args) {
@@ -59,6 +55,5 @@ public class Grades {
         Grades grade = new Grades();
         String stringStudent = String.join(";", students);
         grade.gradeBeautifier(stringStudent);
-
     }
 }
