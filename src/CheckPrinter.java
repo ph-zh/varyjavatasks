@@ -20,8 +20,13 @@ import java.util.Scanner;
 
 public class CheckPrinter {
     public static void printCheck(String[] items) {
-        for (String item: items) {
 
+        for (String item: items) {
+            String[] split = item.split(",");
+            for (String oneItem : split) {
+                StringBuilder stringBuilder = new StringBuilder(oneItem);
+                System.out.printf("%s", stringBuilder.append(oneItem));
+            }
         }
     }
 
