@@ -16,6 +16,8 @@
 Чай         2 шт.     113.30
 Печенье     1 уп.     75.75
 */
+import java.util.Scanner;
+
 public class CheckPrinter {
     public static void printCheck(String[] items) {
         for (String item: items) {
